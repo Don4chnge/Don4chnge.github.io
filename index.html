@@ -1,0 +1,1578 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%2308090A%27/%3E%3Cpath d=%27M3 20 Q8 10 12 18 T21 16 T29 9%27 stroke=%27%233DFF8F%27 stroke-width=%272.5%27 fill=%27none%27/%3E%3C/svg%3E">
+<title>Thabang Manyama</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Thabang Manyama, final-year Data Science student in Johannesburg. ML monitoring, digital forensics, election forecasting and economic analysis built on real South African data.">
+<meta name="theme-color" content="#08090A">
+<meta property="og:title" content="Thabang Manyama · The Laboratory">
+<meta property="og:description" content="I build systems that notice when something changes. Four data science systems built on real South African data.">
+<meta property="og:image" content="assets/img/portrait.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a lab notebook kept inside an instrument bay. 12-col grid with a left
+   margin column for mono marginalia; figures are numbered; live instruments carry evidence. */
+:root{
+  color-scheme:dark;
+  /* colour roles */
+  --bg:#08090A; --panel:#0E1112; --panel-2:#12171A; --line:#1D2325; --line-2:#2A3236;
+  --ink:#ECEFEA; --muted:#9CA49F; --dim:#808A84;
+  --signal:#3DFF8F; --signal-ink:#03140A; --warn:#FFB547; --alert:#FF7A66;
+  --accent:var(--signal);            /* overridden per project */
+  --paper:#F3F1EC;                    /* plate behind light-background figures */
+  --focus:#3DFF8F;
+  /* project accents */
+  --c-valorian:#3DFF8F; --c-ubufakazi:#2EE6D6; --c-hcw:#FFB547; --c-ls:#FF7A66;
+  /* type */
+  --f-display:"Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --f-text:"Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --step--2: clamp(.72rem, .70rem + .08vw, .78rem);
+  --step--1: clamp(.82rem, .80rem + .10vw, .88rem);
+  --step-0:  clamp(1rem, .97rem + .15vw, 1.09rem);
+  --step-1:  clamp(1.18rem, 1.10rem + .35vw, 1.4rem);
+  --step-2:  clamp(1.5rem, 1.30rem + .9vw, 2.1rem);
+  --step-3:  clamp(2rem, 1.60rem + 1.9vw, 3.2rem);
+  --step-4:  clamp(2.8rem, 2.0rem + 3.8vw, 5.4rem);
+  --step-5:  clamp(3.6rem, 2.4rem + 6vw, 8.4rem);
+  /* space (4px base) */
+  --s1:.25rem; --s2:.5rem; --s3:.75rem; --s4:1rem; --s5:1.5rem; --s6:2rem; --s7:3rem; --s8:4rem; --s9:6rem; --s10:8rem;
+  --section: clamp(4.5rem, 3rem + 6vw, 9rem);
+  --gutter: clamp(16px, 4vw, 48px);
+  --container: 1320px;
+  --measure: 64ch;
+  --radius: 2px;
+  /* motion */
+  --ease-out: cubic-bezier(.23,1,.32,1);
+  --ease-in-out: cubic-bezier(.77,0,.175,1);
+  --ease-snappy: cubic-bezier(.2,.9,.1,1);
+  --dur-instant:100ms; --dur-fast:150ms; --dur-base:220ms; --dur-slow:420ms;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:5rem}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 var(--step-0)/1.62 var(--f-text);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:clip}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3,h4,p,figure,ul,ol,dl,dd{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:var(--radius)}
+::selection{background:color-mix(in oklab,var(--accent) 35%,transparent);color:var(--ink)}
+.mono{font-family:var(--f-mono)}
+.num{font-variant-numeric:tabular-nums}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:var(--gutter);top:-100px;z-index:100;background:var(--signal);color:var(--signal-ink);padding:10px 14px;font:500 var(--step--1) var(--f-mono)}
+.skip:focus{top:12px}
+
+.wrap{max-width:var(--container);margin-inline:auto;padding-left:max(var(--gutter),env(safe-area-inset-left,0px));padding-right:max(var(--gutter),env(safe-area-inset-right,0px))}
+
+/* ---------- shared atoms ---------- */
+.label{font:500 var(--step--2)/1.3 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.label.live{color:var(--accent)}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:.55em;vertical-align:.08em;box-shadow:0 0 0 3px color-mix(in oklab,var(--accent) 18%,transparent)}
+.link{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em;text-decoration-color:color-mix(in oklab,var(--accent) 70%,transparent);transition:color var(--dur-fast) var(--ease-out),text-decoration-color var(--dur-fast) var(--ease-out)}
+@media (hover:hover) and (pointer:fine){.link:hover{color:var(--accent);text-decoration-color:var(--accent)}}
+.arrow{display:inline-block;transition:transform var(--dur-fast) var(--ease-out)}
+@media (hover:hover) and (pointer:fine){a:hover .arrow,button:hover .arrow{transform:translateX(3px)}}
+
+.btn{display:inline-flex;align-items:center;gap:.6em;min-height:46px;padding:0 1.15em;font:500 var(--step--1)/1 var(--f-mono);letter-spacing:.01em;text-decoration:none;border:1px solid var(--line-2);color:var(--ink);background:transparent;border-radius:var(--radius);
+  transition:background-color var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out),transform var(--dur-instant) var(--ease-out)}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--signal-ink)}
+@media (hover:hover) and (pointer:fine){
+  .btn:hover{border-color:var(--muted)}
+  .btn.primary:hover{background:color-mix(in oklab,var(--accent) 86%,white);border-color:transparent}
+}
+.chip{display:inline-flex;align-items:center;gap:.5em;font:500 var(--step--2)/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:.5em .65em;border:1px solid currentColor;color:var(--accent);border-radius:var(--radius);white-space:nowrap}
+.chip.warn{color:var(--alert)}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tags li{font:400 var(--step--2)/1 var(--f-mono);color:var(--muted);border:1px solid var(--line-2);padding:.45em .6em;border-radius:var(--radius)}
+
+/* ---------- header ---------- */
+.site-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in oklab,var(--bg) 88%,transparent);backdrop-filter:saturate(140%) blur(10px);-webkit-backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line)}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s5);min-height:60px}
+.brand{font:500 var(--step--1)/1 var(--f-mono);text-decoration:none;color:var(--ink);letter-spacing:.02em;white-space:nowrap}
+.brand span{color:var(--dim)}
+.nav{display:flex;gap:clamp(.9rem,2vw,2rem)}
+.nav a{font:500 var(--step--2)/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:.9rem 0;position:relative;transition:color var(--dur-fast) var(--ease-out)}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:.55rem;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform var(--dur-base) var(--ease-out)}
+.nav a[aria-current="true"]{color:var(--ink)}
+.nav a[aria-current="true"]::after{transform:scaleX(1)}
+@media (hover:hover) and (pointer:fine){.nav a:hover{color:var(--ink)}}
+.status{font:500 var(--step--2)/1.2 var(--f-mono);color:var(--accent);white-space:nowrap}
+@media (max-width:980px){.status{display:none}}
+@media (max-width:720px){
+  .nav{gap:1rem;overflow-x:auto;scrollbar-width:none;margin-right:calc(-1 * var(--gutter));padding-right:var(--gutter)}
+  .nav::-webkit-scrollbar{display:none}
+  .brand span{display:none}
+}
+
+/* ---------- notebook grid (margin column + content) ---------- */
+.nb{display:grid;grid-template-columns:minmax(150px,190px) minmax(0,1fr);column-gap:clamp(1.5rem,4vw,4rem)}
+.nb > .margin{font:400 var(--step--2)/1.75 var(--f-mono);color:var(--dim);padding-top:.35rem}
+.nb > .margin b{display:block;color:var(--muted);font-weight:500;margin-bottom:.6rem;letter-spacing:.04em}
+.nb > .main{min-width:0}
+@media (max-width:860px){
+  .nb{grid-template-columns:minmax(0,1fr)}
+  .nb > .margin{font-size:0;padding:0 0 var(--s3)}
+  .nb > .margin b{margin:0;font-size:var(--step--2)}
+  .hero .nb > .margin{display:none}
+  .fig-portrait{max-width:340px}
+}
+
+.section{padding-block:var(--section) 0;border-top:1px solid var(--line);margin-top:calc(var(--section) * .7)}
+.section-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:var(--s4);margin-bottom:var(--s7)}
+.section-title{font:400 var(--step-4)/.95 var(--f-display);letter-spacing:-.02em;text-wrap:balance}
+.section-title i{color:var(--muted)}
+.section-intro{color:var(--muted);max-width:52ch;font-size:var(--step-1);line-height:1.5}
+
+/* ---------- hero ---------- */
+.hero{padding-block:clamp(2.5rem,5vw,4.5rem) 0}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:clamp(2rem,5vw,5rem);align-items:end}
+.hero-name{font:400 var(--step-5)/.86 var(--f-display);letter-spacing:-.03em}
+.hero-name i{display:block;color:var(--muted)}
+.hero-claim{font:500 var(--step-2)/1.15 var(--f-text);letter-spacing:-.02em;margin-top:clamp(1.5rem,3vw,2.5rem);max-width:22ch;text-wrap:balance}
+.hero-claim span{color:var(--accent)}
+.hero-lede{color:#C9CFCB;font-size:var(--step-1);line-height:1.55;max-width:46ch;margin-top:var(--s5)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s6)}
+.fig-portrait{position:relative}
+.fig-portrait .frame{position:relative;overflow:hidden;background:var(--panel);aspect-ratio:4/4.4}
+.fig-portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;filter:grayscale(1) contrast(1.06) brightness(.97);transition:filter var(--dur-slow) var(--ease-out)}
+@media (hover:hover) and (pointer:fine){.fig-portrait:hover img{filter:grayscale(0) contrast(1) brightness(1)}}
+.cross{position:absolute;inset:0;pointer-events:none}
+.cross::before,.cross::after{content:"";position:absolute;background:color-mix(in oklab,var(--signal) 60%,transparent)}
+.cross::before{left:57%;top:0;bottom:0;width:1px}
+.cross::after{top:36%;left:0;right:0;height:1px}
+.cross span{position:absolute;left:calc(57% + 8px);top:calc(36% - 26px);font:400 var(--step--2)/1 var(--f-mono);color:var(--signal);background:color-mix(in oklab,var(--bg) 80%,transparent);padding:.35em .45em}
+.figcap{display:flex;justify-content:space-between;gap:var(--s4);font:400 var(--step--2)/1.5 var(--f-mono);color:var(--dim);margin-top:var(--s3)}
+.figcap b{color:var(--muted);font-weight:500}
+@media (max-width:860px){
+  .hero-grid{grid-template-columns:minmax(0,1fr)}
+  .fig-portrait{max-width:420px}
+}
+
+/* ---------- instrument (live trace) ---------- */
+.instrument{margin-top:clamp(2.5rem,5vw,4rem);border:1px solid var(--line);background:var(--panel)}
+.inst-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:var(--s3);padding:.7rem var(--s4);border-bottom:1px solid var(--line)}
+.inst-bar .label{color:var(--muted)}
+.inst-controls{display:flex;gap:var(--s2)}
+.inst-controls .btn{min-height:34px;padding:0 .8em;font-size:var(--step--2)}
+.inst-controls .btn[aria-pressed="true"]{border-color:var(--warn);color:var(--warn)}
+.scope{position:relative;height:clamp(180px,24vw,300px);background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:100% 25%,8.333% 100%;background-position:0 -1px,-1px 0}
+.scope canvas{position:absolute;inset:0;width:100%;height:100%}
+.scope-note{position:absolute;right:var(--s4);top:var(--s4);font:500 var(--step--2)/1.5 var(--f-mono);color:var(--signal);text-align:right;padding:.45em .6em;background:color-mix(in oklab,var(--panel) 85%,transparent);border-left:1px solid currentColor;transition:color var(--dur-base) var(--ease-out)}
+.scope-note[data-state="drift"]{color:var(--warn)}
+.readouts{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--line)}
+.readouts > div{padding:var(--s4);border-right:1px solid var(--line);min-width:0}
+.readouts > div:last-child{border-right:0}
+.readouts dt{font:500 var(--step--2)/1.3 var(--f-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--dim)}
+.readouts dd{font:400 var(--step-3)/1 var(--f-display);margin-top:.45rem;font-variant-numeric:tabular-nums}
+.readouts dd small{font:400 var(--step--2)/1.4 var(--f-mono);color:var(--dim);display:block;margin-top:.4rem;letter-spacing:0}
+.readouts .g{color:var(--signal)}
+@media (max-width:860px){.readouts{grid-template-columns:repeat(2,minmax(0,1fr))}.readouts>div:nth-child(2n){border-right:0}.readouts>div{border-bottom:1px solid var(--line)}.readouts>div:last-child{grid-column:1/-1}}
+
+/* ---------- systems (experiment log) ---------- */
+.log{border-top:1px solid var(--ink)}
+.entry{--accent:var(--c);position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:clamp(1.5rem,4vw,4rem);padding-block:clamp(2rem,4vw,3.25rem);border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
+.entry::before{content:"";position:absolute;left:0;top:-1px;height:2px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform var(--dur-slow) var(--ease-out)}
+@media (hover:hover) and (pointer:fine){.entry:hover::before{transform:scaleX(1)}}
+.entry:focus-visible::before{transform:scaleX(1)}
+.entry-meta{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;align-items:center}
+.entry-title{font:400 var(--step-4)/.95 var(--f-display);letter-spacing:-.02em;margin-top:var(--s4);text-wrap:balance;transition:color var(--dur-base) var(--ease-out)}
+@media (hover:hover) and (pointer:fine){.entry:hover .entry-title{color:var(--accent)}}
+.entry-plain{font-size:var(--step-1);line-height:1.45;color:#D3D8D4;margin-top:var(--s4);max-width:38ch}
+.entry-hr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s5);margin-top:var(--s6);padding-top:var(--s5);border-top:1px dashed var(--line-2)}
+.entry-hr dt{font:500 var(--step--2)/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:.55rem}
+.entry-hr dd{font-size:var(--step--1);color:var(--muted);line-height:1.55}
+.entry-foot{display:flex;flex-wrap:wrap;gap:var(--s4);align-items:center;justify-content:space-between;margin-top:var(--s6)}
+.entry-open{font:500 var(--step--1)/1 var(--f-mono);color:var(--accent)}
+.entry-fig{align-self:center;min-width:0}
+.shot{position:relative;border:1px solid var(--line-2);background:var(--panel);overflow:hidden}
+.shot img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top left;transition:transform 700ms var(--ease-out)}
+@media (hover:hover) and (pointer:fine){.entry:hover .shot img{transform:scale(1.025)}}
+.shot .tag{position:absolute;left:0;bottom:0;font:500 var(--step--2)/1 var(--f-mono);background:var(--bg);color:var(--accent);padding:.55em .7em;border-top:1px solid var(--line-2);border-right:1px solid var(--line-2)}
+.spark{display:block;width:100%;height:46px;margin-top:var(--s3)}
+@media (max-width:860px){.entry{grid-template-columns:minmax(0,1fr)}.entry-fig{order:-1}}
+
+/* ---------- methods ---------- */
+.methods{display:grid;border-top:1px solid var(--line)}
+.method{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr) minmax(0,1fr);gap:clamp(1rem,3vw,3rem);padding-block:var(--s5);border-bottom:1px solid var(--line);align-items:baseline}
+.method h3{font:400 var(--step-2)/1.1 var(--f-display);letter-spacing:-.01em}
+.method .tools{color:#D3D8D4;line-height:1.7}
+.method .proof{font:400 var(--step--1)/1.6 var(--f-mono);color:var(--dim)}
+.method .proof a{color:var(--muted);text-decoration:underline;text-decoration-color:var(--line-2);text-underline-offset:.2em}
+@media (hover:hover){.method .proof a:hover{color:var(--ink);text-decoration-color:var(--signal)}}
+@media (max-width:860px){.method{grid-template-columns:minmax(0,1fr);gap:var(--s2)}}
+
+/* ---------- record ---------- */
+.record-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(2rem,5vw,5rem)}
+.timeline li{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:var(--s4);padding-block:var(--s4);border-bottom:1px solid var(--line)}
+.timeline time{font:400 var(--step--1)/1.5 var(--f-mono);color:var(--dim);font-variant-numeric:tabular-nums}
+.timeline h3{font:500 var(--step-0)/1.35 var(--f-text)}
+.timeline p{font-size:var(--step--1);color:var(--muted);margin-top:.2rem;line-height:1.55}
+.timeline .k{font:500 var(--step--2)/1 var(--f-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--signal);margin-left:.4em}
+.timeline a.v{font:400 var(--step--2) var(--f-mono);color:var(--muted)}
+.plates{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s4)}
+.plate{border:1px solid var(--line-2);background:var(--panel);text-align:left;display:flex;flex-direction:column;transition:border-color var(--dur-fast) var(--ease-out)}
+.plate:active{transform:scale(.99)}
+@media (hover:hover) and (pointer:fine){.plate:hover{border-color:var(--muted)}}
+.plate img{aspect-ratio:1.9/1;object-fit:cover;object-position:center;background:var(--paper)}
+.plate.tall{grid-row:span 3}
+.plate.tall img{aspect-ratio:auto;flex:1;object-fit:cover;object-position:top}
+.plate span{display:block;padding:.7rem .8rem;font:400 var(--step--2)/1.45 var(--f-mono);color:var(--muted)}
+.plate span b{color:var(--ink);font-weight:500;display:block}
+.distinctions{margin-top:var(--s7)}
+.dist-row{display:grid;grid-template-columns:6.5rem minmax(0,1fr);gap:var(--s4);align-items:start;padding-block:var(--s4);border-top:1px solid var(--line)}
+.dist-row .yr{font:400 var(--step-2)/1 var(--f-display)}
+.dist-row .yr small{display:block;font:400 var(--step--2)/1.5 var(--f-mono);color:var(--dim);margin-top:.35rem}
+.ticks{display:flex;gap:4px;margin-bottom:.6rem}
+.ticks i{width:18px;height:8px;background:var(--signal)}
+.dist-row p{font-size:var(--step--1);color:var(--muted);line-height:1.6}
+.dist-row p b{color:var(--ink);font-weight:500}
+@media (max-width:980px){.record-grid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:520px){.timeline li{grid-template-columns:minmax(0,1fr);gap:.2rem}}
+
+/* ---------- about / contact ---------- */
+.about-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(2rem,5vw,5rem)}
+.prose p{font-size:var(--step-1);line-height:1.6;color:#D3D8D4;max-width:var(--measure)}
+.prose p + p{margin-top:var(--s5)}
+.facts div{display:grid;grid-template-columns:8rem minmax(0,1fr);gap:var(--s4);padding-block:var(--s3);border-bottom:1px solid var(--line)}
+.facts dt{font:500 var(--step--2)/1.6 var(--f-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--dim)}
+.facts dd{font-size:var(--step--1);color:var(--muted)}
+.facts dd b{color:var(--ink);font-weight:500}
+@media (max-width:980px){.about-grid{grid-template-columns:minmax(0,1fr)}}
+.contact{padding-block:var(--section)}
+.contact-title{font:400 var(--step-5)/.9 var(--f-display);letter-spacing:-.03em;max-width:16ch;text-wrap:balance}
+.contact-title i{color:var(--muted)}
+.contact-rows{margin-top:var(--s7);border-top:1px solid var(--ink)}
+.contact-rows > div{display:grid;grid-template-columns:10rem minmax(0,1fr) auto;gap:var(--s4);align-items:center;padding-block:var(--s4);border-bottom:1px solid var(--line)}
+.contact-rows .v{font-size:var(--step-1);overflow-wrap:anywhere}
+.contact-rows .btn{min-height:38px}
+@media (max-width:640px){.contact-rows > div{grid-template-columns:minmax(0,1fr) auto}.contact-rows .label{grid-column:1/-1}}
+.foot{border-top:1px solid var(--line);padding-block:var(--s6) calc(var(--s6) + env(safe-area-inset-bottom,0px));font:400 var(--step--2)/1.6 var(--f-mono);color:var(--dim)}
+.foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s4)}
+
+/* ---------- dossier (project view) ---------- */
+.dossier{--accent:var(--c)}
+.d-head{padding-block:clamp(2rem,4vw,3.5rem) 0}
+.back{display:inline-flex;align-items:center;gap:.5em;font:500 var(--step--1)/1 var(--f-mono);color:var(--muted);text-decoration:none;min-height:44px}
+.back .arrow{transition:transform var(--dur-fast) var(--ease-out)}
+@media (hover:hover){.back:hover{color:var(--ink)}.back:hover .arrow{transform:translateX(-3px)}}
+.d-title{font:400 var(--step-5)/.88 var(--f-display);letter-spacing:-.03em;margin-top:var(--s5);text-wrap:balance;max-width:14ch}
+.d-sub{font-size:var(--step-2);line-height:1.25;letter-spacing:-.015em;color:#D3D8D4;margin-top:var(--s5);max-width:30ch;text-wrap:balance}
+.d-actions{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s6)}
+.d-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(2rem,4vw,3rem);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.d-facts > div{padding:var(--s4) var(--s4) var(--s4) 0;border-right:1px solid var(--line)}
+.d-facts > div + div{padding-left:var(--s4)}
+.d-facts > div:last-child{border-right:0}
+.d-facts dt{font:500 var(--step--2)/1.3 var(--f-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--dim)}
+.d-facts dd{font-size:var(--step--1);color:var(--ink);margin-top:.45rem;line-height:1.45}
+@media (max-width:860px){.d-facts{grid-template-columns:repeat(2,minmax(0,1fr))}.d-facts>div{padding-left:0!important;border-right:0;border-bottom:1px solid var(--line)}.d-facts>div:nth-child(odd){padding-right:var(--s4)}}
+.d-results{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:0;border:1px solid var(--line);background:var(--panel);margin-top:var(--s7)}
+.d-results > div{padding:var(--s5) var(--s4);border-right:1px solid var(--line);min-width:0}
+.d-results > div:last-child{border-right:0}
+.d-results b{display:block;font:400 var(--step-3)/1 var(--f-display);white-space:nowrap;color:var(--accent);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.d-results span{display:block;font-size:var(--step--1);color:var(--muted);margin-top:.6rem;line-height:1.45}
+@media (max-width:860px){.d-results{grid-template-columns:repeat(2,minmax(0,1fr))}.d-results>div:nth-child(2n){border-right:0}.d-results>div{border-bottom:1px solid var(--line)}}
+
+.d-sec{padding-top:clamp(3.5rem,6vw,6rem)}
+.d-sec h2{font:400 var(--step-3)/1 var(--f-display);letter-spacing:-.015em;text-wrap:balance;margin-bottom:var(--s5)}
+.d-sec .prose p{font-size:var(--step-1)}
+.d-sec .prose strong{color:var(--ink);font-weight:500}
+.callout{border-left:2px solid var(--accent);padding:.2rem 0 .2rem var(--s5);margin-top:var(--s6);max-width:var(--measure)}
+.callout p{font:400 var(--step-2)/1.3 var(--f-display);color:var(--ink);letter-spacing:-.005em}
+.steps{counter-reset:s;display:grid;gap:0;border-top:1px solid var(--line);max-width:900px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:3rem minmax(0,1fr);gap:var(--s4);padding-block:var(--s4);border-bottom:1px solid var(--line)}
+.steps li::before{content:counter(s,decimal-leading-zero);font:500 var(--step--1)/1.6 var(--f-mono);color:var(--accent)}
+.steps li p{color:#D3D8D4}
+.steps li p b{color:var(--ink);font-weight:500}
+.bullets{display:grid;gap:var(--s4);max-width:var(--measure)}
+.bullets li{position:relative;padding-left:1.4rem;color:#D3D8D4;line-height:1.6}
+.bullets li::before{content:"";position:absolute;left:0;top:.72em;width:.6rem;height:1px;background:var(--accent)}
+.bullets li b{color:var(--ink);font-weight:500}
+
+/* architecture diagram */
+.arch{border:1px solid var(--line);background:var(--panel)}
+.nb > .arch{grid-column:1/-1;margin-top:var(--s5);min-width:0}
+[data-view] h1[tabindex="-1"]:focus{outline:none}
+.arch-scroll{overflow-x:auto}
+.arch svg{display:block;width:100%;height:auto}
+.arch .node rect{fill:var(--bg);stroke:var(--line-2);transition:stroke var(--dur-fast) var(--ease-out),fill var(--dur-fast) var(--ease-out)}
+.arch .node text{fill:var(--muted);font:400 13px var(--f-mono);transition:fill var(--dur-fast) var(--ease-out)}
+.arch .node .t2{fill:var(--dim);font-size:11px}
+.arch .node{cursor:pointer;outline:none}
+.arch .node.on rect,.arch .node:focus-visible rect{stroke:var(--accent);fill:color-mix(in oklab,var(--accent) 9%,var(--bg))}
+.arch .node.on text,.arch .node:focus-visible text{fill:var(--ink)}
+.arch .col-label{fill:var(--dim);font:500 10.5px var(--f-mono);letter-spacing:.08em}
+.arch .edge{fill:none;stroke:var(--line-2);stroke-width:1.2;transition:stroke var(--dur-fast) var(--ease-out)}
+.arch .edge.on{stroke:var(--accent);stroke-dasharray:4 6}
+@media (prefers-reduced-motion:no-preference){.arch .edge.on{animation:flow 1.1s linear infinite}}
+@keyframes flow{to{stroke-dashoffset:-20}}
+.arch-detail{display:grid;grid-template-columns:minmax(0,14rem) minmax(0,1fr);gap:var(--s4);padding:var(--s4);border-top:1px solid var(--line);min-height:5.5rem}
+.arch-detail b{font:500 var(--step--1)/1.4 var(--f-mono);color:var(--accent)}
+.arch-detail p{font-size:var(--step--1);color:#D3D8D4;line-height:1.6}
+.arch-hint{font:400 var(--step--2)/1 var(--f-mono);color:var(--dim);padding:.7rem var(--s4);border-bottom:1px solid var(--line)}
+@media (max-width:640px){.arch-detail{grid-template-columns:minmax(0,1fr)}}
+
+/* figures */
+.figs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1rem,2.5vw,2rem)}
+.figs .wide{grid-column:1/-1}
+.fig{min-width:0}
+.fig .img{border:1px solid var(--line-2);background:var(--panel);overflow:hidden;display:block;width:100%;padding:0;cursor:zoom-in}
+.fig .img.paper{background:var(--paper);padding:clamp(.5rem,1.5vw,1rem)}
+.fig img{width:100%;transition:transform 600ms var(--ease-out)}
+@media (hover:hover) and (pointer:fine){.fig .img:hover img{transform:scale(1.015)}}
+.fig figcaption{font:400 var(--step--2)/1.55 var(--f-mono);color:var(--dim);margin-top:.7rem;max-width:80ch}
+.fig figcaption b{color:var(--accent);font-weight:500}
+@media (max-width:760px){.figs{grid-template-columns:minmax(0,1fr)}}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;font:400 var(--step--1)/1.4 var(--f-mono);font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:.75rem .9rem;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-weight:500;color:var(--dim);font-size:var(--step--2);letter-spacing:.06em;text-transform:uppercase;background:var(--panel)}
+td{color:var(--muted)}
+tr.hl td{color:var(--ink);background:color-mix(in oklab,var(--accent) 7%,transparent)}
+tbody tr:last-child td{border-bottom:0}
+.band{font-weight:500}
+.band.healthy{color:var(--signal)}.band.watch{color:var(--warn)}.band.degraded{color:var(--alert)}
+
+/* demo / lab bench */
+.bench{border:1px solid var(--line);background:var(--panel)}
+.bench-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:var(--s3);padding:.7rem var(--s4);border-bottom:1px solid var(--line)}
+.bench-body{padding:var(--s5) var(--s4)}
+.seg{display:inline-flex;border:1px solid var(--line-2);border-radius:var(--radius)}
+.seg button{font:500 var(--step--2)/1 var(--f-mono);letter-spacing:.04em;padding:.7em .9em;color:var(--muted);transition:background-color var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out);min-height:36px}
+.seg button + button{border-left:1px solid var(--line-2)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--signal-ink)}
+@media (hover:hover){.seg button:not([aria-pressed="true"]):hover{color:var(--ink)}}
+.chart{width:100%;height:auto;display:block;overflow:visible}
+.chart-host{min-width:0}
+.chart text{font:400 11px var(--f-mono);fill:var(--dim)}
+.chart .grid line{stroke:var(--line)}
+.chart .axis-label{fill:var(--muted)}
+.readout-row{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s6);margin-top:var(--s4);font:400 var(--step--1)/1.5 var(--f-mono);color:var(--muted);min-height:1.5em}
+.readout-row b{color:var(--ink);font-weight:500}
+.bench textarea,.bench input[type=text]{width:100%;background:var(--bg);color:var(--ink);border:1px solid var(--line-2);border-radius:var(--radius);padding:.85rem .9rem;font:400 var(--step--1)/1.55 var(--f-mono);resize:vertical}
+.bench textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.bench label{display:block;font:500 var(--step--2)/1 var(--f-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--dim);margin-bottom:.6rem}
+.hash{font:400 var(--step--1)/1.6 var(--f-mono);word-break:break-all;color:var(--muted);margin-top:.5rem;padding:.8rem .9rem;border:1px dashed var(--line-2);min-height:3.4em}
+.hash .d{color:var(--alert)}
+.verdict{display:flex;align-items:center;gap:.6rem;margin-top:var(--s4);font:500 var(--step--1)/1.4 var(--f-mono)}
+.verdict[data-ok="true"]{color:var(--c-ubufakazi)}
+.verdict[data-ok="false"]{color:var(--alert)}
+.bench-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s5)}
+@media (max-width:760px){.bench-grid{grid-template-columns:minmax(0,1fr)}}
+
+.next{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:var(--s4);margin-top:clamp(4rem,8vw,7rem);padding-block:var(--s7);border-top:1px solid var(--ink);text-decoration:none;color:inherit}
+.next .label{grid-column:1/-1}
+.next strong{font:400 var(--step-4)/.95 var(--f-display);letter-spacing:-.02em;transition:color var(--dur-base) var(--ease-out)}
+@media (hover:hover){.next:hover strong{color:var(--n)}}
+
+/* lightbox */
+dialog.lightbox{border:1px solid var(--line-2);background:var(--bg);color:var(--ink);padding:0;max-width:min(1200px,calc(100vw - 32px));max-height:calc(100dvh - 32px);width:auto}
+dialog.lightbox::backdrop{background:rgb(3 4 4 / .82)}
+dialog.lightbox img{max-height:calc(100dvh - 120px);width:auto;margin:auto}
+dialog.lightbox .lb-bar{display:flex;justify-content:space-between;gap:var(--s4);align-items:center;padding:.6rem .8rem;border-bottom:1px solid var(--line);font:400 var(--step--2)/1.4 var(--f-mono);color:var(--muted)}
+dialog.lightbox .lb-img{background:var(--panel);display:flex}
+dialog.lightbox .lb-img.paper{background:var(--paper)}
+@media (prefers-reduced-motion:no-preference){
+  dialog.lightbox{opacity:0;transform:translateY(8px) scale(.985);transition:opacity 200ms var(--ease-out),transform 200ms var(--ease-out),overlay 200ms allow-discrete,display 200ms allow-discrete}
+  dialog.lightbox[open]{opacity:1;transform:none}
+  @starting-style{dialog.lightbox[open]{opacity:0;transform:translateY(8px) scale(.985)}}
+}
+
+/* view switching + reveal */
+[data-view][hidden]{display:none!important}
+@media (prefers-reduced-motion:no-preference){
+  .view-enter{animation:viewIn 420ms var(--ease-out) both}
+  @keyframes viewIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="#top" data-home>T.W. Manyama <span>/ laboratory</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#systems" data-nav="systems">Systems</a>
+      <a href="#methods" data-nav="methods">Methods</a>
+      <a href="#record" data-nav="record">Record</a>
+      <a href="#about" data-nav="about">About</a>
+      <a href="#contact" data-nav="contact">Contact</a>
+    </nav>
+    <span class="status"><span class="dot" aria-hidden="true"></span>Open to graduate roles &amp; internships</span>
+  </div>
+</header>
+
+<main id="main">
+<div data-view="home">
+  <section class="hero wrap" id="top" aria-labelledby="hero-name">
+    <div class="nb">
+      <p class="margin" aria-label="Notebook entry details"><b>Entry 001</b>Johannesburg, ZA<br>Updated 30·10·2026<br><br>Subject: data science,<br>ML systems, evidence<br><br>Status: final year,<br>BSc IT Data Science</p>
+      <div class="main">
+        <div class="hero-grid">
+          <div>
+            <h1 id="hero-name" class="hero-name">Thabang <i>Manyama</i></h1>
+            <p class="hero-claim">I build systems that notice <span>when something changes.</span></p>
+            <p class="hero-lede">Final-year Data Science student at EDUVOS in Johannesburg. I build machine-learning monitors, forensic tools and forecasts from real South African data, then test them until the results hold up.</p>
+            <div class="hero-cta">
+              <a class="btn primary" href="#systems">Explore the systems <span class="arrow" aria-hidden="true">→</span></a>
+              <a class="btn" href="assets/Thabang_Manyama_CV.pdf" target="_blank" rel="noopener">Open my CV <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+          <figure class="fig-portrait">
+            <div class="frame">
+              <img src="assets/img/portrait.webp" width="680" height="606" alt="Portrait of Thabang Manyama in a dark suit and tie">
+              <div class="cross" aria-hidden="true"><span>subject · T.W.M.</span></div>
+            </div>
+            <figcaption class="figcap"><span><b>Fig. 1</b> The researcher</span><span>21 · Johannesburg</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="instrument" aria-labelledby="inst-title">
+          <div class="inst-bar">
+            <p class="label" id="inst-title"><span class="dot" aria-hidden="true"></span>Live trace · a model watching its own inputs</p>
+            <div class="inst-controls">
+              <button class="btn" type="button" id="drift-btn" aria-pressed="false">Inject drift</button>
+              <button class="btn" type="button" id="pause-btn" aria-pressed="false">Pause</button>
+            </div>
+          </div>
+          <div class="scope">
+            <canvas id="trace" aria-hidden="true"></canvas>
+            <p class="scope-note" id="scope-note" data-state="ok" role="status" aria-live="polite">MONITOR: STABLE<br>PSI 0.008 · DriftScore 100</p>
+          </div>
+          <dl class="readouts">
+            <div><dt>Systems shipped</dt><dd>4<small>3 with live demos</small></dd></div>
+            <div><dt>Tests passing</dt><dd class="g">78/78<small>Valorian, Python 3.10–3.12</small></dd></div>
+            <div><dt>Forecast ROC-AUC</dt><dd>0.88<small>unseen 2021 election</small></dd></div>
+            <div><dt>Languages parsed</dt><dd>5<small>Ubufakazi statements</small></dd></div>
+            <div><dt>Distinctions</dt><dd>14<small>incl. 97% Linear Algebra</small></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="systems" aria-labelledby="systems-title">
+    <div class="nb">
+      <p class="margin"><b>§ 1 · Systems</b>4 entries<br>2025–2026<br><br>Each opens a full<br>dossier: purpose,<br>how to use it,<br>architecture,<br>evidence.</p>
+      <div class="main">
+        <div class="section-head">
+          <h2 class="section-title" id="systems-title">The experiment log</h2>
+          <p class="section-intro">Four systems built on real data. Each started as a question, and the answer had to survive testing. One of the hypotheses didn’t, and that’s in here too.</p>
+        </div>
+        <div class="log">
+          <a class="entry" href="#valorian" style="--c:var(--c-valorian)">
+            <div>
+              <div class="entry-meta"><span class="label">EXP-01 · 2026</span><span class="label live"><span class="dot" aria-hidden="true"></span>ML monitoring</span></div>
+              <h3 class="entry-title">Valorian Intelligence</h3>
+              <p class="entry-plain">Warns you when a machine-learning model that is already in use has quietly stopped working.</p>
+              <dl class="entry-hr">
+                <div><dt>Hypothesis</dt><dd>A model can lose accuracy while every input still looks normal.</dd></div>
+                <div><dt>Result</dt><dd>Caught an 11.3% performance drop that input-only monitoring missed. 78 tests passing.</dd></div>
+              </dl>
+              <div class="entry-foot"><span class="chip">Confirmed</span><span class="entry-open">Open dossier <span class="arrow" aria-hidden="true">→</span></span></div>
+            </div>
+            <figure class="entry-fig">
+              <div class="shot"><img src="assets/img/valorian-dashboard.webp" width="1440" height="900" alt="Valorian dashboard showing DriftScore 60, a degraded status and drift over six monthly batches" loading="lazy"><span class="tag">Fig. 2 · live Streamlit dashboard</span></div>
+            </figure>
+          </a>
+
+          <a class="entry" href="#ubufakazi" style="--c:var(--c-ubufakazi)">
+            <div>
+              <div class="entry-meta"><span class="label">EXP-02 · Oct 2026</span><span class="label live"><span class="dot" aria-hidden="true"></span>Digital forensics</span></div>
+              <h3 class="entry-title">Ubufakazi</h3>
+              <p class="entry-plain">Turns a scam victim’s WhatsApp chats and payment slips into a tamper-evident, police-ready case file in under a minute.</p>
+              <dl class="entry-hr">
+                <div><dt>Hypothesis</dt><dd>One scam report gets ignored. Seven linked victims of the same syndicate make a case.</dd></div>
+                <div><dt>Result</dt><dd>All 70 test cases in 5 languages extract the right account, amount and scam type. Live platform.</dd></div>
+              </dl>
+              <div class="entry-foot"><span class="chip">Shipped · team lead</span><span class="entry-open">Open dossier <span class="arrow" aria-hidden="true">→</span></span></div>
+            </div>
+            <figure class="entry-fig">
+              <div class="shot"><img src="assets/img/ubufakazi-home.webp" width="1440" height="900" alt="Ubufakazi home page: turn digital evidence into real justice" loading="lazy"><span class="tag">Fig. 3 · ubufakazi.onrender.com</span></div>
+            </figure>
+          </a>
+
+          <a class="entry" href="#hung-council-watch" style="--c:var(--c-hcw)">
+            <div>
+              <div class="entry-meta"><span class="label">EXP-03 · 2026</span><span class="label live"><span class="dot" aria-hidden="true"></span>Election forecasting</span></div>
+              <h3 class="entry-title">Hung Council Watch</h3>
+              <p class="entry-plain">Forecasts which of South Africa’s 213 municipalities are likely to need a coalition after the 2026 local elections.</p>
+              <dl class="entry-hr">
+                <div><dt>Hypothesis</dt><dd>Voter turnout follows an inverted U against political competition.</dd></div>
+                <div><dt>Result</dt><dd>Rejected, so we changed the question. The forecast model flagged 62 of 72 hung councils on an unseen election (ROC-AUC 0.88).</dd></div>
+              </dl>
+              <div class="entry-foot"><span class="chip">Rejected → pivoted</span><span class="entry-open">Open dossier <span class="arrow" aria-hidden="true">→</span></span></div>
+            </div>
+            <figure class="entry-fig">
+              <div class="shot"><img src="assets/img/hcw-forecast.webp" width="1440" height="900" alt="Hung Council Watch dashboard: map of municipal hung-council risk, 77 councils expected to be hung" loading="lazy"><span class="tag">Fig. 4 · public D3 dashboard</span></div>
+            </figure>
+          </a>
+
+          <a class="entry" href="#load-shedding" style="--c:var(--c-ls)">
+            <div>
+              <div class="entry-meta"><span class="label">EXP-04 · 2026</span><span class="label live"><span class="dot" aria-hidden="true"></span>Economic impact</span></div>
+              <h3 class="entry-title">Load Shedding’s Ripple Effect</h3>
+              <p class="entry-plain">Measures how much Eskom’s power cuts moved South African retail sales, using official Eskom and Stats SA data.</p>
+              <dl class="entry-hr">
+                <div><dt>Hypothesis</dt><dd>Heavier load shedding goes with weaker retail sales growth.</dd></div>
+                <div><dt>Result</dt><dd>Strong negative link over 49 months: r = −0.649, p &lt; 0.0001. About a 6-point swing in growth.</dd></div>
+              </dl>
+              <div class="entry-foot"><span class="chip">Confirmed</span><span class="entry-open">Open dossier <span class="arrow" aria-hidden="true">→</span></span></div>
+            </div>
+            <figure class="entry-fig">
+              <div class="shot"><img src="assets/img/ls-powerbi.webp" width="1153" height="644" alt="Power BI dashboard: worst month 3,213 MW, 49 months analysed, load shedding against retail growth" loading="lazy"><span class="tag">Fig. 5 · Power BI dashboard</span></div>
+            </figure>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="methods" aria-labelledby="methods-title">
+    <div class="nb">
+      <p class="margin"><b>§ 2 · Methods</b>Skills, with<br>the work that<br>proves each one.</p>
+      <div class="main">
+        <div class="section-head">
+          <h2 class="section-title" id="methods-title">Methods <i>&amp; instruments</i></h2>
+          <p class="section-intro">No skill bars. Each line lists the tools and where you can see them used.</p>
+        </div>
+        <div class="methods">
+          <div class="method"><h3>Machine learning</h3><p class="tools">scikit-learn, XGBoost, KMeans, logistic regression, random forests, feature engineering, time-ordered validation, model monitoring</p><p class="proof">Proof: <a href="#hung-council-watch">Hung Council Watch</a>, <a href="#valorian">Valorian</a></p></div>
+          <div class="method"><h3>Statistics</h3><p class="tools">Hypothesis and permutation testing, PSI, Kolmogorov–Smirnov, chi-square, OLS, distributed-lag and fixed-effects regression, confidence intervals</p><p class="proof">Proof: <a href="#load-shedding">Load Shedding</a>, <a href="#valorian">Valorian</a></p></div>
+          <div class="method"><h3>Languages</h3><p class="tools">Python, R, SQL, JavaScript</p><p class="proof">Proof: all four systems</p></div>
+          <div class="method"><h3>Data engineering</h3><p class="tools">pandas, NumPy, SQLite, Postgres, reproducible pipelines from raw institutional data, Microsoft Fabric</p><p class="proof">Proof: <a href="#hung-council-watch">Hung Council Watch</a> · Fabric Data Engineer certification</p></div>
+          <div class="method"><h3>Visualisation</h3><p class="tools">D3.js, Streamlit, Power BI, Tableau, Matplotlib, Excel</p><p class="proof">Proof: <a href="#hung-council-watch">D3 dashboard</a>, <a href="#valorian">Streamlit</a>, <a href="#load-shedding">Power BI</a></p></div>
+          <div class="method"><h3>Software engineering</h3><p class="tools">Git and GitHub, GitHub Actions CI, pytest, Playwright, FastAPI, Netlify and Render deployment, object-oriented design</p><p class="proof">Proof: <a href="#valorian">78-test suite</a>, <a href="#ubufakazi">Ubufakazi</a></p></div>
+          <div class="method"><h3>Security &amp; forensics</h3><p class="tools">SHA-256 evidence hashing, HMAC-keyed identifiers, Content Security Policy, session monitoring, network security</p><p class="proof">Proof: <a href="#ubufakazi">Ubufakazi</a> · 3rd, ITWeb hackathon</p></div>
+          <div class="method"><h3>Cloud</h3><p class="tools">Azure Machine Learning, Microsoft Fabric, Kubernetes and cloud-native fundamentals</p><p class="proof">Proof: 3 Microsoft certifications</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="record" aria-labelledby="record-title">
+    <div class="nb">
+      <p class="margin"><b>§ 3 · Record</b>Awards, credentials<br>and grades, with<br>dates and links<br>to verify them.</p>
+      <div class="main">
+        <div class="section-head">
+          <h2 class="section-title" id="record-title">The record</h2>
+          <p class="section-intro">Everything here can be checked. Microsoft credentials link to their public verification pages.</p>
+        </div>
+        <div class="record-grid">
+          <ol class="timeline">
+            <li><time datetime="2026-10">Oct 2026</time><div><h3>HackSecure 2026 (CyberM8) <span class="k">Team lead</span></h3><p>Led Team CyberThreat to build and ship <a class="link" href="#ubufakazi">Ubufakazi</a>, a digital forensics platform for scam victims.</p></div></li>
+            <li><time datetime="2026-08-04">4 Aug 2026</time><div><h3>Microsoft Certified: Fabric Data Engineer Associate</h3><p>Credential BA0B5380FE62A52B · <a class="v" href="https://learn.microsoft.com/en-us/users/thabangmanyama-6359/credentials/certification/fabric-data-engineer-associate?tab=credentials-tab" target="_blank" rel="noopener">verify ↗</a></p></div></li>
+            <li><time datetime="2026">2026</time><div><h3>Academic Top Achiever, EDUVOS <span class="k">2nd year</span></h3><p>Top-performing student, BSc IT: Data Science, for the second consecutive year.</p></div></li>
+            <li><time datetime="2026">2026</time><div><h3>3rd place, ITWeb Security Summit Hackathon</h3><p>For Secure Session Guardian, a platform that detects session hijacking and account takeover with AI-driven risk analysis.</p></div></li>
+            <li><time datetime="2026">2026</time><div><h3>DIRISA Student Datathon Challenge (CSIR)</h3><p>Team Eduvos. Built the analysis, models and deployment for <a class="link" href="#hung-council-watch">Hung Council Watch</a>.</p></div></li>
+            <li><time datetime="2026-06-26">26 Jun 2026</time><div><h3>Academic Top Achiever 2025, EDUVOS</h3><p>Certificate for Year 2 (2025), BSc IT: Data Science, Pretoria campus.</p></div></li>
+            <li><time datetime="2026-04-24">24 Apr 2026</time><div><h3>Microsoft Certified: Power BI Data Analyst Associate</h3><p>Credential EA1A97D4B17EB826 · <a class="v" href="https://learn.microsoft.com/en-us/users/thabangmanyama-6359/credentials/certification/data-analyst-associate?tab=credentials-tab" target="_blank" rel="noopener">verify ↗</a></p></div></li>
+            <li><time datetime="2026-04-14">14 Apr 2026</time><div><h3>Microsoft Certified: Azure Data Scientist Associate</h3><p>Credential 1AE57CBC17E8EF5A · <a class="v" href="https://learn.microsoft.com/en-us/users/thabangmanyama-6359/credentials/certification/azure-data-scientist?tab=credentials-tab" target="_blank" rel="noopener">verify ↗</a></p></div></li>
+            <li><time datetime="2025-03">Mar–Nov 2025</time><div><h3>Delegate, Youth 20 (Y20), G20</h3><p>Represented youth perspectives on economic and social policy, focusing on youth empowerment, innovation and financial inclusion.</p></div></li>
+            <li><time datetime="2025">2025</time><div><h3>Golden Key International Honour Society</h3><p>Invited membership for students in the top 15% of their academic year.</p></div></li>
+            <li><time datetime="2026">Credential</time><div><h3>Kubernetes and Cloud Native Essentials</h3><p>Container orchestration and cloud-native fundamentals.</p></div></li>
+          </ol>
+          <div>
+            <div class="plates">
+              <button class="plate tall" type="button" data-lightbox="assets/img/cert-top-achiever-2025.webp" data-paper data-cap="Fig. 6 · EDUVOS Academic Top Achiever 2025 certificate, dated 26 June 2026"><img src="assets/img/cert-top-achiever-2025.webp" width="900" height="1334" alt="EDUVOS 2025 Academic Top Achiever certificate awarded to Thabang Manyama" loading="lazy"><span><b>Fig. 6 · Top Achiever 2025</b>EDUVOS · 26 Jun 2026</span></button>
+              <button class="plate" type="button" data-lightbox="assets/img/cert-fabric.webp" data-cap="Fig. 7 · Microsoft Certified: Fabric Data Engineer Associate, earned 4 August 2026"><img src="assets/img/cert-fabric.webp" width="1000" height="528" alt="Microsoft certificate: Fabric Data Engineer Associate" loading="lazy"><span><b>Fig. 7 · Fabric Data Engineer</b>Microsoft · 4 Aug 2026</span></button>
+              <button class="plate" type="button" data-lightbox="assets/img/cert-powerbi.webp" data-cap="Fig. 8 · Microsoft Certified: Power BI Data Analyst Associate, earned 24 April 2026"><img src="assets/img/cert-powerbi.webp" width="1000" height="528" alt="Microsoft certificate: Power BI Data Analyst Associate" loading="lazy"><span><b>Fig. 8 · Power BI Data Analyst</b>Microsoft · 24 Apr 2026</span></button>
+              <button class="plate" type="button" data-lightbox="assets/img/cert-azure-ds.webp" data-cap="Fig. 9 · Microsoft Certified: Azure Data Scientist Associate, earned 14 April 2026"><img src="assets/img/cert-azure-ds.webp" width="1000" height="528" alt="Microsoft certificate: Azure Data Scientist Associate" loading="lazy"><span><b>Fig. 9 · Azure Data Scientist</b>Microsoft · 14 Apr 2026</span></button>
+            </div>
+            <div class="distinctions">
+              <p class="label">14 module distinctions · by year</p>
+              <div class="dist-row"><p class="yr">2026<small>Year 3 · 7</small></p><div><div class="ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><p><b>Linear Algebra with Applications 97%</b>, Operating Systems 88%, 4IR Technologies 84%, Sensors Data Management, IoT Mining and Analytics 82%, OO Systems Analysis and Design 80%, R Programming for Data Science 80%, Research Design and Methodology 76%</p></div></div>
+              <div class="dist-row"><p class="yr">2025<small>Year 2 · 6</small></p><div><div class="ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div><p>IT Project Management 89%, Web Server Management 88%, <b>Machine Learning Algorithms 85%</b>, Mathematics 1B 81%, Artificial Intelligence Techniques 77%, Probability and Statistics 77%</p></div></div>
+              <div class="dist-row"><p class="yr">2024<small>Year 1 · 1</small></p><div><div class="ticks" aria-hidden="true"><i></i></div><p>Procedural Programming 89%</p></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="about" aria-labelledby="about-title">
+    <div class="nb">
+      <p class="margin"><b>§ 4 · About</b>Background,<br>education and<br>leadership.</p>
+      <div class="main">
+        <div class="section-head"><h2 class="section-title" id="about-title">About <i>the researcher</i></h2></div>
+        <div class="about-grid">
+          <div class="prose">
+            <p>I’m Thabang, a 21-year-old data science student in my final year at EDUVOS. I like problems where the data is messy and the answer matters to real people: whether a model can still be trusted, whether a scam victim’s evidence will hold up, where a council might need a coalition.</p>
+            <p>I work end to end. I source and check raw data from places like Stats SA, the IEC and Eskom, build the model, test it properly, and ship something a person can actually use. When the data disagrees with my first idea, I change the idea.</p>
+            <p>Outside the code I’ve represented South African youth as a Y20 delegate in the G20 process, and I’m part of the All4Youth Sub-Saharan Africa leadership programme.</p>
+          </div>
+          <dl class="facts">
+            <div><dt>Studying</dt><dd><b>BSc IT: Data Science</b>, EDUVOS · NQF 7 · Feb 2024 to present</dd></div>
+            <div><dt>Credits</dt><dd>347 completed · 14 distinctions</dd></div>
+            <div><dt>Based in</dt><dd>Alberton, Gauteng, South Africa</dd></div>
+            <div><dt>Leadership</dt><dd>Y20 delegate (G20), 2025 · All4Youth programme, current · Team lead, HackSecure 2026</dd></div>
+            <div><dt>Work</dt><dd>Retail Assistant, Sportscene Sandton City, Oct 2024 to Apr 2025, alongside full-time study</dd></div>
+            <div><dt>Looking for</dt><dd>Graduate and internship roles in data science, ML engineering and analytics</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact wrap" id="contact" aria-labelledby="contact-title">
+    <div class="nb">
+      <p class="margin"><b>§ 5 · Contact</b>Email is the<br>fastest way<br>to reach me.</p>
+      <div class="main">
+        <h2 class="contact-title" id="contact-title">Let’s talk <i>about your data.</i></h2>
+        <div class="contact-rows">
+          <div><span class="label">Email</span><span class="v mono" id="email">thabangmanyama19@gmail.com</span><button class="btn" type="button" data-copy="thabangmanyama19@gmail.com">Copy</button></div>
+          <div><span class="label">LinkedIn</span><span class="v">Thabang Manyama</span><a class="btn" href="https://www.linkedin.com/in/thabang-manyama-593777228/" target="_blank" rel="noopener">Open ↗</a></div>
+          <div><span class="label">GitHub</span><span class="v">github.com/Don4chnge</span><a class="btn" href="https://github.com/Don4chnge" target="_blank" rel="noopener">Open ↗</a></div>
+          <div><span class="label">CV</span><span class="v">Thabang Manyama · PDF</span><a class="btn primary" href="assets/Thabang_Manyama_CV.pdf" target="_blank" rel="noopener">Open ↗</a></div>
+        </div>
+        <p class="vh" id="copy-status" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<article class="dossier wrap" data-view="valorian" id="valorian" style="--c:var(--c-valorian)" aria-labelledby="v-title">
+  <header class="d-head">
+    <a class="back" href="#systems" data-back><span class="arrow" aria-hidden="true">←</span> All systems</a>
+    <div class="nb">
+      <p class="margin"><b>EXP-01</b>ML monitoring<br>2026<br><br>Status:<br>confirmed</p>
+      <div class="main">
+        <h1 class="d-title" id="v-title">Valorian Intelligence</h1>
+        <p class="d-sub">A smoke alarm for machine-learning models. It tells you when a model that is already in use has quietly stopped working.</p>
+        <div class="d-actions">
+          <a class="btn primary" href="https://valorian-intelligence.streamlit.app" target="_blank" rel="noopener">Open the live dashboard ↗</a>
+          <a class="btn" href="https://github.com/Don4chnge/valorian-intelligence" target="_blank" rel="noopener">View code on GitHub ↗</a>
+        </div>
+        <dl class="d-facts">
+          <div><dt>My role</dt><dd>Sole author: design, code, tests, dashboard</dd></div>
+          <div><dt>Type</dt><dd>Open-source Python library + Streamlit dashboard</dd></div>
+          <div><dt>Real data</dt><dd>Stats SA Quarterly Labour Force Survey, 31k–41k people per quarter</dd></div>
+          <div><dt>Quality</dt><dd>78 automated tests, CI on Python 3.10–3.12</dd></div>
+        </dl>
+        <div class="d-results" style="--n:4">
+          <div><b>−11.3%</b><span>performance drop caught while every input looked normal</span></div>
+          <div><b>0</b><span>false alarms across five real survey quarters</span></div>
+          <div><b>p = 0.048</b><span>hidden shift found that single-feature tests missed</span></div>
+          <div><b>78/78</b><span>tests passing for detection accuracy and false alarms</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="d-sec nb" aria-labelledby="v-why"><p class="margin"><b>01</b>Why I built it</p><div class="main">
+    <h2 id="v-why">Why I built it</h2>
+    <div class="prose">
+      <p>Most machine-learning projects stop once the model is trained and scores well on a test set. That is the easy half. In the real world a model that scored well in January can be <strong>quietly wrong by August</strong>, because the world it learned from has moved on. Nothing in the system announces it, and people keep trusting its decisions.</p>
+      <p>Banks, insurers and retailers make credit, fraud and stock decisions with models like these every day. I wanted a tool that watches a live model and raises its hand when it stops being trustworthy, without crying wolf every week.</p>
+    </div>
+    <div class="callout"><p>The hardest case is a model that has broken while every input still looks perfectly normal. That is the case this project exists for.</p></div>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="v-plain"><p class="margin"><b>02</b>In plain English</p><div class="main">
+    <h2 id="v-plain">What it does, in plain English</h2>
+    <ul class="bullets">
+      <li><b>It asks two questions about every new batch of data.</b> Has the information going into the model changed? And has the model itself stopped getting the right answers?</li>
+      <li><b>It gives one health score, the DriftScore.</b> 100 means the model behaves as it did when it was trained; 0 means it has fallen apart. Managers get one number; engineers can drill into the detail behind it.</li>
+      <li><b>It avoids false alarms.</b> A monitor that fires every week gets ignored. Valorian measures how big a change is, not only whether it exists, so small harmless shifts stay quiet.</li>
+      <li><b>It keeps a history</b>, so drift becomes a trend you can see on a chart rather than a one-off number.</li>
+    </ul>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="v-try"><p class="margin"><b>03</b>Try it yourself</p><div class="main">
+    <h2 id="v-try">Try it yourself</h2>
+    <div class="bench" data-demo="valorian">
+      <div class="bench-bar"><p class="label live"><span class="dot" aria-hidden="true"></span>DriftScore by batch · click a bar</p>
+        <div class="seg" role="group" aria-label="Dataset"><button type="button" aria-pressed="true" data-set="demo">Planted faults</button><button type="button" aria-pressed="false" data-set="qlfs">Real Stats SA data</button></div></div>
+      <div class="bench-body"><div class="chart-host"></div><div class="readout-row" aria-live="polite"></div></div>
+    </div>
+    <p class="label" style="margin:2.5rem 0 1rem">Use the live dashboard</p>
+    <ol class="steps">
+      <li><p>Open the <a class="link" href="https://valorian-intelligence.streamlit.app" target="_blank" rel="noopener">live dashboard</a>. It loads a credit-default model monitored across six monthly batches.</p></li>
+      <li><p>Read the <b>top row</b>: the latest batch, its DriftScore, how many inputs drifted and the largest drift measured. The badge on the right says Healthy, Watch or Degraded.</p></li>
+      <li><p>Look at <b>Drift over time</b>. The shaded bands are the warning thresholds. A spike means the inputs changed; it does not by itself mean the model broke.</p></li>
+      <li><p>Scroll to <b>Run detail</b> and pick a batch to see every input’s drift, its severity and whether performance dropped.</p></li>
+      <li><p>Use <b>Feature trace</b> to follow a single input, such as income or age, across every batch.</p></li>
+    </ol>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="v-arch"><p class="margin"><b>04</b>Architecture</p><div class="main">
+    <h2 id="v-arch">Architecture</h2>
+    <p class="section-intro" style="font-size:var(--step-0)">How the parts fit together. Select any box to see what it does in plain words.</p>
+  </div>
+  <div class="arch" data-arch="valorian"></div></section>
+
+  <section class="d-sec nb" aria-labelledby="v-how"><p class="margin"><b>05</b>Technical<br>implementation</p><div class="main">
+    <h2 id="v-how">How it works</h2>
+    <ul class="bullets">
+      <li><b>Effect size before p-values.</b> At 3,000 to 40,000 rows a KS test rejects almost anything, so Valorian leads with the Population Stability Index (stable &lt; 0.10, investigate 0.10–0.25, significant &gt; 0.25) and reports KS and chi-square p-values as supporting evidence.</li>
+      <li><b>Bin edges frozen from the training sample</b>, so drift cannot partly cancel itself out by re-binning both samples together. Outer bins open to ±∞ so out-of-range production values are counted, not dropped.</li>
+      <li><b>Concept drift</b> is tracked as rolling ROC-AUC against a frozen baseline. When performance drops with no input drift, the alert says so explicitly: suspect concept drift or a labelling fault.</li>
+      <li><b>Multivariate drift</b> via a domain classifier: label reference rows 0 and current rows 1, train a depth-limited random forest, score by cross-validated ROC-AUC. Near 0.50 means no difference; its feature importances say which columns moved.</li>
+      <li><b>DriftScore</b> weights performance 0.70, worst-feature PSI 0.20 and share of drifted features 0.10, with a documented reason for each weight. Without labels it falls back to an inputs-only mode and says so.</li>
+      <li><b>Every run is stored in SQLite</b> and drawn by the Streamlit dashboard. GitHub Actions runs the 78-test suite on Python 3.10, 3.11 and 3.12.</li>
+      <li><b>A data-quality catch:</b> the 2022 Q1 QLFS release stores employment status as text, with 1.797e+308 as a missing-value marker, which silently made that quarter show 0% employment. The loader fixes it.</li>
+    </ul>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="v-res"><p class="margin"><b>06</b>Results and<br>evidence</p><div class="main">
+    <h2 id="v-res">Results and evidence</h2>
+    <div class="prose"><p>First I planted faults in six months of simulated credit data, so there was a known answer to check against. Then I removed the training wheels and monitored a real employment model across five quarters of Stats SA survey data, with nothing planted.</p></div>
+    <div class="tbl-wrap" style="margin-top:2rem"><table>
+      <caption class="vh">Planted-fault test results</caption>
+      <thead><tr><th>Batch</th><th>What was planted</th><th>Max PSI</th><th>ROC-AUC vs baseline</th><th>DriftScore</th></tr></thead>
+      <tbody>
+        <tr><td>2026-03</td><td>nothing</td><td>0.008</td><td>+2.6%</td><td class="band healthy">100 healthy</td></tr>
+        <tr><td>2026-04</td><td>nothing</td><td>0.009</td><td>−1.4%</td><td class="band healthy">95 healthy</td></tr>
+        <tr><td>2026-05</td><td>nothing</td><td>0.006</td><td>−0.2%</td><td class="band healthy">99 healthy</td></tr>
+        <tr><td>2026-06</td><td>income shifts down</td><td>0.270</td><td>−7.5%</td><td class="band degraded">61 degraded</td></tr>
+        <tr><td>2026-07</td><td>deeper income + province shift</td><td>0.899</td><td>+0.1%</td><td class="band watch">76 watch</td></tr>
+        <tr class="hl"><td>2026-08</td><td>income→default link weakens</td><td>0.011</td><td>−11.3%</td><td class="band degraded">60 degraded</td></tr>
+      </tbody></table></div>
+    <div class="figs" style="margin-top:2.5rem">
+      <figure class="fig"><button class="img" type="button" data-lightbox="assets/img/valorian-dashboard.webp" data-cap="Fig. V1 · Valorian dashboard: latest batch 2026-08, DriftScore 60, degraded."><img src="assets/img/valorian-dashboard.webp" width="1440" height="900" alt="Valorian dashboard overview with DriftScore 60 and drift over time chart" loading="lazy"></button><figcaption><b>Fig. V1</b> The dashboard over the planted-fault run. August shows no input drift (max PSI 0.011) yet scores 60.</figcaption></figure>
+      <figure class="fig"><button class="img" type="button" data-lightbox="assets/img/valorian-alert.webp" data-cap="Fig. V2 · The concept-drift alert: performance dropped while every input looked stable."><img src="assets/img/valorian-alert.webp" width="1140" height="900" alt="Valorian alert: ROC-AUC 0.6697 to 0.5938, performance dropped while every input feature looks stable" loading="lazy"></button><figcaption><b>Fig. V2</b> The alert input-only monitoring cannot raise: ROC-AUC 0.6697 → 0.5938 with stable inputs.</figcaption></figure>
+    </div>
+    <ul class="bullets" style="margin-top:2.5rem">
+      <li><b>Real data, five quarters, zero false alarms.</b> Employment rose from 33.5% to 37.8% in the post-COVID recovery, but the model held within about 1% of its baseline ROC-AUC of 0.758. The population changed; the relationship did not.</li>
+      <li><b>A hypothesis I tested and rejected:</b> Stats SA moved from phone to face-to-face interviews in 2022 Q1. I expected drift there. There was none; that quarter had the lowest PSI in the series.</li>
+      <li><b>A shift too small for single-feature tests:</b> province never crossed PSI 0.10, but the domain classifier separated the quarters (AUC up to 0.579), mostly through province. None of 20 shuffled-label refits reached that score (p = 0.048). That is thin evidence and the repo says so; a stronger claim needs hundreds of permutations.</li>
+    </ul>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="v-stack"><p class="margin"><b>07</b>Built with</p><div class="main">
+    <h2 id="v-stack">Built with</h2>
+    <ul class="tags"><li>Python</li><li>pandas</li><li>NumPy</li><li>SciPy</li><li>scikit-learn</li><li>SQLite</li><li>Streamlit</li><li>Plotly</li><li>pytest</li><li>GitHub Actions</li></ul>
+  </div></section>
+
+  <a class="next" href="#ubufakazi" style="--n:var(--c-ubufakazi)"><span class="label">Next system · EXP-02</span><strong>Ubufakazi</strong><span class="arrow" aria-hidden="true" style="font-size:2rem">→</span></a>
+</article>
+
+<article class="dossier wrap" data-view="ubufakazi" id="ubufakazi" style="--c:var(--c-ubufakazi)" aria-labelledby="u-title">
+  <header class="d-head">
+    <a class="back" href="#systems" data-back><span class="arrow" aria-hidden="true">←</span> All systems</a>
+    <div class="nb">
+      <p class="margin"><b>EXP-02</b>Digital forensics<br>27–28 Oct 2026<br><br>Status:<br>shipped, live</p>
+      <div class="main">
+        <h1 class="d-title" id="u-title">Ubufakazi</h1>
+        <p class="d-sub">From scam victim to police-ready case file in 60 seconds. <i style="color:var(--muted)">Ubufakazi</i> is isiZulu for evidence or testimony.</p>
+        <div class="d-actions">
+          <a class="btn primary" href="https://ubufakazi.onrender.com/mvp" target="_blank" rel="noopener">Try the 60-second demo ↗</a>
+          <a class="btn" href="https://ubufakazi.onrender.com" target="_blank" rel="noopener">Open the live platform ↗</a>
+          <a class="btn" href="https://github.com/Don4chnge/ubufakazi" target="_blank" rel="noopener">View code on GitHub ↗</a>
+        </div>
+        <dl class="d-facts">
+          <div><dt>My role</dt><dd>Team lead, Team CyberThreat (3 people). Built the Telegram bot and FastAPI backend</dd></div>
+          <div><dt>Event</dt><dd>HackSecure 2026 (CyberM8), Track 4: Digital Forensics Lite</dd></div>
+          <div><dt>Type</dt><dd>Web platform, Telegram bot and investigator console</dd></div>
+          <div><dt>Data</dt><dd>100% fictional demo data. Not connected to SAPS or any bank</dd></div>
+        </dl>
+        <div class="d-results" style="--n:4">
+          <div><b>&lt; 60 s</b><span>from chats and payment slips to a full case file</span></div>
+          <div><b>70/70</b><span>test cases extract the right account, amount and scam type</span></div>
+          <div><b>5</b><span>languages: English, isiZulu, isiXhosa, Afrikaans, Sesotho</span></div>
+          <div><b>SHA-256</b><span>fingerprint on every file the moment it is reported</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="d-sec nb" aria-labelledby="u-why"><p class="margin"><b>01</b>Why we built it</p><div class="main">
+    <h2 id="u-why">Why we built it</h2>
+    <div class="prose">
+      <p>South Africans lose billions of rand a year to scams: fake job offers, fake couriers, marketplace sellers, romance and crypto schemes. Most victims never get a case that goes anywhere, for three reasons:</p>
+    </div>
+    <ul class="bullets" style="margin-top:1.5rem">
+      <li><b>Evidence is messy.</b> It sits in WhatsApp chats, screenshots and proof-of-payment slips that police and banks can’t easily use, and that can be questioned later.</li>
+      <li><b>Every report looks small on its own.</b> One R3 500 loss gets ignored. Seven victims of the same syndicate is a case, but nobody connects them.</li>
+      <li><b>Scammers switch numbers.</b> Blocking one number does nothing when they use a new one the next day.</li>
+    </ul>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="u-plain"><p class="margin"><b>02</b>In plain English</p><div class="main">
+    <h2 id="u-plain">What it does, in plain English</h2>
+    <ol class="steps">
+      <li><p><b>Lock the evidence.</b> Every chat, screenshot and payment slip gets a digital fingerprint the moment it’s reported. If even one pixel changes later, the fingerprint no longer matches.</p></li>
+      <li><p><b>Pull out the scammer’s details.</b> Bank accounts, phone numbers, links and rand amounts are found automatically, along with a timeline: offer, payment request, pressure, payment, silence.</p></li>
+      <li><p><b>Link the victims.</b> A "Scam Fingerprint" connects reports through shared accounts, links or the wording of the scam script, so a scammer who changes phone number is still linked.</p></li>
+      <li><p><b>Write it up.</b> It drafts a statement in the victim’s language, a bank fraud report, and a downloadable PDF case pack.</p></li>
+    </ol>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="u-try"><p class="margin"><b>03</b>Try it yourself</p><div class="main">
+    <h2 id="u-try">Try it yourself</h2>
+    <div class="bench" data-demo="ubufakazi">
+      <div class="bench-bar"><p class="label live"><span class="dot" aria-hidden="true"></span>Evidence lock · runs in your browser</p><button class="btn" type="button" data-reset style="min-height:34px;font-size:var(--step--2)">Reset</button></div>
+      <div class="bench-body">
+        <div class="bench-grid">
+          <div>
+            <label for="ev-text">Evidence (a fictional chat line). Try changing one character.</label>
+            <textarea id="ev-text" rows="4" spellcheck="false">[12/10/2026, 09:14] Recruiter: Pay the R3 500 training fee to FNB 6284 5710 932 today to secure your job.</textarea>
+          </div>
+          <div>
+            <p class="label" style="margin-bottom:.6rem">Fingerprint locked at report time</p>
+            <p class="hash" data-locked>…</p>
+            <p class="label" style="margin:1rem 0 .6rem">Fingerprint now</p>
+            <p class="hash" data-now aria-live="polite">…</p>
+          </div>
+        </div>
+        <p class="verdict" data-verdict data-ok="true" role="status">Matches. This evidence has not been changed.</p>
+      </div>
+    </div>
+    <p class="label" style="margin:2.5rem 0 1rem">Build a case file on the live demo</p>
+    <ol class="steps">
+      <li><p>Open the <a class="link" href="https://ubufakazi.onrender.com/mvp" target="_blank" rel="noopener">60-second demo</a> and click <b>Build a case file</b>.</p></li>
+      <li><p>Choose <b>Fake job offer</b>, then <b>Build my case file</b>.</p></li>
+      <li><p>The red card says <b>You are victim #7</b>: six earlier reports and R84 000 lost, linked by the same bank account even though the scammer used a new phone number.</p></li>
+      <li><p>Scroll through the evidence fingerprints, the scammer’s details, the timeline and the statement. Switch languages with the tabs, then <b>Download case pack (PDF)</b>.</p></li>
+      <li><p>Click <b>Add my report</b>, start a new case and choose <b>Same scammer, new number &amp; new account</b>. It still links you as victim #8, through the link and the message script.</p></li>
+    </ol>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="u-arch"><p class="margin"><b>04</b>Architecture</p><div class="main">
+    <h2 id="u-arch">Architecture</h2>
+    <p class="section-intro" style="font-size:var(--step-0)">How the parts fit together. Select any box to see what it does in plain words.</p>
+  </div>
+  <div class="arch" data-arch="ubufakazi"></div></section>
+
+  <section class="d-sec nb" aria-labelledby="u-how"><p class="margin"><b>05</b>Technical<br>implementation</p><div class="main">
+    <h2 id="u-how">How it works</h2>
+    <ul class="bullets">
+      <li><b>Evidence locking:</b> real SHA-256 of every file and of the chat text using the Web Crypto API, plus a case-manifest hash, so any later edit, missing file or swapped file is detectable.</li>
+      <li><b>Extraction engine:</b> parses Android and iPhone WhatsApp exports and pulls South African bank accounts, +27 and 0XX phone numbers, links, emails and rand amounts, with scam keywords in five languages.</li>
+      <li><b>Privacy-preserving Scam Fingerprint:</b> identifiers are stored only as keyed HMAC-SHA256 hashes, plus 3-word shingles of the message script, matched against a fictional network of 80 earlier reports and 3 syndicates.</li>
+      <li><b>Ubufakazi 2.0 backend (my part):</b> a Telegram reporting bot with a quick-exit at every step and a FastAPI server on Render with Neon Postgres, server-side HMAC keys and RFC 3161 trusted timestamps.</li>
+      <li><b>Investigator console:</b> password plus two-factor sign-in, CSRF protection, station isolation (officers see only their own station’s reports) and a hash-chained audit log that detects tampering.</li>
+      <li><b>Security by default:</b> strict Content Security Policy, no third-party scripts or trackers, and all user text rendered with <span class="mono">textContent</span> so a malicious chat can’t inject code.</li>
+      <li><b>Tested:</b> a 70-case, five-language test pack checked automatically in a headless browser; every case extracts the correct account, amount and scam type.</li>
+    </ul>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="u-res"><p class="margin"><b>06</b>Results and<br>evidence</p><div class="main">
+    <h2 id="u-res">Results and evidence</h2>
+    <div class="figs">
+      <figure class="fig wide"><button class="img" type="button" data-lightbox="assets/img/ubufakazi-case-file.webp" data-cap="Fig. U1 · A case file: victim #7 linked to six earlier reports."><img src="assets/img/ubufakazi-case-file.webp" width="1440" height="860" alt="Ubufakazi case file showing victim number 7 linked to six earlier reports" loading="lazy"></button><figcaption><b>Fig. U1</b> A generated case file. The victim is linked to six earlier reports through the same bank account.</figcaption></figure>
+      <figure class="fig"><button class="img" type="button" data-lightbox="assets/img/ubufakazi-network.webp" data-cap="Fig. U2 · Scam fingerprint network in the investigator dashboard."><img src="assets/img/ubufakazi-network.webp" width="1440" height="1400" alt="Investigator dashboard showing a network graph of linked scam reports" loading="lazy" style="aspect-ratio:16/12;object-fit:cover;object-position:top"></button><figcaption><b>Fig. U2</b> The investigator console’s scam network. Every lead states why it was linked.</figcaption></figure>
+      <figure class="fig"><button class="img" type="button" data-lightbox="assets/img/ubufakazi-home.webp" data-cap="Fig. U3 · Ubufakazi 2.0 home page."><img src="assets/img/ubufakazi-home.webp" width="1440" height="900" alt="Ubufakazi 2.0 home page with a globe and evidence panels" loading="lazy" style="aspect-ratio:16/12;object-fit:cover;object-position:top left"></button><figcaption><b>Fig. U3</b> The 2.0 home page, with live counts from the demo database.</figcaption></figure>
+    </div>
+    <ul class="bullets" style="margin-top:2.5rem">
+      <li><b>Honest limits:</b> the browser MVP keeps its HMAC key in the browser and saves added reports only on that device; the 2.0 backend moves keys to the server. Translations should be checked by fluent speakers. Nothing is connected to SAPS or a real bank, and no case numbers are issued.</li>
+      <li><b>Team:</b> Thabang Manyama (lead), Amani Tondi and Shaun Matlou.</li>
+    </ul>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="u-stack"><p class="margin"><b>07</b>Built with</p><div class="main">
+    <h2 id="u-stack">Built with</h2>
+    <ul class="tags"><li>JavaScript</li><li>Web Crypto API</li><li>jsPDF</li><li>Python</li><li>FastAPI</li><li>SQLAlchemy</li><li>Postgres (Neon)</li><li>Telegram Bot API</li><li>Render</li><li>Netlify</li><li>Playwright</li><li>pytest</li></ul>
+  </div></section>
+
+  <a class="next" href="#hung-council-watch" style="--n:var(--c-hcw)"><span class="label">Next system · EXP-03</span><strong>Hung Council Watch</strong><span class="arrow" aria-hidden="true" style="font-size:2rem">→</span></a>
+</article>
+
+<article class="dossier wrap" data-view="hung-council-watch" id="hung-council-watch" style="--c:var(--c-hcw)" aria-labelledby="h-title">
+  <header class="d-head">
+    <a class="back" href="#systems" data-back><span class="arrow" aria-hidden="true">←</span> All systems</a>
+    <div class="nb">
+      <p class="margin"><b>EXP-03</b>Election forecasting<br>2026<br><br>Status:<br>hypothesis rejected,<br>forecast shipped</p>
+      <div class="main">
+        <h1 class="d-title" id="h-title">Hung Council Watch</h1>
+        <p class="d-sub">Which South African councils could lose their majority on 4 November 2026, and need a coalition to govern?</p>
+        <div class="d-actions">
+          <a class="btn primary" href="https://eduvos-hung-councils.netlify.app" target="_blank" rel="noopener">Open the live dashboard ↗</a>
+          <a class="btn" href="https://github.com/Don4chnge/Eduvos-Team-DIRISA-2026" target="_blank" rel="noopener">View code on GitHub ↗</a>
+        </div>
+        <dl class="d-facts">
+          <div><dt>My role</dt><dd>Analysis pipeline, machine-learning models and deployment, in a team of six</dd></div>
+          <div><dt>Event</dt><dd>DIRISA Student Datathon Challenge 2026 (CSIR), Team Eduvos</dd></div>
+          <div><dt>Data</dt><dd>Official IEC results for five elections, 2000 to 2021, all 213 municipalities</dd></div>
+          <div><dt>Quality</dt><dd>25 automated validation tests, run by GitHub Actions</dd></div>
+        </dl>
+        <div class="d-results" style="--n:4">
+          <div><b>0.88</b><span>ROC-AUC on the 2021 election the model never saw</span></div>
+          <div><b>62/72</b><span>councils that became hung in 2021 were flagged</span></div>
+          <div><b>≈77</b><span>hung councils expected in 2026, 61 at high risk</span></div>
+          <div><b>2</b><span>errors found in the source data and fixed in code</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="d-sec nb" aria-labelledby="h-why"><p class="margin"><b>01</b>Why we built it</p><div class="main">
+    <h2 id="h-why">Why we built it</h2>
+    <div class="prose">
+      <p>South African local politics has fragmented sharply. In 2000, <strong>70% of municipalities</strong> were dominated by one party. By 2021 it was <strong>16%</strong>. After the 2016 election 27 councils were hung, meaning no party won a majority. After 2021 there were <strong>72</strong>.</p>
+      <p>A hung council means coalition government, which has been linked to unstable administrations, frequent changes of mayor and disrupted service delivery. Voters, journalists, parties and the IEC all benefit from knowing where that is likely to happen next, before it does.</p>
+    </div>
+    <div class="callout"><p>Our first hypothesis failed. Turnout does not follow an inverted U against competition. We published that result and used it to ask a better question.</p></div>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="h-plain"><p class="margin"><b>02</b>In plain English</p><div class="main">
+    <h2 id="h-plain">What it does, in plain English</h2>
+    <ul class="bullets">
+      <li><b>It learns from 20 years of results.</b> For every municipality it looks at how big the leading party’s share was, how many parties really competed, and how that changed from 2000 to 2021.</li>
+      <li><b>It gives each council a risk score</b>: the chance that no party wins a majority in 2026, from safe to likely hung.</li>
+      <li><b>It lets you test scenarios.</b> What if leading parties lose another few points everywhere? What if one party’s supporters stay home on election day?</li>
+      <li><b>It runs in your browser.</b> The trained model is built into the public dashboard, so anyone can explore it without installing anything.</li>
+    </ul>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="h-try"><p class="margin"><b>03</b>Try it yourself</p><div class="main">
+    <h2 id="h-try">Try it yourself</h2>
+    <div class="bench" data-demo="hcw">
+      <div class="bench-bar"><p class="label live"><span class="dot" aria-hidden="true"></span>From one-party towns to coalitions</p>
+        <div class="seg" role="group" aria-label="View"><button type="button" aria-pressed="true" data-set="years">By election</button><button type="button" aria-pressed="false" data-set="provinces">2026 risk by province</button></div></div>
+      <div class="bench-body"><div class="chart-host"></div><div class="readout-row" aria-live="polite"></div></div>
+    </div>
+    <p class="label" style="margin:2.5rem 0 1rem">Use the live dashboard</p>
+    <ol class="steps">
+      <li><p>Open the <a class="link" href="https://eduvos-hung-councils.netlify.app" target="_blank" rel="noopener">live dashboard</a>. The <b>2026 forecast</b> tab shows a map coloured by each council’s risk.</p></li>
+      <li><p><b>Click any municipality</b> on the map, such as the City of Johannesburg, to see its chance of a hung council, its vote history and how competitive it has been.</p></li>
+      <li><p>Drag the <b>"points lost by every leading party"</b> slider, or try <b>Repeat of 2021</b> and <b>Severe</b>, to see how the national count of hung councils changes.</p></li>
+      <li><p>Open the <b>Election-day simulator</b>. Pick a council, move the vote and turnout sliders, and watch it move between Safe, Battleground and Likely hung.</p></li>
+      <li><p>Read <b>How we got here</b> and <b>The model</b> for the story behind the forecast and how it was tested.</p></li>
+    </ol>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="h-arch"><p class="margin"><b>04</b>Architecture</p><div class="main">
+    <h2 id="h-arch">Architecture</h2>
+    <p class="section-intro" style="font-size:var(--step-0)">How the parts fit together. Select any box to see what it does in plain words.</p>
+  </div>
+  <div class="arch" data-arch="hcw"></div></section>
+
+  <section class="d-sec nb" aria-labelledby="h-how"><p class="margin"><b>05</b>Technical<br>implementation</p><div class="main">
+    <h2 id="h-how">How it works</h2>
+    <ul class="bullets">
+      <li><b>Data pipeline:</b> cleaned each election in its own notebook, then linked 263 councils across the 2006, 2011 and 2016 boundary changes by code and name.</li>
+      <li><b>Two source-data errors found and fixed:</b> the 2016 turnout column counted only the leading party’s votes, and the 2021 file had lost most of the Western Cape to Excel’s row limit. The 2021 data is now rebuilt in code from the nine provincial files, with a check that all 213 municipalities are present.</li>
+      <li><b>Features:</b> Effective Number of Parties (Laakso–Taagepera), the leading party’s share, the winning margin and turnout.</li>
+      <li><b>Testing the first idea properly:</b> Lind–Mehlum U-tests and within-municipality fixed-effects models showed no inverted-U relationship between turnout and competition, so the project moved to forecasting.</li>
+      <li><b>Model selection:</b> KMeans competition regimes, then four models (a baseline, two logistic regressions and tuned XGBoost) compared with grouped and time-ordered validation. XGBoost won ordinary cross-validation but lost on future elections, so the simpler logistic model was chosen.</li>
+      <li><b>Deployment:</b> a single-file D3.js dashboard on Netlify with a risk map, swing scenarios and an election-day simulator that runs the trained model in the browser. A validation layer checks the modelling panel and the dashboard data before every deploy.</li>
+      <li><b>Reproducible:</b> relative paths throughout; the whole pipeline rebuilds from the raw IEC files in under two minutes.</li>
+    </ul>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="h-res"><p class="margin"><b>06</b>Results and<br>evidence</p><div class="main">
+    <h2 id="h-res">Results and evidence</h2>
+    <div class="figs">
+      <figure class="fig"><button class="img" type="button" data-lightbox="assets/img/hcw-forecast.webp" data-cap="Fig. H1 · The 2026 forecast tab of the public dashboard."><img src="assets/img/hcw-forecast.webp" width="1440" height="900" alt="Hung Council Watch 2026 forecast with risk map and City of Johannesburg details" loading="lazy"></button><figcaption><b>Fig. H1</b> The 2026 forecast. Johannesburg: 82% chance of a hung council.</figcaption></figure>
+      <figure class="fig"><button class="img" type="button" data-lightbox="assets/img/hcw-simulator.webp" data-cap="Fig. H2 · The election-day simulator."><img src="assets/img/hcw-simulator.webp" width="1440" height="900" alt="Election-day simulator showing Likely hung for the City of Johannesburg" loading="lazy"></button><figcaption><b>Fig. H2</b> The election-day simulator, recalculating risk live with the same model.</figcaption></figure>
+      <figure class="fig wide"><button class="img paper" type="button" data-lightbox="assets/img/hcw-test-performance.webp" data-paper data-cap="Fig. H3 · Model performance on the unseen 2021 election."><img src="assets/img/hcw-test-performance.webp" width="1440" height="407" alt="Charts of model performance on the unseen 2021 election" loading="lazy"></button><figcaption><b>Fig. H3</b> Tested on an election the model never saw: ROC-AUC 0.88, PR-AUC 0.75.</figcaption></figure>
+      <figure class="fig wide"><button class="img paper" type="button" data-lightbox="assets/img/hcw-forecast-chart.webp" data-paper data-cap="Fig. H4 · Watch list and average risk by province for 2026."><img src="assets/img/hcw-forecast-chart.webp" width="1440" height="571" alt="Watch list of majority councils most at risk and average risk by province" loading="lazy"></button><figcaption><b>Fig. H4</b> Councils that kept a majority in 2021 but are closest to losing it, and average risk by province.</figcaption></figure>
+    </div>
+    <ul class="bullets" style="margin-top:2.5rem">
+      <li><b>Limits:</b> the forecast uses past results only, with no polling, new parties or local events, which is why the dashboard offers scenarios. 2024 national results are the main planned addition. "Hung" is defined as the leading party winning under 50% of the PR vote, so exact seat rounding can occasionally differ.</li>
+      <li><b>Team Eduvos:</b> Thabang Manyama, Kamogelo Morweng, Ndodzo Sididzha, Zwayi Mbokane, Katlego Bopape, Unarine Luvhengo.</li>
+    </ul>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="h-stack"><p class="margin"><b>07</b>Built with</p><div class="main">
+    <h2 id="h-stack">Built with</h2>
+    <ul class="tags"><li>Python</li><li>pandas</li><li>statsmodels</li><li>scikit-learn</li><li>XGBoost</li><li>SciPy</li><li>Jupyter</li><li>D3.js</li><li>Netlify</li><li>pytest</li><li>GitHub Actions</li></ul>
+  </div></section>
+
+  <a class="next" href="#load-shedding" style="--n:var(--c-ls)"><span class="label">Next system · EXP-04</span><strong>Load Shedding’s Ripple Effect</strong><span class="arrow" aria-hidden="true" style="font-size:2rem">→</span></a>
+</article>
+
+<article class="dossier wrap" data-view="load-shedding" id="load-shedding" style="--c:var(--c-ls)" aria-labelledby="l-title">
+  <header class="d-head">
+    <a class="back" href="#systems" data-back><span class="arrow" aria-hidden="true">←</span> All systems</a>
+    <div class="nb">
+      <p class="margin"><b>EXP-04</b>Economic impact<br>2026<br><br>Status:<br>confirmed</p>
+      <div class="main">
+        <h1 class="d-title" id="l-title">Load Shedding’s Ripple Effect</h1>
+        <p class="d-sub">Does the severity of Eskom’s load shedding measurably move South African retail sales, and by how much?</p>
+        <div class="d-actions">
+          <a class="btn primary" href="#ls-chart">Explore the data below ↓</a>
+          <a class="btn" href="https://github.com/Don4chnge/loadshedding-economy" target="_blank" rel="noopener">View notebook on GitHub ↗</a>
+        </div>
+        <dl class="d-facts">
+          <div><dt>My role</dt><dd>Sole author: data sourcing, analysis, report, dashboard</dd></div>
+          <div><dt>Period</dt><dd>April 2022 to April 2026, 49 matched months</dd></div>
+          <div><dt>Data</dt><dd>Eskom Data Portal (hourly load reduction) and Stats SA P6242.1 retail trade sales</dd></div>
+          <div><dt>Outputs</dt><dd>Jupyter analysis, research report, Power BI dashboard</dd></div>
+        </dl>
+        <div class="d-results" style="--n:4">
+          <div><b>−0.649</b><span>correlation between load shedding and retail growth</span></div>
+          <div><b>&lt; 0.0001</b><span>p-value: very unlikely to be chance</span></div>
+          <div><b>6.0 pts</b><span>swing in sales growth, calm month vs worst month (95% CI 3.0 to 9.1)</span></div>
+          <div><b>3,213 MW</b><span>worst monthly average, February 2023</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="d-sec nb" aria-labelledby="l-why"><p class="margin"><b>01</b>Why I built it</p><div class="main">
+    <h2 id="l-why">Why I built it</h2>
+    <div class="prose">
+      <p>Every South African felt load shedding, and everyone agrees it hurt the economy. Far fewer people can say <strong>by how much</strong>. I wanted to move from "it was bad" to a number someone could defend, using official data rather than a pre-cleaned dataset from the internet.</p>
+      <p>So I went to the source: Eskom’s own record of how many megawatts the national control centre ordered off the grid, and Stats SA’s monthly retail trade sales.</p>
+    </div>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="l-plain"><p class="margin"><b>02</b>In plain English</p><div class="main">
+    <h2 id="l-plain">What it found, in plain English</h2>
+    <ul class="bullets">
+      <li><b>When power cuts were heavier, shops sold less</b> compared with the same month a year before. The pattern is strong and consistent across four years.</li>
+      <li><b>The size of the effect:</b> going from a calm month with no cuts to the worst month on record is linked to about a <b>6 percentage-point</b> difference in retail sales growth.</li>
+      <li><b>It isn’t just time passing.</b> Even after allowing for the general upward trend in sales, load shedding still explains the drop.</li>
+      <li><b>It’s an association, not proof of cause.</b> Interest rates, fuel prices and the post-COVID recovery moved over the same years, and the study says so.</li>
+    </ul>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="l-try" id="ls-chart"><p class="margin"><b>03</b>Try it yourself</p><div class="main">
+    <h2 id="l-try">Explore the data</h2>
+    <div class="bench" data-demo="ls">
+      <div class="bench-bar"><p class="label live"><span class="dot" aria-hidden="true"></span>49 months · hover or tap the chart</p>
+        <div class="seg" role="group" aria-label="Period"><button type="button" aria-pressed="true" data-set="all">All</button><button type="button" aria-pressed="false" data-set="severe">2022–23 severe</button><button type="button" aria-pressed="false" data-set="ended">2024+ mostly ended</button></div></div>
+      <div class="bench-body"><div class="chart-host"></div><div class="readout-row" aria-live="polite"></div></div>
+    </div>
+    <ol class="steps" style="margin-top:2.5rem">
+      <li><p><b>Move across the chart</b> to read each month: the coral line is load shedding in megawatts, the white line is retail sales growth compared with a year earlier.</p></li>
+      <li><p><b>Switch periods.</b> In 2022–23 the two lines move against each other. From 2024, when load shedding mostly stopped, growth recovers.</p></li>
+      <li><p>Open the <a class="link" href="https://github.com/Don4chnge/loadshedding-economy/blob/main/notebooks/01_loadshedding_economy_analysis.ipynb" target="_blank" rel="noopener">notebook on GitHub</a> to see every step, from the raw zip files to the regression.</p></li>
+      <li><p>The interactive Power BI dashboard is in the repository as <span class="mono">dashboard.pbix</span> and opens in the free Power BI Desktop.</p></li>
+    </ol>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="l-arch"><p class="margin"><b>04</b>Architecture</p><div class="main">
+    <h2 id="l-arch">Architecture</h2>
+    <p class="section-intro" style="font-size:var(--step-0)">How the parts fit together. Select any box to see what it does in plain words.</p>
+  </div>
+  <div class="arch" data-arch="ls"></div></section>
+
+  <section class="d-sec nb" aria-labelledby="l-how"><p class="margin"><b>05</b>Technical<br>implementation</p><div class="main">
+    <h2 id="l-how">How it works</h2>
+    <ul class="bullets">
+      <li><b>Cleaning and alignment:</b> Eskom’s hourly Manual Load Reduction readings were averaged by month. Stats SA’s wide sheet (one column per month) was reshaped into a time series, and year-on-year growth was calculated from the raw rand values at constant 2019 prices.</li>
+      <li><b>Statistical testing:</b> Pearson correlation with 95% confidence intervals from the Fisher z-transformation: r = −0.649, 95% CI −0.786 to −0.450, n = 49.</li>
+      <li><b>Delayed effects:</b> tested lags of 0 to 4 months. All were significant (r from −0.649 to −0.698) with no decay, which most likely reflects two eras in the data rather than a precise monthly delay.</li>
+      <li><b>Regression:</b> OLS of retail growth on load shedding with a linear time trend. Load shedding stays significant (−0.0019 percentage points per MW, p &lt; 0.001) while time on its own does not (p = 0.590).</li>
+      <li><b>Limits stated up front:</b> correlation is not causation; COVID, interest rates and fuel prices overlap the period; load shedding and time are closely related; and 49 months gives wide intervals, which are reported.</li>
+    </ul>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="l-res"><p class="margin"><b>06</b>Results and<br>evidence</p><div class="main">
+    <h2 id="l-res">Results and evidence</h2>
+    <div class="figs">
+      <figure class="fig wide"><button class="img paper" type="button" data-lightbox="assets/img/ls-overlay.webp" data-paper data-cap="Fig. L1 · Load shedding intensity against retail trade sales growth."><img src="assets/img/ls-overlay.webp" width="1440" height="588" alt="Line chart: load shedding megawatts and retail sales growth by month, 2022 to 2026" loading="lazy"></button><figcaption><b>Fig. L1</b> The analysis chart from the notebook: load shedding (red) against retail sales growth (blue).</figcaption></figure>
+      <figure class="fig wide"><button class="img" type="button" data-lightbox="assets/img/ls-powerbi.webp" data-cap="Fig. L2 · The Power BI dashboard."><img src="assets/img/ls-powerbi.webp" width="1153" height="644" alt="Power BI dashboard with KPI cards and a dual-axis chart with an era slicer" loading="lazy"></button><figcaption><b>Fig. L2</b> The Power BI dashboard, with an era slicer and KPI cards: worst month, months analysed and average growth.</figcaption></figure>
+    </div>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="l-stack"><p class="margin"><b>07</b>Built with</p><div class="main">
+    <h2 id="l-stack">Built with</h2>
+    <ul class="tags"><li>Python</li><li>pandas</li><li>SciPy</li><li>statsmodels</li><li>Matplotlib</li><li>Jupyter</li><li>Power BI</li></ul>
+  </div></section>
+
+  <a class="next" href="#valorian" style="--n:var(--c-valorian)"><span class="label">Back to the start · EXP-01</span><strong>Valorian Intelligence</strong><span class="arrow" aria-hidden="true" style="font-size:2rem">→</span></a>
+</article>
+
+</main>
+<footer class="foot"><div class="wrap"><span>© 2026 Thabang Manyama · Johannesburg</span><span>Hand-built in HTML, CSS and JavaScript. Every figure comes from a project repository, the CV or a certificate.</span><span>Last updated 30 October 2026</span></div></footer>
+<script>
+(() => {
+"use strict";
+const root = document.documentElement;
+root.classList.add("js");
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const reduceMQ = matchMedia("(prefers-reduced-motion: reduce)");
+const css = (name) => getComputedStyle(root).getPropertyValue(name).trim();
+const SVGNS = "http://www.w3.org/2000/svg";
+function svgEl(tag, attrs = {}, parent) {
+  const e = document.createElementNS(SVGNS, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+
+/* =========================================================
+   Data (all figures from the project repositories)
+   ========================================================= */
+const LS = [{"m":"2022-04","mw":440.7,"yoy":4.6},{"m":"2022-05","mw":428.6,"yoy":-0.06},{"m":"2022-06","mw":667.4,"yoy":-2.23},{"m":"2022-07","mw":1347.5,"yoy":8.85},{"m":"2022-08","mw":173.2,"yoy":1.87},{"m":"2022-09","mw":2143.3,"yoy":-0.77},{"m":"2022-10","mw":1284.6,"yoy":-1.5},{"m":"2022-11","mw":1427.0,"yoy":0.22},{"m":"2022-12","mw":2622.9,"yoy":-1.91},{"m":"2023-01","mw":2790.9,"yoy":-2.6},{"m":"2023-02","mw":3213.4,"yoy":-2.25},{"m":"2023-03","mw":2035.9,"yoy":-1.84},{"m":"2023-04","mw":2737.2,"yoy":-2.9},{"m":"2023-05","mw":2744.6,"yoy":-3.3},{"m":"2023-06","mw":989.0,"yoy":-2.09},{"m":"2023-07","mw":1994.2,"yoy":-1.2},{"m":"2023-08","mw":1349.7,"yoy":-1.47},{"m":"2023-09","mw":2094.4,"yoy":0.69},{"m":"2023-10","mw":424.1,"yoy":-2.86},{"m":"2023-11","mw":1692.0,"yoy":-2.04},{"m":"2023-12","mw":748.5,"yoy":2.71},{"m":"2024-01","mw":929.3,"yoy":-2.1},{"m":"2024-02","mw":1655.6,"yoy":-0.86},{"m":"2024-03","mw":753.1,"yoy":2.01},{"m":"2024-04","mw":0.0,"yoy":0.46},{"m":"2024-05","mw":0.0,"yoy":1.72},{"m":"2024-06","mw":0.0,"yoy":3.86},{"m":"2024-07","mw":0.0,"yoy":1.59},{"m":"2024-08","mw":0.0,"yoy":3.33},{"m":"2024-09","mw":0.0,"yoy":1.15},{"m":"2024-10","mw":0.0,"yoy":6.41},{"m":"2024-11","mw":0.0,"yoy":8.01},{"m":"2024-12","mw":0.0,"yoy":3.55},{"m":"2025-01","mw":16.6,"yoy":6.78},{"m":"2025-02","mw":365.9,"yoy":4.6},{"m":"2025-03","mw":128.3,"yoy":1.66},{"m":"2025-04","mw":11.3,"yoy":6.19},{"m":"2025-05","mw":37.9,"yoy":4.01},{"m":"2025-06","mw":0.0,"yoy":1.68},{"m":"2025-07","mw":0.0,"yoy":5.67},{"m":"2025-08","mw":0.0,"yoy":2.18},{"m":"2025-09","mw":0.0,"yoy":2.99},{"m":"2025-10","mw":0.0,"yoy":2.97},{"m":"2025-11","mw":0.0,"yoy":3.58},{"m":"2025-12","mw":0.0,"yoy":2.53},{"m":"2026-01","mw":0.0,"yoy":4.38},{"m":"2026-02","mw":0.0,"yoy":1.6},{"m":"2026-03","mw":0.0,"yoy":2.49},{"m":"2026-04","mw":0.0,"yoy":1.27}];
+
+const VALORIAN = {
+  demo: [
+    {b:"2026-03", s:100, band:"healthy", psi:0.008, auc:"+2.6%", note:"Nothing planted. The monitor stays quiet, as it should."},
+    {b:"2026-04", s:95,  band:"healthy", psi:0.009, auc:"−1.4%", note:"Nothing planted. Normal month-to-month noise."},
+    {b:"2026-05", s:99,  band:"healthy", psi:0.006, auc:"−0.2%", note:"Nothing planted. Three clean months, zero alarms."},
+    {b:"2026-06", s:61,  band:"degraded",psi:0.270, auc:"−7.5%", note:"Planted: incomes shift down. Inputs drift and accuracy drops."},
+    {b:"2026-07", s:76,  band:"watch",   psi:0.899, auc:"+0.1%", note:"Planted: bigger income and province shift, yet accuracy holds. Drift alone isn’t a crisis."},
+    {b:"2026-08", s:60,  band:"degraded",psi:0.011, auc:"−11.3%",note:"Planted: the link between income and default weakens. Inputs look normal; the model lost 11.3%. Only Valorian catches this."}
+  ],
+  qlfs: [
+    {b:"2022 Q1", s:94.0, band:"healthy", psi:0.0058, auc:"−1.6%", note:"31,184 people. Interview method changed this quarter; no drift found."},
+    {b:"2022 Q2", s:89.4, band:"healthy", psi:0.0568, auc:"−2.4%", note:"35,897 people. Small province shift, below the 0.10 threshold."},
+    {b:"2022 Q3", s:95.8, band:"healthy", psi:0.0709, auc:"−0.4%", note:"39,753 people. Employment rising with the post-COVID recovery."},
+    {b:"2022 Q4", s:95.0, band:"healthy", psi:0.0738, auc:"−0.6%", note:"41,171 people. Model performance holds."},
+    {b:"2023 Q1", s:92.8, band:"healthy", psi:0.0722, auc:"−1.2%", note:"41,443 people. Five real quarters, zero false alarms."}
+  ]
+};
+
+const HCW = {
+  years: [{y:"2000",n:237,hung:23,dom:165},{y:"2006",n:237,hung:30,dom:157},{y:"2011",n:234,hung:33,dom:140},{y:"2016",n:213,hung:27,dom:78},{y:"2021",n:213,hung:72,dom:35},{y:"2026",n:213,hung:77,f:true}],
+  provinces: [{p:"Gauteng",r:.596,n:9},{p:"Western Cape",r:.539,n:25},{p:"Northern Cape",r:.465,n:26},{p:"KwaZulu-Natal",r:.453,n:44},{p:"Free State",r:.340,n:19},{p:"North West",r:.294,n:18},{p:"Mpumalanga",r:.294,n:17},{p:"Eastern Cape",r:.170,n:33},{p:"Limpopo",r:.155,n:22}]
+};
+
+const ARCH = {
+  valorian: { cols: ["INPUT","CHECKS","SCORE","OUTPUT"], nodes: [
+    {id:"ref",c:0,l:"Training data",s:"frozen reference sample",d:"The data the model learned from. Valorian freezes its distribution and the model’s baseline score, so every later batch is compared against the same yardstick."},
+    {id:"batch",c:0,l:"Production batch",s:"new data, labels if any",d:"Each new month or quarter of real-world data the model is scoring. Outcome labels are optional; without them Valorian runs in inputs-only mode."},
+    {id:"uni",c:1,l:"Per-feature drift",s:"PSI · KS · chi-square",d:"Measures how much each input has shifted. PSI gives the size of the change; KS and chi-square p-values are supporting evidence."},
+    {id:"multi",c:1,l:"Domain classifier",s:"joint-distribution shift",d:"A random forest tries to tell old rows from new ones. If it can, the data has changed in a way single-feature tests can miss, and its feature importances say where."},
+    {id:"perf",c:1,l:"Performance check",s:"ROC-AUC vs baseline",d:"When outcomes arrive, compares current accuracy with the frozen baseline. This is the check that catches concept drift."},
+    {id:"score",c:2,l:"DriftScore 0–100",s:"0.70 perf · 0.20 PSI · 0.10",d:"Collapses the evidence into one health score. Performance carries most weight because input drift predicts trouble but does not prove it."},
+    {id:"alerts",c:2,l:"Alerts",s:"data drift vs concept drift",d:"Plain-language alerts that say what kind of problem it is, such as 'performance dropped without input drift: suspect concept drift'."},
+    {id:"store",c:3,l:"SQLite history",s:"every run, every feature",d:"Every check is saved, so drift becomes a trend over time instead of a single number."},
+    {id:"dash",c:3,l:"Streamlit dashboard",s:"trends · run detail",d:"The live dashboard reads the history and shows health, drift over time, per-batch detail and per-feature traces."}],
+    edges: [["ref","uni"],["ref","multi"],["ref","perf"],["batch","uni"],["batch","multi"],["batch","perf"],["uni","score"],["perf","score"],["uni","alerts"],["multi","alerts"],["perf","alerts"],["score","store"],["alerts","store"],["store","dash"]] },
+  ubufakazi: { cols: ["REPORT","LOCK","READ","LINK","OUTPUT"], nodes: [
+    {id:"chat",c:0,l:"WhatsApp export",s:"Android + iPhone formats",d:"The victim exports the chat with the scammer. Both phone formats are parsed."},
+    {id:"slips",c:0,l:"Payment slips",s:"PDF or image proof",d:"Proof-of-payment files and screenshots, stored unchanged as original evidence."},
+    {id:"bot",c:0,l:"Telegram bot · web",s:"guided report, quick exit",d:"In 2.0 a victim can report step by step through a Telegram bot or the web form, with a quick-exit at every step."},
+    {id:"hash",c:1,l:"SHA-256 lock",s:"per file + case manifest",d:"Every file and the chat text get a SHA-256 fingerprint on arrival, plus a fingerprint of the whole case, so any later change shows."},
+    {id:"tsa",c:1,l:"Trusted timestamp",s:"RFC 3161, in 2.0",d:"Only the fingerprint is sent to an independent timestamp authority, which signs when the evidence was locked."},
+    {id:"extract",c:2,l:"Extraction engine",s:"accounts · phones · rands",d:"Finds South African bank accounts, phone numbers, links, emails and rand amounts, with scam keywords in five languages."},
+    {id:"timeline",c:2,l:"Scam timeline",s:"offer → pay → silence",d:"Rebuilds what happened and when from the chat, the way an investigator would."},
+    {id:"fp",c:3,l:"Scam Fingerprint",s:"HMAC-SHA256 + script",d:"Identifiers are stored only as keyed hashes, plus a fingerprint of the message wording. Private, but still matchable."},
+    {id:"net",c:3,l:"Victim network",s:"links across new numbers",d:"Matches the new report against earlier ones. A scammer who changes phone number is still linked by account, link or script."},
+    {id:"pack",c:4,l:"Case pack PDF",s:"statement in 5 languages",d:"An affidavit-style statement, a bank fraud report and a PDF case pack the victim can take to the police station."},
+    {id:"police",c:4,l:"Investigator console",s:"2FA · stations · audit",d:"Officers see only their station’s reports, explore linked cases on a graph, and every action is recorded in a hash-chained audit log."}],
+    edges: [["chat","hash"],["slips","hash"],["bot","hash"],["hash","tsa"],["hash","extract"],["extract","timeline"],["extract","fp"],["fp","net"],["timeline","pack"],["net","pack"],["net","police"],["tsa","police"]] },
+  hcw: { cols: ["DATA","PREPARE","TEST","MODEL","OUTPUT"], nodes: [
+    {id:"iec",c:0,l:"IEC results",s:"5 elections, 2000–2021",d:"Official municipal election results from the Electoral Commission of South Africa."},
+    {id:"mdb",c:0,l:"Demarcation Board",s:"municipal boundaries",d:"Boundary files used to draw the risk map."},
+    {id:"clean",c:1,l:"Cleaning notebooks",s:"one per election",d:"Each election is cleaned in its own notebook. This is where the 2016 turnout error and the truncated 2021 file were found and fixed."},
+    {id:"link",c:1,l:"Council linking",s:"263 councils, 5 elections",d:"Municipalities are matched across the 2006, 2011 and 2016 boundary changes so each has a 20-year history."},
+    {id:"feat",c:2,l:"Features",s:"ENP · share · margin",d:"Effective Number of Parties, the leading party’s share, the winning margin and turnout for every council and year."},
+    {id:"hyp",c:2,l:"Hypothesis tests",s:"U-test · fixed effects",d:"Tested whether turnout follows an inverted U against competition. It doesn’t, which redirected the project to forecasting."},
+    {id:"valid",c:2,l:"Validation layer",s:"25 tests in CI",d:"Checks the modelling panel and the dashboard data before anything is trained or deployed."},
+    {id:"models",c:3,l:"Model comparison",s:"logistic vs XGBoost",d:"Four models compared with time-ordered validation. XGBoost won ordinary cross-validation but lost on future elections, so the logistic model was chosen."},
+    {id:"fc",c:4,l:"2026 forecast",s:"≈77 hung · 61 high risk",d:"A risk score for each of the 213 municipalities for the 4 November 2026 elections."},
+    {id:"dash",c:4,l:"D3 dashboard",s:"map · simulator · Netlify",d:"A public dashboard with a risk map, swing scenarios and an election-day simulator that runs the model in the browser."}],
+    edges: [["iec","clean"],["clean","link"],["link","feat"],["feat","hyp"],["feat","valid"],["hyp","models"],["valid","models"],["models","fc"],["fc","dash"],["valid","dash"]] },
+  ls: { cols: ["SOURCE","PREPARE","MERGE","ANALYSE","OUTPUT"], nodes: [
+    {id:"eskom",c:0,l:"Eskom Data Portal",s:"hourly MW load reduction",d:"Manual Load Reduction: the megawatts the National Control Centre ordered off the grid, hour by hour."},
+    {id:"stats",c:0,l:"Stats SA P6242.1",s:"monthly retail sales",d:"Official retail trade sales at constant 2019 prices."},
+    {id:"agg",c:1,l:"Monthly averages",s:"hourly → monthly",d:"Hourly readings averaged into one load shedding intensity per month."},
+    {id:"reshape",c:1,l:"Reshape + growth",s:"wide sheet → series",d:"Stats SA’s one-column-per-month sheet turned into a time series, with year-on-year growth calculated from the raw rand values."},
+    {id:"merge",c:2,l:"Matched months",s:"49 months, 2022–2026",d:"Only months present in both sources are kept: April 2022 to April 2026."},
+    {id:"corr",c:3,l:"Correlation + CI",s:"Pearson · Fisher z · lags",d:"r = −0.649 with a 95% confidence interval, tested at delays of 0 to 4 months."},
+    {id:"ols",c:3,l:"OLS regression",s:"controls for time trend",d:"Separates the effect of load shedding from the general upward drift in sales."},
+    {id:"report",c:4,l:"Notebook + report",s:"methods, limits, findings",d:"The full analysis in a Jupyter notebook and a written research report."},
+    {id:"pbi",c:4,l:"Power BI dashboard",s:"era slicer · KPIs",d:"An interactive view to compare the severe 2022–23 era with 2024 onwards."}],
+    edges: [["eskom","agg"],["stats","reshape"],["agg","merge"],["reshape","merge"],["merge","corr"],["merge","ols"],["corr","report"],["ols","report"],["merge","pbi"]] }
+};
+
+/* =========================================================
+   Router: home + dossier views on the URL hash
+   ========================================================= */
+const views = $$("[data-view]");
+const viewIds = views.map(v => v.dataset.view);
+let current = null;
+function show(name, focusTarget) {
+  const changed = name !== current;
+  views.forEach(v => { v.hidden = v.dataset.view !== name; });
+  current = name;
+  const home = name === "home";
+  document.title = home ? "Thabang Manyama" : `${$(`[data-view="${name}"] h1`).textContent} · Thabang Manyama`;
+  if (changed && !reduceMQ.matches) {
+    const v = $(`[data-view="${name}"]`);
+    v.classList.remove("view-enter"); void v.offsetWidth; v.classList.add("view-enter");
+  }
+  if (!home) $$(".nav a").forEach(a => a.removeAttribute("aria-current"));
+  heroTrace && (home ? heroTrace.resume() : heroTrace.suspend());
+  return changed;
+}
+function route() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  if (id === "main") return;
+  if (viewIds.includes(id) && id !== "home") {
+    const changed = show(id);
+    if (changed) { window.scrollTo({ top: 0, behavior: "instant" }); $(`[data-view="${id}"] h1`).focus({ preventScroll: true }); }
+    return;
+  }
+  const target = id && document.getElementById(id);
+  const owner = target && target.closest("[data-view]");
+  const name = owner ? owner.dataset.view : "home";
+  const changed = show(name);
+  if (target) requestAnimationFrame(() => target.scrollIntoView({ behavior: changed || reduceMQ.matches ? "instant" : "smooth", block: "start" }));
+  else if (changed) window.scrollTo({ top: 0, behavior: "instant" });
+}
+$$("[data-view] h1").forEach(h => h.setAttribute("tabindex", "-1"));
+function go(hash) {
+  if (location.hash === hash) { route(); return; }
+  const run = () => { location.hash = hash; };
+  if (document.startViewTransition && !reduceMQ.matches) document.startViewTransition(run); else run();
+}
+document.addEventListener("click", e => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+  const h = a.getAttribute("href");
+  if (h === "#main") return;
+  const id = h.slice(1);
+  const crossing = (viewIds.includes(id) && id !== current) || (current !== "home" && !viewIds.includes(id) && !document.getElementById(id)?.closest(`[data-view="${current}"]`));
+  if (crossing) { e.preventDefault(); go(h); }
+});
+window.addEventListener("hashchange", route);
+
+/* scroll-spy for the home nav */
+const navLinks = $$(".nav a");
+const spy = new IntersectionObserver(entries => {
+  if (current !== "home") return;
+  entries.forEach(en => {
+    if (!en.isIntersecting) return;
+    navLinks.forEach(a => a.dataset.nav === en.target.id ? a.setAttribute("aria-current", "true") : a.removeAttribute("aria-current"));
+  });
+}, { rootMargin: "-45% 0px -50% 0px" });
+["systems","methods","record","about","contact"].forEach(id => { const s = document.getElementById(id); s && spy.observe(s); });
+
+/* =========================================================
+   Hero instrument: a live signal that can drift
+   ========================================================= */
+let heroTrace = null;
+(function initTrace() {
+  const canvas = $("#trace"); if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const note = $("#scope-note"), driftBtn = $("#drift-btn"), pauseBtn = $("#pause-btn");
+  const GREEN = css("--signal"), WARN = css("--warn"), LINE = css("--line-2");
+  let W = 0, H = 0, dpr = 1, t = 0, target = 0, shift = 0, raf = 0, paused = false, visible = true, suspended = false;
+  const N = 240; const buf = [];
+  function sample(time, s) {
+    return Math.sin(time * 1.3) * .34 + Math.sin(time * 3.1 + 1.2) * .16 + Math.sin(time * 7.7) * .06 + (Math.random() - .5) * .05 + s * .62 + Math.sin(time * 1.9) * .14 * s;
+  }
+  for (let i = 0; i < N; i++) { t += .045; buf.push({ v: sample(t, 0), s: 0 }); }
+  function size() {
+    const r = canvas.getBoundingClientRect(); dpr = Math.min(devicePixelRatio || 1, 2);
+    W = Math.max(1, Math.round(r.width)); H = Math.max(1, Math.round(r.height));
+    canvas.width = W * dpr; canvas.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); draw();
+  }
+  function mix(a, b, k) {
+    const pa = a.match(/\w\w/g).map(h => parseInt(h, 16)), pb = b.match(/\w\w/g).map(h => parseInt(h, 16));
+    return `rgb(${pa.map((x, i) => Math.round(x + (pb[i] - x) * k)).join(",")})`;
+  }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const mid = H * .58, amp = H * .3;
+    ctx.fillStyle = "rgba(61,255,143,0.045)"; ctx.fillRect(0, mid - amp * .62, W, amp * 1.24);
+    ctx.strokeStyle = LINE; ctx.setLineDash([3, 6]); ctx.beginPath(); ctx.moveTo(0, mid); ctx.lineTo(W, mid); ctx.stroke(); ctx.setLineDash([]);
+    ctx.lineWidth = 2; ctx.lineJoin = "round";
+    for (let i = 1; i < buf.length; i++) {
+      const x0 = (i - 1) / (N - 1) * W, x1 = i / (N - 1) * W;
+      ctx.strokeStyle = mix(GREEN.replace("#", ""), WARN.replace("#", ""), Math.min(1, buf[i].s * 1.4));
+      ctx.beginPath(); ctx.moveTo(x0, mid - buf[i - 1].v * amp); ctx.lineTo(x1, mid - buf[i].v * amp); ctx.stroke();
+    }
+    const last = buf[buf.length - 1]; const ly = mid - last.v * amp;
+    ctx.fillStyle = mix(GREEN.replace("#", ""), WARN.replace("#", ""), Math.min(1, last.s * 1.4));
+    ctx.beginPath(); ctx.arc(W - 3, ly, 4, 0, Math.PI * 2); ctx.fill();
+  }
+  function status() {
+    const recent = buf.slice(-60).reduce((a, p) => a + p.s, 0) / 60;
+    const psi = (0.008 + recent * 0.262).toFixed(3), score = Math.round(100 - recent * 39);
+    const drift = recent > .38;
+    const text = drift ? `DRIFT DETECTED<br>PSI ${psi} · DriftScore ${score}` : `MONITOR: ${recent > .05 ? "WATCHING" : "STABLE"}<br>PSI ${psi} · DriftScore ${score}`;
+    if (note.innerHTML !== text) note.innerHTML = text;
+    note.dataset.state = drift ? "drift" : "ok";
+  }
+  let last = 0;
+  function frame(now) {
+    raf = 0;
+    if (paused || !visible || suspended) return;
+    if (now - last > 30) {
+      last = now; t += .045; shift += (target - shift) * .03;
+      buf.push({ v: sample(t, shift), s: shift }); buf.shift(); draw(); status();
+    }
+    raf = requestAnimationFrame(frame);
+  }
+  function start() { if (!raf && !paused && visible && !suspended && !reduceMQ.matches) raf = requestAnimationFrame(frame); }
+  function stop() { if (raf) cancelAnimationFrame(raf); raf = 0; }
+  function staticRender() { // reduced motion: jump to the final state
+    for (let i = 0; i < N; i++) { t += .045; const s = target * Math.min(1, Math.max(0, (i - N * .55) / 25)); buf.push({ v: sample(t, s), s }); buf.shift(); }
+    shift = target; draw(); status();
+  }
+  driftBtn.addEventListener("click", () => {
+    target = target ? 0 : 1;
+    driftBtn.setAttribute("aria-pressed", String(!!target));
+    driftBtn.textContent = target ? "Remove drift" : "Inject drift";
+    if (reduceMQ.matches || paused) staticRender(); else start();
+  });
+  pauseBtn.addEventListener("click", () => {
+    paused = !paused; pauseBtn.setAttribute("aria-pressed", String(paused)); pauseBtn.textContent = paused ? "Play" : "Pause";
+    paused ? stop() : start();
+  });
+  if (reduceMQ.matches) { pauseBtn.hidden = true; }
+  new IntersectionObserver(([en]) => { visible = en.isIntersecting; visible ? start() : stop(); }).observe(canvas);
+  document.addEventListener("visibilitychange", () => { visible = !document.hidden; visible ? start() : stop(); });
+  new ResizeObserver(size).observe(canvas);
+  size(); status(); start();
+  heroTrace = { suspend() { suspended = true; stop(); }, resume() { suspended = false; start(); } };
+})();
+
+/* =========================================================
+   Architecture diagrams
+   ========================================================= */
+function buildArch(host) {
+  const spec = ARCH[host.dataset.arch]; if (!spec) return;
+  const NW = 200, NH = 54, GX = 46, GY = 18, PAD = 20, TOP = 40;
+  const cols = spec.cols.length;
+  const counts = spec.cols.map((_, i) => spec.nodes.filter(n => n.c === i).length);
+  const maxRows = Math.max(...counts);
+  const W = PAD * 2 + cols * NW + (cols - 1) * GX, H = TOP + maxRows * NH + (maxRows - 1) * GY + PAD;
+  const pos = {};
+  spec.cols.forEach((_, ci) => {
+    const list = spec.nodes.filter(n => n.c === ci);
+    const colH = list.length * NH + (list.length - 1) * GY;
+    const y0 = TOP + (H - TOP - PAD - colH) / 2;
+    list.forEach((n, ri) => { pos[n.id] = { x: PAD + ci * (NW + GX), y: y0 + ri * (NH + GY) }; });
+  });
+  host.innerHTML = `<p class="arch-hint">Select a component to see what it does</p><div class="arch-scroll"></div><div class="arch-detail" aria-live="polite"><b></b><p></p></div>`;
+  const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, role: "group", "aria-label": "System architecture diagram", style: `min-width:${Math.round(W * .8)}px` }, $(".arch-scroll", host));
+  spec.cols.forEach((c, ci) => { const t = svgEl("text", { x: PAD + ci * (NW + GX), y: 22, class: "col-label" }, svg); t.textContent = c; });
+  const edgeEls = spec.edges.map(([a, b]) => {
+    const p = pos[a], q = pos[b];
+    const sameCol = p.x === q.x;
+    const d = sameCol
+      ? `M${p.x + NW / 2} ${Math.min(p.y, q.y) + NH} L ${q.x + NW / 2} ${Math.max(p.y, q.y)}`
+      : `M${p.x + NW} ${p.y + NH / 2} C ${p.x + NW + GX / 2} ${p.y + NH / 2}, ${q.x - GX / 2} ${q.y + NH / 2}, ${q.x} ${q.y + NH / 2}`;
+    return { a, b, el: svgEl("path", { d, class: "edge" }, svg) };
+  });
+  const detailB = $(".arch-detail b", host), detailP = $(".arch-detail p", host);
+  const nodeEls = {};
+  function select(id) {
+    const n = spec.nodes.find(x => x.id === id);
+    Object.entries(nodeEls).forEach(([k, g]) => g.classList.toggle("on", k === id));
+    edgeEls.forEach(e => e.el.classList.toggle("on", e.a === id || e.b === id));
+    detailB.textContent = n.l; detailP.textContent = n.d;
+  }
+  spec.nodes.forEach(n => {
+    const p = pos[n.id];
+    const g = svgEl("g", { class: "node", transform: `translate(${p.x} ${p.y})`, tabindex: "0", role: "button", "aria-label": `${n.l}: ${n.s}` }, svg);
+    svgEl("rect", { width: NW, height: NH, rx: 2 }, g);
+    const t1 = svgEl("text", { x: 12, y: 22 }, g); t1.textContent = n.l;
+    const t2 = svgEl("text", { x: 12, y: 40, class: "t2" }, g); t2.textContent = n.s;
+    g.addEventListener("click", () => select(n.id));
+    g.addEventListener("mouseenter", () => matchMedia("(hover:hover)").matches && select(n.id));
+    g.addEventListener("focus", () => select(n.id));
+    g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(n.id); } });
+    nodeEls[n.id] = g;
+  });
+  select(spec.nodes[0].id);
+}
+$$("[data-arch]").forEach(buildArch);
+
+/* =========================================================
+   Chart helpers
+   ========================================================= */
+function seg(host, onChange) {
+  $$(".seg button", host).forEach(b => b.addEventListener("click", () => {
+    $$(".seg button", host).forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    onChange(b.dataset.set);
+  }));
+}
+function onResize(el, fn) {
+  let w = el.clientWidth;
+  new ResizeObserver(() => { if (Math.abs(el.clientWidth - w) > 8) { w = el.clientWidth; fn(); } }).observe(el);
+}
+const widthOf = el => Math.max(320, Math.min(900, el.clientWidth || 760));
+function bandColor(band) { return band === "healthy" ? css("--signal") : band === "watch" ? css("--warn") : css("--alert"); }
+
+/* Valorian: DriftScore bars */
+(function valorianDemo() {
+  const host = $('[data-demo="valorian"]'); if (!host) return;
+  const chartHost = $(".chart-host", host), out = $(".readout-row", host);
+  let set = "demo", sel = 5;
+  function render() {
+    const data = VALORIAN[set]; sel = Math.min(sel, data.length - 1);
+    const W = widthOf(chartHost), narrow = W < 520, H = narrow ? 230 : 260, L = 34, R = narrow ? 56 : 104, T = 16, B = 34;
+    const iw = W - L - R, ih = H - T - B, bw = iw / data.length;
+    chartHost.innerHTML = "";
+    const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, class: "chart", role: "img", "aria-label": `DriftScore by batch, ${set === "demo" ? "planted-fault simulation" : "Stats SA QLFS real data"}` }, chartHost);
+    const y = v => T + ih - v / 100 * ih;
+    const grid = svgEl("g", { class: "grid" }, svg);
+    [0, 25, 50, 75, 100].forEach(v => { svgEl("line", { x1: L, x2: W - R, y1: y(v), y2: y(v) }, grid); const t = svgEl("text", { x: L - 8, y: y(v) + 4, "text-anchor": "end" }, svg); t.textContent = v; });
+    [[85, narrow ? "≥ 85" : "healthy ≥ 85", css("--signal")], [70, narrow ? "≥ 70" : "watch ≥ 70", css("--warn")], [50, narrow ? "≥ 50" : "degraded ≥ 50", css("--alert")]].forEach(([v, lbl, col]) => {
+      svgEl("line", { x1: L, x2: W - R, y1: y(v), y2: y(v), style: `stroke:${col};stroke-dasharray:3 5;opacity:.45` }, svg);
+      const t = svgEl("text", { x: W - R + 8, y: y(v) + 4, style: `fill:${col}` }, svg); t.textContent = lbl; });
+    data.forEach((d, i) => {
+      const x = L + i * bw + bw * .2, w = bw * .6;
+      const g = svgEl("g", { tabindex: "0", role: "button", "aria-label": `${d.b}: DriftScore ${d.s}, ${d.band}`, style: "cursor:pointer;outline:none" }, svg);
+      svgEl("rect", { x: L + i * bw, y: T, width: bw, height: ih, style: `fill:${i === sel ? "rgba(255,255,255,.035)" : "transparent"}` }, g);
+      svgEl("rect", { x, y: y(d.s), width: w, height: Math.max(1, ih - (y(d.s) - T)), style: `fill:${bandColor(d.band)};opacity:${i === sel ? 1 : .55}` }, g);
+      const v = svgEl("text", { x: x + w / 2, y: y(d.s) - 7, "text-anchor": "middle", style: `fill:${i === sel ? css("--ink") : css("--muted")}` }, g); v.textContent = d.s;
+      const lb = svgEl("text", { x: x + w / 2, y: H - 12, "text-anchor": "middle" }, g); lb.textContent = narrow ? d.b.replace("2026-", "").replace("20", "’").replace(" Q", " Q") : d.b;
+      const pick = () => { sel = i; render(); };
+      g.addEventListener("click", pick); g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(); } });
+    });
+    const d = data[sel];
+    out.innerHTML = `<span><b>${d.b}</b></span><span>DriftScore <b style="color:${bandColor(d.band)}">${d.s} ${d.band}</b></span><span>max PSI <b>${d.psi}</b></span><span>ROC-AUC vs baseline <b>${d.auc}</b></span><span style="flex-basis:100%;color:var(--ink)">${d.note}</span>`;
+  }
+  seg(host, s => { set = s; sel = s === "demo" ? 5 : 0; render(); });
+  render(); onResize(chartHost, render);
+})();
+
+/* Ubufakazi: SHA-256 evidence lock */
+(function ubufakaziDemo() {
+  const host = $('[data-demo="ubufakazi"]'); if (!host) return;
+  const ta = $("textarea", host), locked = $("[data-locked]", host), now = $("[data-now]", host), verdict = $("[data-verdict]", host);
+  const original = ta.value;
+  const enc = new TextEncoder();
+  const hex = buf => [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, "0")).join("");
+  const can = !!(window.crypto && crypto.subtle);
+  let lockedHash = "";
+  async function sha(s) { return hex(await crypto.subtle.digest("SHA-256", enc.encode(s))); }
+  async function update() {
+    if (!can) { now.textContent = "Your browser blocks the Web Crypto API here, so the live fingerprint can’t be shown."; return; }
+    const h = await sha(ta.value);
+    now.innerHTML = [...h].map((c, i) => c === lockedHash[i] ? c : `<span class="d">${c}</span>`).join("");
+    const ok = h === lockedHash;
+    verdict.dataset.ok = String(ok);
+    verdict.textContent = ok ? "Matches. This evidence has not been changed." : "Tampered. The fingerprint no longer matches what was locked at report time.";
+  }
+  (async () => { if (can) { lockedHash = await sha(original); locked.textContent = lockedHash; } else locked.textContent = "Unavailable in this browser."; update(); })();
+  ta.addEventListener("input", update);
+  $("[data-reset]", host).addEventListener("click", () => { ta.value = original; update(); ta.focus(); });
+})();
+
+/* Hung Council Watch: elections and provinces */
+(function hcwDemo() {
+  const host = $('[data-demo="hcw"]'); if (!host) return;
+  const chartHost = $(".chart-host", host), out = $(".readout-row", host);
+  const AMBER = css("--c-hcw"), DIM = css("--line-2");
+  function years() {
+    const data = HCW.years, W = widthOf(chartHost), narrow = W < 520, H = 280, L = 34, R = 6, T = 22, B = 34;
+    const iw = W - L - R, ih = H - T - B, bw = iw / data.length, max = 240;
+    chartHost.innerHTML = "";
+    const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, class: "chart", role: "img", "aria-label": "Hung councils and one-party-dominant councils per election, 2000 to 2021, with the 2026 forecast" }, chartHost);
+    const y = v => T + ih - v / max * ih;
+    const grid = svgEl("g", { class: "grid" }, svg);
+    [0, 60, 120, 180, 240].forEach(v => { svgEl("line", { x1: L, x2: W - R, y1: y(v), y2: y(v) }, grid); const t = svgEl("text", { x: L - 8, y: y(v) + 4, "text-anchor": "end" }, svg); t.textContent = v; });
+    data.forEach((d, i) => {
+      const cx = L + i * bw + bw / 2, w = bw * .26;
+      if (!d.f) { svgEl("rect", { x: cx - w - 3, y: y(d.dom), width: w, height: ih - (y(d.dom) - T), style: `fill:${DIM}` }, svg); const t = svgEl("text", { x: cx - w / 2 - 3, y: y(d.dom) - 6, "text-anchor": "middle" }, svg); t.textContent = d.dom; }
+      svgEl("rect", { x: d.f ? cx - w / 2 : cx + 3, y: y(d.hung), width: w, height: ih - (y(d.hung) - T), style: d.f ? `fill:none;stroke:${AMBER};stroke-dasharray:4 3` : `fill:${AMBER}` }, svg);
+      const v = svgEl("text", { x: d.f ? cx : cx + 3 + w / 2, y: y(d.hung) - 6, "text-anchor": "middle", style: `fill:${css("--ink")}` }, svg); v.textContent = d.f ? "≈77" : d.hung;
+      const lb = svgEl("text", { x: cx, y: H - 12, "text-anchor": "middle", style: d.f ? `fill:${AMBER}` : "" }, svg); lb.textContent = d.f ? (narrow ? "2026 est." : "2026 forecast") : d.y;
+    });
+    out.innerHTML = `<span><i style="display:inline-block;width:10px;height:10px;background:${DIM};margin-right:.5em"></i>one-party dominant</span><span><i style="display:inline-block;width:10px;height:10px;background:${AMBER};margin-right:.5em"></i>hung (no majority)</span><span style="flex-basis:100%;color:var(--ink)">Dominant councils fell from 165 of 237 in 2000 to 35 of 213 in 2021. Hung councils jumped from 27 to 72 in one election.</span>`;
+  }
+  function provinces() {
+    const data = HCW.provinces, W = widthOf(chartHost), rowH = 28, L = 112, R = 44, T = 10;
+    const H = T + data.length * rowH + 24, iw = W - L - R;
+    chartHost.innerHTML = "";
+    const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, class: "chart", role: "img", "aria-label": "Average 2026 hung-council risk by province" }, chartHost);
+    const grid = svgEl("g", { class: "grid" }, svg);
+    [0, .25, .5, .75, 1].forEach(v => { const x = L + v * iw; svgEl("line", { x1: x, x2: x, y1: T, y2: H - 22 }, grid); const t = svgEl("text", { x, y: H - 6, "text-anchor": "middle" }, svg); t.textContent = Math.round(v * 100) + "%"; });
+    data.forEach((d, i) => {
+      const yy = T + i * rowH;
+      const t = svgEl("text", { x: L - 10, y: yy + rowH / 2 + 4, "text-anchor": "end", style: `fill:${css("--muted")}` }, svg); t.textContent = d.p;
+      svgEl("rect", { x: L, y: yy + 6, width: d.r * iw, height: rowH - 12, style: `fill:${AMBER};opacity:${.35 + d.r}` }, svg);
+      const v = svgEl("text", { x: L + d.r * iw + 8, y: yy + rowH / 2 + 4, style: `fill:${css("--ink")}` }, svg); v.textContent = Math.round(d.r * 100) + "%";
+    });
+    out.innerHTML = `<span style="color:var(--ink)">Average predicted chance of a hung council in 2026. Gauteng is highest at 60% across its 9 councils; Limpopo lowest at 16%.</span>`;
+  }
+  let cur = years;
+  seg(host, s => { cur = s === "years" ? years : provinces; cur(); });
+  years(); onResize(chartHost, () => cur());
+})();
+
+/* Load shedding: dual-axis line chart with hover readout */
+(function lsDemo() {
+  const host = $('[data-demo="ls"]'); if (!host) return;
+  const chartHost = $(".chart-host", host), out = $(".readout-row", host);
+  const CORAL = css("--c-ls"), INK = css("--ink");
+  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const fmt = m => `${months[+m.slice(5) - 1]} ${m.slice(0, 4)}`;
+  let range = "all";
+  function render() {
+    const data = range === "severe" ? LS.filter(d => d.m < "2024-01") : range === "ended" ? LS.filter(d => d.m >= "2024-01") : LS;
+    const W = widthOf(chartHost), H = W < 520 ? 260 : 300, L = 58, R = 40, T = 16, B = 32, iw = W - L - R, ih = H - T - B;
+    const x = i => L + (data.length === 1 ? iw / 2 : i / (data.length - 1) * iw);
+    const yMW = v => T + ih - v / 3500 * ih;
+    const yG = v => T + ih - (v + 4) / 14 * ih;   // −4 … +10 %, so 1,000 MW lines up with 4 points
+    chartHost.innerHTML = "";
+    const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, class: "chart", role: "img", "aria-label": "Monthly load shedding in megawatts and retail sales growth, " + (range === "all" ? "April 2022 to April 2026" : range === "severe" ? "2022 to 2023" : "2024 to 2026") }, chartHost);
+    const grid = svgEl("g", { class: "grid" }, svg);
+    [0, 1000, 2000, 3000].forEach((v, k) => {
+      svgEl("line", { x1: L, x2: W - R, y1: yMW(v), y2: yMW(v) }, grid);
+      const t = svgEl("text", { x: L - 8, y: yMW(v) + 4, "text-anchor": "end", style: `fill:${CORAL}` }, svg); t.textContent = v ? v / 1000 + "k MW" : "0";
+      const g = -4 + k * 4, u = svgEl("text", { x: W - R + 8, y: yG(g) + 4, style: `fill:${INK}` }, svg); u.textContent = (g > 0 ? "+" : "") + g + "%"; });
+    svgEl("line", { x1: L, x2: W - R, y1: yG(0), y2: yG(0), style: `stroke:${INK};opacity:.25;stroke-dasharray:2 4` }, svg);
+    const tl = svgEl("text", { x: L, y: H - 8 }, svg); tl.textContent = fmt(data[0].m);
+    const tr = svgEl("text", { x: W - R, y: H - 8, "text-anchor": "end" }, svg); tr.textContent = fmt(data[data.length - 1].m);
+    const area = data.map((d, i) => `${x(i)},${yMW(d.mw)}`).join(" ");
+    svgEl("polygon", { points: `${x(0)},${yMW(0)} ${area} ${x(data.length - 1)},${yMW(0)}`, style: `fill:${CORAL};opacity:.12` }, svg);
+    svgEl("polyline", { points: area, style: `fill:none;stroke:${CORAL};stroke-width:2;stroke-linejoin:round` }, svg);
+    svgEl("polyline", { points: data.map((d, i) => `${x(i)},${yG(d.yoy)}`).join(" "), style: `fill:none;stroke:${INK};stroke-width:1.8;stroke-linejoin:round` }, svg);
+    const cursor = svgEl("line", { y1: T, y2: T + ih, style: `stroke:${css("--muted")};opacity:0` }, svg);
+    const dot1 = svgEl("circle", { r: 4, style: `fill:${CORAL};opacity:0` }, svg), dot2 = svgEl("circle", { r: 4, style: `fill:${INK};opacity:0` }, svg);
+    const hit = svgEl("rect", { x: L, y: T, width: iw, height: ih, style: "fill:transparent;cursor:crosshair", tabindex: "0", "aria-label": "Chart: use left and right arrow keys to read months" }, svg);
+    let idx = data.findIndex(d => d.mw === Math.max(...data.map(q => q.mw)));
+    function at(i) {
+      idx = Math.max(0, Math.min(data.length - 1, i)); const d = data[idx];
+      cursor.setAttribute("x1", x(idx)); cursor.setAttribute("x2", x(idx)); cursor.style.opacity = .6;
+      dot1.setAttribute("cx", x(idx)); dot1.setAttribute("cy", yMW(d.mw)); dot1.style.opacity = 1;
+      dot2.setAttribute("cx", x(idx)); dot2.setAttribute("cy", yG(d.yoy)); dot2.style.opacity = 1;
+      out.innerHTML = `<span><b>${fmt(d.m)}</b></span><span>Load shedding <b style="color:${CORAL}">${Math.round(d.mw).toLocaleString("en-ZA")} MW</b></span><span>Retail growth <b>${d.yoy > 0 ? "+" : ""}${d.yoy.toFixed(1)}%</b> vs a year earlier</span>`;
+    }
+    function fromEvent(e) { const r = svg.getBoundingClientRect(); const px = (e.clientX - r.left) / r.width * W; at(Math.round((px - L) / iw * (data.length - 1))); }
+    hit.addEventListener("pointermove", fromEvent); hit.addEventListener("pointerdown", fromEvent);
+    hit.addEventListener("keydown", e => { if (e.key === "ArrowLeft") { e.preventDefault(); at(idx - 1); } if (e.key === "ArrowRight") { e.preventDefault(); at(idx + 1); } });
+    at(idx);
+  }
+  seg(host, s => { range = s; render(); });
+  render(); onResize(chartHost, render);
+})();
+
+/* =========================================================
+   Lightbox for figures and certificates
+   ========================================================= */
+const lb = document.createElement("dialog");
+lb.className = "lightbox";
+lb.setAttribute("aria-label", "Figure");
+lb.innerHTML = `<div class="lb-bar"><span data-cap></span><button class="btn" type="button" data-close style="min-height:34px">Close</button></div><div class="lb-img"><img alt=""></div>`;
+document.body.appendChild(lb);
+let lbReturn = null;
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-lightbox]"); if (!t) return;
+  e.preventDefault(); lbReturn = t;
+  const img = $("img", lb), src = $("img", t);
+  img.src = t.dataset.lightbox; img.alt = src ? src.alt : "";
+  $("[data-cap]", lb).textContent = t.dataset.cap || "";
+  $(".lb-img", lb).classList.toggle("paper", t.hasAttribute("data-paper"));
+  lb.showModal();
+});
+$("[data-close]", lb).addEventListener("click", () => lb.close());
+lb.addEventListener("click", e => { if (e.target === lb) lb.close(); });
+lb.addEventListener("close", () => lbReturn && lbReturn.focus());
+
+/* =========================================================
+   Copy buttons
+   ========================================================= */
+$$("[data-copy]").forEach(b => b.addEventListener("click", async () => {
+  const status = $("#copy-status");
+  try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = "Copied"; status.textContent = "Email address copied"; }
+  catch { const r = document.createRange(); r.selectNodeContents($("#email")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Selected"; status.textContent = "Email address selected; press copy"; }
+  setTimeout(() => { b.textContent = "Copy"; }, 1600);
+}));
+
+route();
+})();
+
+</script>
+</body>
+</html>
