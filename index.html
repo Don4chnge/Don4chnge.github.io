@@ -225,7 +225,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .plate:active{transform:scale(.99)}
 @media (hover:hover) and (pointer:fine){.plate:hover{border-color:var(--muted)}}
 .plate img{aspect-ratio:1.9/1;object-fit:cover;object-position:center;background:var(--paper)}
-.plate.tall{grid-row:span 3}
+.plate.award img{aspect-ratio:4/5;object-fit:cover;object-position:top}
+.plates.certs{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:var(--s4)}
+.plates.certs .plate span{padding:.55rem .6rem}
+.figs.deck{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:760px){.figs.deck{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .plate.tall img{aspect-ratio:auto;flex:1;object-fit:cover;object-position:top}
 .plate span{display:block;padding:.7rem .8rem;font:400 var(--step--2)/1.45 var(--f-mono);color:var(--muted)}
 .plate span b{color:var(--ink);font-weight:500;display:block}
@@ -492,14 +496,14 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
 
           <a class="entry" href="#ubufakazi" style="--c:var(--c-ubufakazi)">
             <div>
-              <div class="entry-meta"><span class="label">EXP-02 · Oct 2026</span><span class="label live"><span class="dot" aria-hidden="true"></span>Digital forensics</span></div>
+              <div class="entry-meta"><span class="label">EXP-02 · Oct 2026</span><span class="label" style="color:var(--warn)">2nd place · HackSecure 2026</span><span class="label live"><span class="dot" aria-hidden="true"></span>Digital forensics</span></div>
               <h3 class="entry-title">Ubufakazi</h3>
               <p class="entry-plain">Turns a scam victim’s WhatsApp chats and payment slips into a tamper-evident, police-ready case file in under a minute.</p>
               <dl class="entry-hr">
                 <div><dt>Hypothesis</dt><dd>One scam report gets ignored. Seven linked victims of the same syndicate make a case.</dd></div>
-                <div><dt>Result</dt><dd>All 70 test cases in 5 languages extract the right account, amount and scam type. Live platform.</dd></div>
+                <div><dt>Result</dt><dd>2nd place at HackSecure 2026. All 70 test cases in 5 languages extract the right account, amount and scam type.</dd></div>
               </dl>
-              <div class="entry-foot"><span class="chip">Shipped · team lead</span><span class="entry-open">Open dossier <span class="arrow" aria-hidden="true">→</span></span></div>
+              <div class="entry-foot"><span class="chip">2nd place · team lead</span><span class="entry-open">Open dossier <span class="arrow" aria-hidden="true">→</span></span></div>
             </div>
             <figure class="entry-fig">
               <div class="shot"><img src="assets/img/ubufakazi-home.webp" width="1440" height="900" alt="Ubufakazi home page: turn digital evidence into real justice" loading="lazy"><span class="tag">Fig. 3 · ubufakazi.onrender.com</span></div>
@@ -557,7 +561,7 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
           <div class="method"><h3>Data engineering</h3><p class="tools">pandas, NumPy, SQLite, Postgres, reproducible pipelines from raw institutional data, Microsoft Fabric</p><p class="proof">Proof: <a href="#hung-council-watch">Hung Council Watch</a> · Fabric Data Engineer certification</p></div>
           <div class="method"><h3>Visualisation</h3><p class="tools">D3.js, Streamlit, Power BI, Tableau, Matplotlib, Excel</p><p class="proof">Proof: <a href="#hung-council-watch">D3 dashboard</a>, <a href="#valorian">Streamlit</a>, <a href="#load-shedding">Power BI</a></p></div>
           <div class="method"><h3>Software engineering</h3><p class="tools">Git and GitHub, GitHub Actions CI, pytest, Playwright, FastAPI, Netlify and Render deployment, object-oriented design</p><p class="proof">Proof: <a href="#valorian">78-test suite</a>, <a href="#ubufakazi">Ubufakazi</a></p></div>
-          <div class="method"><h3>Security &amp; forensics</h3><p class="tools">SHA-256 evidence hashing, HMAC-keyed identifiers, Content Security Policy, session monitoring, network security</p><p class="proof">Proof: <a href="#ubufakazi">Ubufakazi</a> · 3rd, ITWeb hackathon</p></div>
+          <div class="method"><h3>Security &amp; forensics</h3><p class="tools">SHA-256 evidence hashing, HMAC-keyed identifiers, Content Security Policy, session monitoring, network security</p><p class="proof">Proof: <a href="#ubufakazi">Ubufakazi</a> (2nd, HackSecure 2026) · 3rd, ITWeb hackathon</p></div>
           <div class="method"><h3>Cloud</h3><p class="tools">Azure Machine Learning, Microsoft Fabric, Kubernetes and cloud-native fundamentals</p><p class="proof">Proof: 3 Microsoft certifications</p></div>
         </div>
       </div>
@@ -574,7 +578,7 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
         </div>
         <div class="record-grid">
           <ol class="timeline">
-            <li><time datetime="2026-10">Oct 2026</time><div><h3>HackSecure 2026 (CyberM8) <span class="k">Team lead</span></h3><p>Led Team CyberThreat to build and ship <a class="link" href="#ubufakazi">Ubufakazi</a>, a digital forensics platform for scam victims.</p></div></li>
+            <li><time datetime="2026-10">Oct 2026</time><div><h3>2nd place, HackSecure 2026 (CyberM8) <span class="k">Team lead</span></h3><p>Track 4, Digital Forensics Lite. Led Team CyberThreat to build and ship <a class="link" href="#ubufakazi">Ubufakazi</a>, a live digital forensics platform for scam victims.</p></div></li>
             <li><time datetime="2026-08-04">4 Aug 2026</time><div><h3>Microsoft Certified: Fabric Data Engineer Associate</h3><p>Credential BA0B5380FE62A52B · <a class="v" href="https://learn.microsoft.com/en-us/users/thabangmanyama-6359/credentials/certification/fabric-data-engineer-associate?tab=credentials-tab" target="_blank" rel="noopener">verify ↗</a></p></div></li>
             <li><time datetime="2026">2026</time><div><h3>Academic Top Achiever, EDUVOS <span class="k">2nd year</span></h3><p>Top-performing student, BSc IT: Data Science, for the second consecutive year.</p></div></li>
             <li><time datetime="2026">2026</time><div><h3>3rd place, ITWeb Security Summit Hackathon</h3><p>For Secure Session Guardian, a platform that detects session hijacking and account takeover with AI-driven risk analysis.</p></div></li>
@@ -588,10 +592,13 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
           </ol>
           <div>
             <div class="plates">
-              <button class="plate tall" type="button" data-lightbox="assets/img/cert-top-achiever-2025.webp" data-paper data-cap="Fig. 6 · EDUVOS Academic Top Achiever 2025 certificate, dated 26 June 2026"><img src="assets/img/cert-top-achiever-2025.webp" width="900" height="1334" alt="EDUVOS 2025 Academic Top Achiever certificate awarded to Thabang Manyama" loading="lazy"><span><b>Fig. 6 · Top Achiever 2025</b>EDUVOS · 26 Jun 2026</span></button>
-              <button class="plate" type="button" data-lightbox="assets/img/cert-fabric.webp" data-cap="Fig. 7 · Microsoft Certified: Fabric Data Engineer Associate, earned 4 August 2026"><img src="assets/img/cert-fabric.webp" width="1000" height="528" alt="Microsoft certificate: Fabric Data Engineer Associate" loading="lazy"><span><b>Fig. 7 · Fabric Data Engineer</b>Microsoft · 4 Aug 2026</span></button>
-              <button class="plate" type="button" data-lightbox="assets/img/cert-powerbi.webp" data-cap="Fig. 8 · Microsoft Certified: Power BI Data Analyst Associate, earned 24 April 2026"><img src="assets/img/cert-powerbi.webp" width="1000" height="528" alt="Microsoft certificate: Power BI Data Analyst Associate" loading="lazy"><span><b>Fig. 8 · Power BI Data Analyst</b>Microsoft · 24 Apr 2026</span></button>
-              <button class="plate" type="button" data-lightbox="assets/img/cert-azure-ds.webp" data-cap="Fig. 9 · Microsoft Certified: Azure Data Scientist Associate, earned 14 April 2026"><img src="assets/img/cert-azure-ds.webp" width="1000" height="528" alt="Microsoft certificate: Azure Data Scientist Associate" loading="lazy"><span><b>Fig. 9 · Azure Data Scientist</b>Microsoft · 14 Apr 2026</span></button>
+              <button class="plate award" type="button" data-lightbox="assets/img/hacksecure-2nd-place.webp" data-cap="Fig. 6 · 2nd place at HackSecure 2026, Team CyberThreat: Thabang Manyama (lead), Amani Tondi, Shaun Matlou"><img src="assets/img/hacksecure-2nd-place.webp" width="1000" height="1250" alt="Slide announcing 2nd place at HackSecure 2026 for Team CyberThreat" loading="lazy"><span><b>Fig. 6 · 2nd place, HackSecure 2026</b>Team CyberThreat · Oct 2026</span></button>
+              <button class="plate award" type="button" data-lightbox="assets/img/cert-top-achiever-2025.webp" data-paper data-cap="Fig. 7 · EDUVOS Academic Top Achiever 2025 certificate, dated 26 June 2026"><img src="assets/img/cert-top-achiever-2025.webp" width="900" height="1334" alt="EDUVOS 2025 Academic Top Achiever certificate awarded to Thabang Manyama" loading="lazy"><span><b>Fig. 7 · Top Achiever 2025</b>EDUVOS · 26 Jun 2026</span></button>
+            </div>
+            <div class="plates certs">
+              <button class="plate" type="button" data-lightbox="assets/img/cert-fabric.webp" data-cap="Fig. 8 · Microsoft Certified: Fabric Data Engineer Associate, earned 4 August 2026"><img src="assets/img/cert-fabric.webp" width="1000" height="528" alt="Microsoft certificate: Fabric Data Engineer Associate" loading="lazy"><span><b>Fig. 8 · Fabric</b>Microsoft · 4 Aug 2026</span></button>
+              <button class="plate" type="button" data-lightbox="assets/img/cert-powerbi.webp" data-cap="Fig. 9 · Microsoft Certified: Power BI Data Analyst Associate, earned 24 April 2026"><img src="assets/img/cert-powerbi.webp" width="1000" height="528" alt="Microsoft certificate: Power BI Data Analyst Associate" loading="lazy"><span><b>Fig. 9 · Power BI</b>Microsoft · 24 Apr 2026</span></button>
+              <button class="plate" type="button" data-lightbox="assets/img/cert-azure-ds.webp" data-cap="Fig. 10 · Microsoft Certified: Azure Data Scientist Associate, earned 14 April 2026"><img src="assets/img/cert-azure-ds.webp" width="1000" height="528" alt="Microsoft certificate: Azure Data Scientist Associate" loading="lazy"><span><b>Fig. 10 · Azure DS</b>Microsoft · 14 Apr 2026</span></button>
             </div>
             <div class="distinctions">
               <p class="label">14 module distinctions · by year</p>
@@ -613,6 +620,7 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
         <div class="about-grid">
           <div class="prose">
             <p>I’m Thabang, a 21-year-old data science student in my final year at EDUVOS. I like problems where the data is messy and the answer matters to real people: whether a model can still be trusted, whether a scam victim’s evidence will hold up, where a council might need a coalition.</p>
+            <p>In 2026 I reached the podium at two security hackathons: 3rd at the ITWeb Security Summit and 2nd at HackSecure, where I led the team.</p>
             <p>I work end to end. I source and check raw data from places like Stats SA, the IEC and Eskom, build the model, test it properly, and ship something a person can actually use. When the data disagrees with my first idea, I change the idea.</p>
             <p>Outside the code I’ve represented South African youth as a Y20 delegate in the G20 process, and I’m part of the All4Youth Sub-Saharan Africa leadership programme.</p>
           </div>
@@ -620,7 +628,7 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
             <div><dt>Studying</dt><dd><b>BSc IT: Data Science</b>, EDUVOS · NQF 7 · Feb 2024 to present</dd></div>
             <div><dt>Credits</dt><dd>347 completed · 14 distinctions</dd></div>
             <div><dt>Based in</dt><dd>Alberton, Gauteng, South Africa</dd></div>
-            <div><dt>Leadership</dt><dd>Y20 delegate (G20), 2025 · All4Youth programme, current · Team lead, HackSecure 2026</dd></div>
+            <div><dt>Leadership</dt><dd>Y20 delegate (G20), 2025 · All4Youth programme, current · Team lead, HackSecure 2026 (2nd place)</dd></div>
             <div><dt>Work</dt><dd>Retail Assistant, Sportscene Sandton City, Oct 2024 to Apr 2025, alongside full-time study</dd></div>
             <div><dt>Looking for</dt><dd>Graduate and internship roles in data science, ML engineering and analytics</dd></div>
           </dl>
@@ -766,18 +774,19 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
   <header class="d-head">
     <a class="back" href="#systems" data-back><span class="arrow" aria-hidden="true">←</span> All systems</a>
     <div class="nb">
-      <p class="margin"><b>EXP-02</b>Digital forensics<br>27–28 Oct 2026<br><br>Status:<br>shipped, live</p>
+      <p class="margin"><b>EXP-02</b>Digital forensics<br>27–28 Oct 2026<br><br>Status:<br>live · 2nd place</p>
       <div class="main">
         <h1 class="d-title" id="u-title">Ubufakazi</h1>
         <p class="d-sub">From scam victim to police-ready case file in 60 seconds. <i style="color:var(--muted)">Ubufakazi</i> is isiZulu for evidence or testimony.</p>
         <div class="d-actions">
           <a class="btn primary" href="https://ubufakazi.onrender.com/mvp" target="_blank" rel="noopener">Try the 60-second demo ↗</a>
           <a class="btn" href="https://ubufakazi.onrender.com" target="_blank" rel="noopener">Open the live platform ↗</a>
+          <a class="btn" href="https://t.me/ubufakazi_report_bot" target="_blank" rel="noopener">Telegram bot ↗</a>
           <a class="btn" href="https://github.com/Don4chnge/ubufakazi" target="_blank" rel="noopener">View code on GitHub ↗</a>
         </div>
         <dl class="d-facts">
           <div><dt>My role</dt><dd>Team lead, Team CyberThreat (3 people). Built the Telegram bot and FastAPI backend</dd></div>
-          <div><dt>Event</dt><dd>HackSecure 2026 (CyberM8), Track 4: Digital Forensics Lite</dd></div>
+          <div><dt>Result</dt><dd><b style="color:var(--warn);font-weight:500">2nd place</b>, HackSecure 2026 (CyberM8), Track 4: Digital Forensics Lite</dd></div>
           <div><dt>Type</dt><dd>Web platform, Telegram bot and investigator console</dd></div>
           <div><dt>Data</dt><dd>100% fictional demo data. Not connected to SAPS or any bank</dd></div>
         </dl>
@@ -785,7 +794,7 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
           <div><b>&lt; 60 s</b><span>from chats and payment slips to a full case file</span></div>
           <div><b>70/70</b><span>test cases extract the right account, amount and scam type</span></div>
           <div><b>5</b><span>languages: English, isiZulu, isiXhosa, Afrikaans, Sesotho</span></div>
-          <div><b>SHA-256</b><span>fingerprint on every file the moment it is reported</span></div>
+          <div><b>2nd</b><span>place in Track 4 at HackSecure 2026</span></div>
         </div>
       </div>
     </div>
@@ -794,7 +803,7 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
   <section class="d-sec nb" aria-labelledby="u-why"><p class="margin"><b>01</b>Why we built it</p><div class="main">
     <h2 id="u-why">Why we built it</h2>
     <div class="prose">
-      <p>South Africans lose billions of rand a year to scams: fake job offers, fake couriers, marketplace sellers, romance and crypto schemes. Most victims never get a case that goes anywhere, for three reasons:</p>
+      <p>SABRIC reports R2.4 billion lost to digital banking crime in South Africa in 2025, and a GASA 2026 survey found only 6% of scam victims reported it to the authorities. Fake job offers, fake couriers, marketplace sellers, romance and crypto schemes: most victims never get a case that goes anywhere, for three reasons:</p>
     </div>
     <ul class="bullets" style="margin-top:1.5rem">
       <li><b>Evidence is messy.</b> It sits in WhatsApp chats, screenshots and proof-of-payment slips that police and banks can’t easily use, and that can be questioned later.</li>
@@ -858,6 +867,9 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
       <li><b>Ubufakazi 2.0 backend (my part):</b> a Telegram reporting bot with a quick-exit at every step and a FastAPI server on Render with Neon Postgres, server-side HMAC keys and RFC 3161 trusted timestamps.</li>
       <li><b>Investigator console:</b> password plus two-factor sign-in, CSRF protection, station isolation (officers see only their own station’s reports) and a hash-chained audit log that detects tampering.</li>
       <li><b>Security by default:</b> strict Content Security Policy, no third-party scripts or trackers, and all user text rendered with <span class="mono">textContent</span> so a malicious chat can’t inject code.</li>
+      <li><b>Follows forensic practice:</b> the four NIST SP 800-86 stages (collection, examination, analysis, reporting), from a victim's phone to a linked syndicate case.</li>
+      <li><b>For banks:</b> signed alerts on mule accounts with per-bank HMAC keys and a 5-minute replay window, plus a check before a customer pays a new beneficiary. One report alone never blocks an account, and banks see risk levels and counts, never names or chats.</li>
+      <li><b>Hardened:</b> Argon2id passwords and account lockout, prompt-injection scanning on AI readings (which stay "unverified" until checked), OWASP Top 10:2025 mapping with live self-checks, and POPIA-minded data handling.</li>
       <li><b>Tested:</b> a 70-case, five-language test pack checked automatically in a headless browser; every case extracts the correct account, amount and scam type.</li>
     </ul>
   </div></section>
@@ -869,6 +881,13 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
       <figure class="fig"><button class="img" type="button" data-lightbox="assets/img/ubufakazi-network.webp" data-cap="Fig. U2 · Scam fingerprint network in the investigator dashboard."><img src="assets/img/ubufakazi-network.webp" width="1440" height="1400" alt="Investigator dashboard showing a network graph of linked scam reports" loading="lazy" style="aspect-ratio:16/12;object-fit:cover;object-position:top"></button><figcaption><b>Fig. U2</b> The investigator console’s scam network. Every lead states why it was linked.</figcaption></figure>
       <figure class="fig"><button class="img" type="button" data-lightbox="assets/img/ubufakazi-home.webp" data-cap="Fig. U3 · Ubufakazi 2.0 home page."><img src="assets/img/ubufakazi-home.webp" width="1440" height="900" alt="Ubufakazi 2.0 home page with a globe and evidence panels" loading="lazy" style="aspect-ratio:16/12;object-fit:cover;object-position:top left"></button><figcaption><b>Fig. U3</b> The 2.0 home page, with live counts from the demo database.</figcaption></figure>
     </div>
+    <p class="label" style="margin:3rem 0 1rem">From the HackSecure 2026 pitch</p>
+    <div class="figs deck">
+      <figure class="fig"><button class="img" type="button" data-lightbox="assets/img/hacksecure-cover.webp" data-cap="Fig. U4 · HackSecure 2026 pitch: cover slide."><img src="assets/img/hacksecure-cover.webp" width="1000" height="1250" alt="Pitch slide: Ubufakazi, scam evidence police-ready in 60 seconds, 2nd place Track 4" loading="lazy"></button><figcaption><b>Fig. U4</b> The pitch.</figcaption></figure>
+      <figure class="fig"><button class="img" type="button" data-lightbox="assets/img/hacksecure-built.webp" data-cap="Fig. U5 · What we built: the four NIST SP 800-86 stages."><img src="assets/img/hacksecure-built.webp" width="1000" height="1250" alt="Pitch slide: report once, we find the syndicate, four forensic stages" loading="lazy"></button><figcaption><b>Fig. U5</b> Four forensic stages.</figcaption></figure>
+      <figure class="fig"><button class="img" type="button" data-lightbox="assets/img/hacksecure-casepack.webp" data-cap="Fig. U6 · The sealed, QR-verified case pack."><img src="assets/img/hacksecure-casepack.webp" width="1000" height="1250" alt="Pitch slide: a sealed case pack ready for the police station" loading="lazy"></button><figcaption><b>Fig. U6</b> The sealed case pack.</figcaption></figure>
+      <figure class="fig"><button class="img" type="button" data-lightbox="assets/img/hacksecure-banks.webp" data-cap="Fig. U7 · For banks: signed mule-account alerts and a check before customers pay."><img src="assets/img/hacksecure-banks.webp" width="1000" height="1250" alt="Pitch slide: stop the next victim before they pay, bank payment check" loading="lazy"></button><figcaption><b>Fig. U7</b> The bank side: stop the next victim.</figcaption></figure>
+    </div>
     <ul class="bullets" style="margin-top:2.5rem">
       <li><b>Honest limits:</b> the browser MVP keeps its HMAC key in the browser and saves added reports only on that device; the 2.0 backend moves keys to the server. Translations should be checked by fluent speakers. Nothing is connected to SAPS or a real bank, and no case numbers are issued.</li>
       <li><b>Team:</b> Thabang Manyama (lead), Amani Tondi and Shaun Matlou.</li>
@@ -877,7 +896,7 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
 
   <section class="d-sec nb" aria-labelledby="u-stack"><p class="margin"><b>07</b>Built with</p><div class="main">
     <h2 id="u-stack">Built with</h2>
-    <ul class="tags"><li>JavaScript</li><li>Web Crypto API</li><li>jsPDF</li><li>Python</li><li>FastAPI</li><li>SQLAlchemy</li><li>Postgres (Neon)</li><li>Telegram Bot API</li><li>Render</li><li>Netlify</li><li>Playwright</li><li>pytest</li></ul>
+    <ul class="tags"><li>JavaScript</li><li>Web Crypto API</li><li>Gemini AI</li><li>jsPDF</li><li>Python</li><li>FastAPI</li><li>SQLAlchemy</li><li>Postgres (Neon)</li><li>Telegram Bot API</li><li>Render</li><li>Netlify</li><li>Playwright</li><li>pytest</li></ul>
   </div></section>
 
   <a class="next" href="#hung-council-watch" style="--n:var(--c-hcw)"><span class="label">Next system · EXP-03</span><strong>Hung Council Watch</strong><span class="arrow" aria-hidden="true" style="font-size:2rem">→</span></a>
