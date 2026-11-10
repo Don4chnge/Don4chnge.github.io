@@ -6,10 +6,10 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%2308090A%27/%3E%3Cpath d=%27M3 20 Q8 10 12 18 T21 16 T29 9%27 stroke=%27%233DFF8F%27 stroke-width=%272.5%27 fill=%27none%27/%3E%3C/svg%3E">
 <title>Thabang Manyama</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Thabang Manyama, final-year Data Science student in Johannesburg. ML monitoring, digital forensics, election forecasting and economic analysis built on real South African data.">
+<meta name="description" content="Thabang Manyama, final-year Data Science student in Johannesburg. ML monitoring, digital forensics, election forecasting, economic analysis and a stokvel credit-record platform, with live demos.">
 <meta name="theme-color" content="#08090A">
 <meta property="og:title" content="Thabang Manyama · The Laboratory">
-<meta property="og:description" content="I build systems that notice when something changes. Four data science systems built on real South African data.">
+<meta property="og:description" content="I build systems that notice when something changes. Five data science and engineering systems, with live demos.">
 <meta property="og:image" content="assets/img/portrait.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +27,7 @@
   --paper:#F3F1EC;                    /* plate behind light-background figures */
   --focus:#3DFF8F;
   /* project accents */
-  --c-valorian:#3DFF8F; --c-ubufakazi:#2EE6D6; --c-hcw:#FFB547; --c-ls:#FF7A66;
+  --c-valorian:#3DFF8F; --c-ubufakazi:#2EE6D6; --c-hcw:#FFB547; --c-ls:#FF7A66; --c-stokvel:#C6E66B;
   /* type */
   --f-display:"Instrument Serif", "Iowan Old Style", Georgia, serif;
   --f-text:"Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -355,6 +355,8 @@ tbody tr:last-child td{border-bottom:0}
 .bench-body{padding:var(--s5) var(--s4)}
 .seg{display:inline-flex;border:1px solid var(--line-2);border-radius:var(--radius)}
 .seg button{font:500 var(--step--2)/1 var(--f-mono);letter-spacing:.04em;padding:.7em .9em;color:var(--muted);transition:background-color var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out);min-height:36px}
+.seg{max-width:100%;overflow-x:auto;scrollbar-width:none}
+.seg button{white-space:nowrap;flex:none}
 .seg button + button{border-left:1px solid var(--line-2)}
 .seg button[aria-pressed="true"]{background:var(--accent);color:var(--signal-ink)}
 @media (hover:hover){.seg button:not([aria-pressed="true"]):hover{color:var(--ink)}}
@@ -458,7 +460,7 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
             <p class="scope-note" id="scope-note" data-state="ok" role="status" aria-live="polite">MONITOR: STABLE<br>PSI 0.008 · DriftScore 100</p>
           </div>
           <dl class="readouts">
-            <div><dt>Systems shipped</dt><dd>4<small>3 with live demos</small></dd></div>
+            <div><dt>Systems shipped</dt><dd>5<small>4 with live demos</small></dd></div>
             <div><dt>Tests passing</dt><dd class="g">78/78<small>Valorian, Python 3.10–3.12</small></dd></div>
             <div><dt>Forecast ROC-AUC</dt><dd>0.88<small>unseen 2021 election</small></dd></div>
             <div><dt>Languages parsed</dt><dd>5<small>Ubufakazi statements</small></dd></div>
@@ -471,11 +473,11 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
 
   <section class="section wrap" id="systems" aria-labelledby="systems-title">
     <div class="nb">
-      <p class="margin"><b>§ 1 · Systems</b>4 entries<br>2025–2026<br><br>Each opens a full<br>dossier: purpose,<br>how to use it,<br>architecture,<br>evidence.</p>
+      <p class="margin"><b>§ 1 · Systems</b>5 entries<br>2025–2026<br><br>Each opens a full<br>dossier: purpose,<br>how to use it,<br>architecture,<br>evidence.</p>
       <div class="main">
         <div class="section-head">
           <h2 class="section-title" id="systems-title">The experiment log</h2>
-          <p class="section-intro">Four systems built on real data. Each started as a question, and the answer had to survive testing. One of the hypotheses didn’t, and that’s in here too.</p>
+          <p class="section-intro">Five systems. Four are built on real South African data; the newest is a working prototype on synthetic data. Each started as a question, and the answer had to survive testing. One of the hypotheses didn’t, and that’s in here too.</p>
         </div>
         <div class="log">
           <a class="entry" href="#valorian" style="--c:var(--c-valorian)">
@@ -541,6 +543,21 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
               <div class="shot"><img src="assets/img/ls-powerbi.webp" width="1153" height="644" alt="Power BI dashboard: worst month 3,213 MW, 49 months analysed, load shedding against retail growth" loading="lazy"><span class="tag">Fig. 5 · Power BI dashboard</span></div>
             </figure>
           </a>
+          <a class="entry" href="#stokvel-credit-passport" style="--c:var(--c-stokvel)">
+            <div>
+              <div class="entry-meta"><span class="label">EXP-05 · Nov 2026</span><span class="label live"><span class="dot" aria-hidden="true"></span>Financial identity</span></div>
+              <h3 class="entry-title">Stokvel Credit Passport</h3>
+              <p class="entry-plain">Turns a stokvel member’s verified contributions into a tamper-evident record they own and can share with a lender.</p>
+              <dl class="entry-hr">
+                <div><dt>Hypothesis</dt><dd>Years of reliable stokvel saving can count as financial history, without the member giving up control of it.</dd></div>
+                <div><dt>Result</dt><dd>A working prototype with a live demo and 263 automated tests. Synthetic data only; not yet tested with real members.</dd></div>
+              </dl>
+              <div class="entry-foot"><span class="chip">Prototype · live demo</span><span class="entry-open">Open dossier <span class="arrow" aria-hidden="true">→</span></span></div>
+            </div>
+            <figure class="entry-fig">
+              <div class="shot"><img src="assets/img/stokvel-member.webp" width="1440" height="860" alt="Stokvel Credit Passport member overview with a reliability index of 77 out of 100" loading="lazy"><span class="tag">Fig. 6 · live demo, synthetic data</span></div>
+            </figure>
+          </a>
         </div>
       </div>
     </div>
@@ -557,11 +574,11 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
         <div class="methods">
           <div class="method"><h3>Machine learning</h3><p class="tools">scikit-learn, XGBoost, KMeans, logistic regression, random forests, feature engineering, time-ordered validation, model monitoring</p><p class="proof">Proof: <a href="#hung-council-watch">Hung Council Watch</a>, <a href="#valorian">Valorian</a></p></div>
           <div class="method"><h3>Statistics</h3><p class="tools">Hypothesis and permutation testing, PSI, Kolmogorov–Smirnov, chi-square, OLS, distributed-lag and fixed-effects regression, confidence intervals</p><p class="proof">Proof: <a href="#load-shedding">Load Shedding</a>, <a href="#valorian">Valorian</a></p></div>
-          <div class="method"><h3>Languages</h3><p class="tools">Python, R, SQL, JavaScript</p><p class="proof">Proof: all four systems</p></div>
-          <div class="method"><h3>Data engineering</h3><p class="tools">pandas, NumPy, SQLite, Postgres, reproducible pipelines from raw institutional data, Microsoft Fabric</p><p class="proof">Proof: <a href="#hung-council-watch">Hung Council Watch</a> · Fabric Data Engineer certification</p></div>
+          <div class="method"><h3>Languages</h3><p class="tools">Python, R, SQL, JavaScript, TypeScript</p><p class="proof">Proof: all five systems</p></div>
+          <div class="method"><h3>Data engineering</h3><p class="tools">pandas, NumPy, SQLite, Postgres, reproducible pipelines from raw institutional data, Microsoft Fabric</p><p class="proof">Proof: <a href="#hung-council-watch">Hung Council Watch</a>, <a href="#stokvel-credit-passport">Stokvel Credit Passport</a> · Fabric Data Engineer certification</p></div>
           <div class="method"><h3>Visualisation</h3><p class="tools">D3.js, Streamlit, Power BI, Tableau, Matplotlib, Excel</p><p class="proof">Proof: <a href="#hung-council-watch">D3 dashboard</a>, <a href="#valorian">Streamlit</a>, <a href="#load-shedding">Power BI</a></p></div>
-          <div class="method"><h3>Software engineering</h3><p class="tools">Git and GitHub, GitHub Actions CI, pytest, Playwright, FastAPI, Netlify and Render deployment, object-oriented design</p><p class="proof">Proof: <a href="#valorian">78-test suite</a>, <a href="#ubufakazi">Ubufakazi</a></p></div>
-          <div class="method"><h3>Security &amp; forensics</h3><p class="tools">SHA-256 evidence hashing, HMAC-keyed identifiers, Content Security Policy, session monitoring, network security</p><p class="proof">Proof: <a href="#ubufakazi">Ubufakazi</a> (2nd, HackSecure 2026) · 3rd, ITWeb hackathon</p></div>
+          <div class="method"><h3>Software engineering</h3><p class="tools">Git and GitHub, GitHub Actions CI, pytest, Playwright, FastAPI, Next.js and React, database migrations, Netlify and Render deployment, object-oriented design</p><p class="proof">Proof: <a href="#stokvel-credit-passport">263-test suite</a>, <a href="#valorian">78-test suite</a>, <a href="#ubufakazi">Ubufakazi</a></p></div>
+          <div class="method"><h3>Security &amp; forensics</h3><p class="tools">SHA-256 evidence hashing, HMAC-keyed identifiers, Content Security Policy, session monitoring, network security</p><p class="proof">Proof: <a href="#ubufakazi">Ubufakazi</a> (2nd, HackSecure 2026), <a href="#stokvel-credit-passport">20-point security checklist</a> · 3rd, ITWeb hackathon</p></div>
           <div class="method"><h3>Cloud</h3><p class="tools">Azure Machine Learning, Microsoft Fabric, Kubernetes and cloud-native fundamentals</p><p class="proof">Proof: 3 Microsoft certifications</p></div>
         </div>
       </div>
@@ -592,13 +609,13 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
           </ol>
           <div>
             <div class="plates">
-              <button class="plate award" type="button" data-lightbox="assets/img/hacksecure-2nd-place.webp" data-cap="Fig. 6 · 2nd place at HackSecure 2026, Team CyberThreat: Thabang Manyama (lead), Amani Tondi, Shaun Matlou"><img src="assets/img/hacksecure-2nd-place.webp" width="1000" height="1250" alt="Slide announcing 2nd place at HackSecure 2026 for Team CyberThreat" loading="lazy"><span><b>Fig. 6 · 2nd place, HackSecure 2026</b>Team CyberThreat · Oct 2026</span></button>
-              <button class="plate award" type="button" data-lightbox="assets/img/cert-top-achiever-2025.webp" data-paper data-cap="Fig. 7 · EDUVOS Academic Top Achiever 2025 certificate, dated 26 June 2026"><img src="assets/img/cert-top-achiever-2025.webp" width="900" height="1334" alt="EDUVOS 2025 Academic Top Achiever certificate awarded to Thabang Manyama" loading="lazy"><span><b>Fig. 7 · Top Achiever 2025</b>EDUVOS · 26 Jun 2026</span></button>
+              <button class="plate award" type="button" data-lightbox="assets/img/hacksecure-2nd-place.webp" data-cap="Fig. 7 · 2nd place at HackSecure 2026, Team CyberThreat: Thabang Manyama (lead), Amani Tondi, Shaun Matlou"><img src="assets/img/hacksecure-2nd-place.webp" width="1000" height="1250" alt="Slide announcing 2nd place at HackSecure 2026 for Team CyberThreat" loading="lazy"><span><b>Fig. 7 · 2nd place, HackSecure 2026</b>Team CyberThreat · Oct 2026</span></button>
+              <button class="plate award" type="button" data-lightbox="assets/img/cert-top-achiever-2025.webp" data-paper data-cap="Fig. 8 · EDUVOS Academic Top Achiever 2025 certificate, dated 26 June 2026"><img src="assets/img/cert-top-achiever-2025.webp" width="900" height="1334" alt="EDUVOS 2025 Academic Top Achiever certificate awarded to Thabang Manyama" loading="lazy"><span><b>Fig. 8 · Top Achiever 2025</b>EDUVOS · 26 Jun 2026</span></button>
             </div>
             <div class="plates certs">
-              <button class="plate" type="button" data-lightbox="assets/img/cert-fabric.webp" data-cap="Fig. 8 · Microsoft Certified: Fabric Data Engineer Associate, earned 4 August 2026"><img src="assets/img/cert-fabric.webp" width="1000" height="528" alt="Microsoft certificate: Fabric Data Engineer Associate" loading="lazy"><span><b>Fig. 8 · Fabric</b>Microsoft · 4 Aug 2026</span></button>
-              <button class="plate" type="button" data-lightbox="assets/img/cert-powerbi.webp" data-cap="Fig. 9 · Microsoft Certified: Power BI Data Analyst Associate, earned 24 April 2026"><img src="assets/img/cert-powerbi.webp" width="1000" height="528" alt="Microsoft certificate: Power BI Data Analyst Associate" loading="lazy"><span><b>Fig. 9 · Power BI</b>Microsoft · 24 Apr 2026</span></button>
-              <button class="plate" type="button" data-lightbox="assets/img/cert-azure-ds.webp" data-cap="Fig. 10 · Microsoft Certified: Azure Data Scientist Associate, earned 14 April 2026"><img src="assets/img/cert-azure-ds.webp" width="1000" height="528" alt="Microsoft certificate: Azure Data Scientist Associate" loading="lazy"><span><b>Fig. 10 · Azure DS</b>Microsoft · 14 Apr 2026</span></button>
+              <button class="plate" type="button" data-lightbox="assets/img/cert-fabric.webp" data-cap="Fig. 9 · Microsoft Certified: Fabric Data Engineer Associate, earned 4 August 2026"><img src="assets/img/cert-fabric.webp" width="1000" height="528" alt="Microsoft certificate: Fabric Data Engineer Associate" loading="lazy"><span><b>Fig. 9 · Fabric</b>Microsoft · 4 Aug 2026</span></button>
+              <button class="plate" type="button" data-lightbox="assets/img/cert-powerbi.webp" data-cap="Fig. 10 · Microsoft Certified: Power BI Data Analyst Associate, earned 24 April 2026"><img src="assets/img/cert-powerbi.webp" width="1000" height="528" alt="Microsoft certificate: Power BI Data Analyst Associate" loading="lazy"><span><b>Fig. 10 · Power BI</b>Microsoft · 24 Apr 2026</span></button>
+              <button class="plate" type="button" data-lightbox="assets/img/cert-azure-ds.webp" data-cap="Fig. 11 · Microsoft Certified: Azure Data Scientist Associate, earned 14 April 2026"><img src="assets/img/cert-azure-ds.webp" width="1000" height="528" alt="Microsoft certificate: Azure Data Scientist Associate" loading="lazy"><span><b>Fig. 11 · Azure DS</b>Microsoft · 14 Apr 2026</span></button>
             </div>
             <div class="distinctions">
               <p class="label">14 module distinctions · by year</p>
@@ -1098,11 +1115,132 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
     <ul class="tags"><li>Python</li><li>pandas</li><li>SciPy</li><li>statsmodels</li><li>Matplotlib</li><li>Jupyter</li><li>Power BI</li></ul>
   </div></section>
 
+  <a class="next" href="#stokvel-credit-passport" style="--n:var(--c-stokvel)"><span class="label">Next system · EXP-05</span><strong>Stokvel Credit Passport</strong><span class="arrow" aria-hidden="true" style="font-size:2rem">→</span></a>
+</article>
+
+<article class="dossier wrap" data-view="stokvel-credit-passport" id="stokvel-credit-passport" style="--c:var(--c-stokvel)" aria-labelledby="s-title">
+  <header class="d-head">
+    <a class="back" href="#systems" data-back><span class="arrow" aria-hidden="true">←</span> All systems</a>
+    <div class="nb">
+      <p class="margin"><b>EXP-05</b>Financial identity<br>Nov 2026<br><br>Status:<br>working prototype,<br>live demo</p>
+      <div class="main">
+        <h1 class="d-title" id="s-title">Stokvel Credit Passport</h1>
+        <p class="d-sub">Years of reliable stokvel saving are invisible to banks. This turns a member’s verified contributions into a record they own and can show a lender.</p>
+        <div class="d-actions">
+          <a class="btn primary" href="https://stokvel-credit-passport.netlify.app" target="_blank" rel="noopener">Open the live demo ↗</a>
+          <a class="btn" href="https://github.com/Don4chnge/stokvel-credit-passport" target="_blank" rel="noopener">View code on GitHub ↗</a>
+        </div>
+        <dl class="d-facts">
+          <div><dt>My role</dt><dd>Sole designer and builder: product, backend, frontend, tests, deployment</dd></div>
+          <div><dt>Type</dt><dd>Full-stack web platform with member, treasurer, lender and admin portals</dd></div>
+          <div><dt>Data</dt><dd>100% synthetic: 5 stokvels, 108 members. Payments run in test mode and move no money</dd></div>
+          <div><dt>Status</dt><dd>Prototype. No real users, partners or regulatory approval</dd></div>
+        </dl>
+        <div class="d-results" style="--n:4">
+          <div><b>263</b><span>automated tests: 169 backend, 21 frontend, 73 end-to-end</span></div>
+          <div><b>20/20</b><span>points on its security checklist, each backed by a test</span></div>
+          <div><b>47</b><span>documented API endpoints behind five user roles</span></div>
+          <div><b>0–100</b><span>reliability index with a plain-language explanation</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="d-sec nb" aria-labelledby="s-why"><p class="margin"><b>01</b>Why I built it</p><div class="main">
+    <h2 id="s-why">Why I built it</h2>
+    <div class="prose">
+      <p>A stokvel is a savings club: members pay in a fixed amount on a schedule and take turns receiving the pot. Public reporting puts South Africa at about <strong>11 million stokvel members</strong> in roughly 800,000 groups, pooling an estimated R50 billion a year.</p>
+      <p>Someone can pay into a stokvel on time, every month, for years, and still look like a stranger to a bank, because none of that behaviour appears in a credit record. People with thin credit files then pay more to borrow, or turn to informal lenders.</p>
+    </div>
+    <div class="callout"><p>The question: can verified stokvel contributions become a record the member owns, controls and can prove is genuine?</p></div>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="s-plain"><p class="margin"><b>02</b>In plain English</p><div class="main">
+    <h2 id="s-plain">What it does, in plain English</h2>
+    <ol class="steps">
+      <li><p><b>A stokvel signs up</b> with its contribution amount and schedule, and members join.</p></li>
+      <li><p><b>Every payment has to be verified.</b> Either the payment provider confirms it, or the treasurer checks it by hand. A screenshot or a member’s own word is never enough.</p></li>
+      <li><p><b>Verified payments go into a tamper-evident ledger.</b> Each entry is locked to the one before it, so changing an old record breaks the chain and is detected.</p></li>
+      <li><p><b>The member gets a Contribution Reliability Index</b> from 0 to 100, with a plain explanation of what supports it and what would raise it.</p></li>
+      <li><p><b>The member creates a Credit Passport</b>, on screen and as a PDF with a QR code that proves it is authentic.</p></li>
+      <li><p><b>The member decides who sees it.</b> A sharing link shows only the fields they choose, expires, and can be revoked. Every time a lender opens it, the member can see that.</p></li>
+    </ol>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="s-try"><p class="margin"><b>03</b>Try it yourself</p><div class="main">
+    <h2 id="s-try">Try it yourself</h2>
+    <div class="bench" data-demo="stokvel">
+      <div class="bench-bar"><p class="label live"><span class="dot" aria-hidden="true"></span>Reliability index · pick a saving pattern</p>
+        <div class="seg" role="group" aria-label="Member pattern"><button type="button" aria-pressed="true" data-set="nomvula">One miss</button><button type="button" aria-pressed="false" data-set="perfect">Never late</button><button type="button" aria-pressed="false" data-set="late">Often late</button><button type="button" aria-pressed="false" data-set="missing">Misses often</button><button type="button" aria-pressed="false" data-set="new">New member</button></div></div>
+      <div class="bench-body"><div class="chart-host"></div><div class="readout-row" aria-live="polite"></div></div>
+    </div>
+    <p class="label" style="margin:2.5rem 0 1rem">Use the live demo</p>
+    <ol class="steps">
+      <li><p>Open the <a class="link" href="https://stokvel-credit-passport.netlify.app" target="_blank" rel="noopener">live demo</a> and choose <b>Sign In</b>. The first load can take up to a minute while the free server wakes up.</p></li>
+      <li><p>Sign in as the demo member. The demo email and password are listed in the <a class="link" href="https://github.com/Don4chnge/stokvel-credit-passport#demo-accounts-synthetic" target="_blank" rel="noopener">project README</a>, along with treasurer, lender and administrator accounts.</p></li>
+      <li><p>The <b>Overview</b> shows the contribution ring: one dot per period, the index, and the reasons behind it.</p></li>
+      <li><p>Open <b>Credit Passport</b> and generate one. Then use the <b>Consent centre</b> to create a sharing link with the fields and expiry you choose.</p></li>
+      <li><p>Sign in as the demo lender and open that link. Then go back as the member and revoke it: the lender is refused, and the access log names who looked.</p></li>
+      <li><p>As the platform administrator, open <b>Ledger integrity</b>, run the verification, then <b>Simulate a tampered record</b> to watch one changed amount break the chain.</p></li>
+    </ol>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="s-arch"><p class="margin"><b>04</b>Architecture</p><div class="main">
+    <h2 id="s-arch">Architecture</h2>
+    <p class="section-intro" style="font-size:var(--step-0)">How the parts fit together. Select any box to see what it does in plain words.</p>
+  </div>
+  <div class="arch" data-arch="stokvel"></div></section>
+
+  <section class="d-sec nb" aria-labelledby="s-how"><p class="margin"><b>05</b>Technical<br>implementation</p><div class="main">
+    <h2 id="s-how">How it works</h2>
+    <ul class="bullets">
+      <li><b>Stack:</b> Next.js, React and TypeScript on the front; FastAPI, SQLAlchemy and PostgreSQL (or SQLite locally) behind it, with Alembic migrations. Hosted on Netlify, Render and Neon.</li>
+      <li><b>Hash-chained ledger:</b> each event stores SHA-256 of the previous hash plus its own canonical data. Verification walks the chain from a fixed genesis hash and reports edited content, broken links, missing or reordered events and checkpoint mismatches.</li>
+      <li><b>Append-only by rule, not by habit:</b> a database trigger rejects UPDATE, DELETE and TRUNCATE on the ledger. A reversal is a new event; the original is never edited.</li>
+      <li><b>Verification rules in code:</b> a contribution is never verified because a member submitted it, a treasurer cannot verify their own payment, duplicates are refused through idempotency keys, and a provider webhook is applied once.</li>
+      <li><b>Explainable index, no black box:</b> six weighted factors (on-time rate 35%, consistency 20%, length of participation 15%, missed behaviour 15%, recovery 10%, record completeness 5%). The engine is pure functions with versioned weights, and every result stores a digest of its inputs so it can be reproduced.</li>
+      <li><b>Why not machine learning:</b> there is no real outcome to learn from yet. A model trained on synthetic data would only learn the rules that generated it, so the engine is rule-based and kept separate until a pilot produces real, consented data.</li>
+      <li><b>Fairness by design:</b> the engine receives five fields per payment period and no name, age, gender or other personal attribute; tests assert this. A separate fairness report compares index distributions by age band and gender and flags small samples and gaps.</li>
+      <li><b>Consent and privacy:</b> sharing links are scoped to chosen fields, time-limited and revocable, and every lender access is logged where the member can see it.</li>
+      <li><b>Security:</b> a 20-point checklist with a test for each point, including a nonce-based Content Security Policy, CSRF origin checks, sign-in lockout, rate limiting, server-side session ending and a startup gate that refuses weak production settings. CI scans the full git history for secrets on every push.</li>
+    </ul>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="s-res"><p class="margin"><b>06</b>Results and<br>evidence</p><div class="main">
+    <h2 id="s-res">Results and evidence</h2>
+    <div class="figs">
+      <figure class="fig wide"><button class="img" type="button" data-lightbox="assets/img/stokvel-member.webp" data-cap="Fig. S1 · Member overview: reliability index of 77 with its explanation. Synthetic demo data."><img src="assets/img/stokvel-member.webp" width="1440" height="860" alt="Member overview showing a reliability index of 77 out of 100, a ring of contribution dots and the reasons behind the index" loading="lazy"></button><figcaption><b>Fig. S1</b> The member overview. 11 of 12 contributions on time, one miss followed by a recovery: index 77. Synthetic demo data.</figcaption></figure>
+      <figure class="fig"><button class="img" type="button" data-lightbox="assets/img/stokvel-ledger.webp" data-cap="Fig. S2 · Ledger integrity: 2,160 events, chain verified, tampering simulation."><img src="assets/img/stokvel-ledger.webp" width="1440" height="860" alt="Ledger integrity page with 2160 ledger events, a verified chain and a tampering simulation" loading="lazy"></button><figcaption><b>Fig. S2</b> Ledger integrity: 2,160 events, chain verified, with a tampering simulation that never touches the stored ledger.</figcaption></figure>
+      <figure class="fig"><button class="img" type="button" data-lightbox="assets/img/stokvel-hero.webp" data-cap="Fig. S3 · Public home page with an animated Cape Town skyline."><img src="assets/img/stokvel-hero.webp" width="1440" height="860" alt="Stokvel Credit Passport home page: Your contributions. Your financial identity, over a drawn Cape Town skyline" loading="lazy"></button><figcaption><b>Fig. S3</b> The public site. The hero moves through drawn skylines of ten South African cities.</figcaption></figure>
+    </div>
+    <div class="tbl-wrap" style="margin-top:2.5rem"><table>
+      <caption class="vh">Test results from the last full run, 10 November 2026</caption>
+      <thead><tr><th>Suite</th><th>What it covers</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td>Backend, SQLite</td><td>auth, permissions, ledger, scoring, consent</td><td class="band healthy">169 passed</td></tr>
+        <tr><td>Backend, PostgreSQL 16</td><td>the same tests on the production database</td><td class="band healthy">169 passed</td></tr>
+        <tr><td>Frontend unit</td><td>components, formatting, analytics privacy</td><td class="band healthy">21 passed</td></tr>
+        <tr><td>End to end</td><td>every role’s journey, security, accessibility, mobile</td><td class="band healthy">73 passed</td></tr>
+        <tr><td>Ledger database rule</td><td>UPDATE, DELETE, TRUNCATE on the ledger</td><td class="band healthy">all rejected</td></tr>
+        <tr><td>Dependency advisories</td><td>npm audit, pip-audit</td><td class="band healthy">none known</td></tr>
+      </tbody></table></div>
+    <ul class="bullets" style="margin-top:2.5rem">
+      <li><b>Honest limits:</b> all data is synthetic and payments are simulated. The index is experimental: its weights have not been validated against real lending outcomes, and it is not a credit bureau score.</li>
+      <li><b>What a hash chain can’t do:</b> it exposes edits made after the fact, but someone with full database control could rewrite the whole chain. The project documents this, tests for it, and lists publishing checkpoints to an independent party as the next step.</li>
+      <li><b>Before any pilot:</b> legal review is still needed, including whether lender-facing reports count as credit bureau activity under the National Credit Act, and POPIA duties.</li>
+    </ul>
+  </div></section>
+
+  <section class="d-sec nb" aria-labelledby="s-stack"><p class="margin"><b>07</b>Built with</p><div class="main">
+    <h2 id="s-stack">Built with</h2>
+    <ul class="tags"><li>TypeScript</li><li>Next.js</li><li>React</li><li>Tailwind CSS</li><li>Python</li><li>FastAPI</li><li>SQLAlchemy</li><li>PostgreSQL (Neon)</li><li>Alembic</li><li>pytest</li><li>Vitest</li><li>Playwright</li><li>GitHub Actions</li><li>Netlify</li><li>Render</li></ul>
+  </div></section>
+
   <a class="next" href="#valorian" style="--n:var(--c-valorian)"><span class="label">Back to the start · EXP-01</span><strong>Valorian Intelligence</strong><span class="arrow" aria-hidden="true" style="font-size:2rem">→</span></a>
 </article>
 
 </main>
-<footer class="foot"><div class="wrap"><span>© 2026 Thabang Manyama · Johannesburg</span><span>Hand-built in HTML, CSS and JavaScript. Every figure comes from a project repository, the CV or a certificate.</span><span>Last updated 30 October 2026</span></div></footer>
+<footer class="foot"><div class="wrap"><span>© 2026 Thabang Manyama · Johannesburg</span><span>Hand-built in HTML, CSS and JavaScript. Every figure comes from a project repository, the CV or a certificate.</span><span>Last updated 10 November 2026</span></div></footer>
 <script>
 (() => {
 "use strict";
@@ -1148,6 +1286,9 @@ const HCW = {
   provinces: [{p:"Gauteng",r:.596,n:9},{p:"Western Cape",r:.539,n:25},{p:"Northern Cape",r:.465,n:26},{p:"KwaZulu-Natal",r:.453,n:44},{p:"Free State",r:.340,n:19},{p:"North West",r:.294,n:18},{p:"Mpumalanga",r:.294,n:17},{p:"Eastern Cape",r:.170,n:33},{p:"Limpopo",r:.155,n:22}]
 };
 
+const CRI = {"nomvula":{"p":"TTTTMTTTTTTT","s":78,"prov":false,"c":{"due":12,"on_time":11,"late":0,"missed":1},"m":12,"f":{"on_time_rate":[91.67,32.08],"consistency":[58.33,11.67],"participation":[50.0,7.5],"missed_behaviour":[75.0,11.25],"recovery":[100.0,10.0],"completeness":[100.0,5.0]},"n":"One missed contribution, followed by a recovery. The miss costs points for a while; paying again restores part of them."},"perfect":{"p":"TTTTTTTTTTTTTTTTTTTTTTTT","s":100,"prov":false,"c":{"due":24,"on_time":24,"late":0,"missed":0},"m":24,"f":{"on_time_rate":[100.0,35.0],"consistency":[100.0,20.0],"participation":[100.0,15.0],"missed_behaviour":[100.0,15.0],"recovery":[100.0,10.0],"completeness":[100.0,5.0]},"n":"Two full years with every payment on time. Every factor is at its maximum."},"late":{"p":"TLTLLTLTLLTL","s":72,"prov":false,"c":{"due":12,"on_time":5,"late":7,"missed":0},"m":12,"f":{"on_time_rate":[41.67,14.58],"consistency":[100.0,20.0],"participation":[50.0,7.5],"missed_behaviour":[100.0,15.0],"recovery":[100.0,10.0],"completeness":[100.0,5.0]},"n":"Never missed, but 7 of 12 payments came more than 3 days late. The on-time factor carries the most weight, so the index drops."},"missing":{"p":"TTMTMTTMTMTM","s":44,"prov":false,"c":{"due":12,"on_time":7,"late":0,"missed":5},"m":11,"f":{"on_time_rate":[58.33,20.42],"consistency":[8.33,1.67],"participation":[45.83,6.87],"missed_behaviour":[0.0,0.0],"recovery":[100.0,10.0],"completeness":[100.0,5.0]},"n":"5 of 12 periods missed. Missing a third or more takes the missed-behaviour factor to zero and breaks the streaks."},"new":{"p":"TT","s":86,"prov":true,"c":{"due":2,"on_time":2,"late":0,"missed":0},"m":2,"f":{"on_time_rate":[100.0,35.0],"consistency":[100.0,20.0],"participation":[8.33,1.25],"missed_behaviour":[100.0,15.0],"recovery":[100.0,10.0],"completeness":[100.0,5.0]},"n":"Only two payments so far, both on time. The index is marked provisional until at least three periods are on record."}};
+const CRI_FACTORS = [["on_time_rate","On-time contribution rate",35],["consistency","Contribution consistency",20],["participation","Length of verified participation",15],["missed_behaviour","Missed contribution behaviour",15],["recovery","Recovery after missed contributions",10],["completeness","Record completeness",5]];
+
 const ARCH = {
   valorian: { cols: ["INPUT","CHECKS","SCORE","OUTPUT"], nodes: [
     {id:"ref",c:0,l:"Training data",s:"frozen reference sample",d:"The data the model learned from. Valorian freezes its distribution and the model’s baseline score, so every later batch is compared against the same yardstick."},
@@ -1185,6 +1326,19 @@ const ARCH = {
     {id:"fc",c:4,l:"2026 forecast",s:"≈77 hung · 61 high risk",d:"A risk score for each of the 213 municipalities for the 4 November 2026 elections."},
     {id:"dash",c:4,l:"D3 dashboard",s:"map · simulator · Netlify",d:"A public dashboard with a risk map, swing scenarios and an election-day simulator that runs the model in the browser."}],
     edges: [["iec","clean"],["clean","link"],["link","feat"],["feat","hyp"],["feat","valid"],["hyp","models"],["valid","models"],["models","fc"],["fc","dash"],["valid","dash"]] },
+  stokvel: { cols: ["PEOPLE","VERIFY","LEDGER","SCORE","SHARE"], nodes: [
+    {id:"member",c:0,l:"Member",s:"joins and contributes",d:"A stokvel member pays their contribution, by a payment request or another way, and records it."},
+    {id:"group",c:0,l:"Stokvel group",s:"amount and schedule",d:"The group registers its contribution amount and schedule, which creates one period per due date."},
+    {id:"payshap",c:1,l:"PayShap Request",s:"simulated, test mode",d:"A request-to-pay flow. In this prototype the provider is simulated and moves no money; a real provider plugs in behind the same interface."},
+    {id:"treasurer",c:1,l:"Treasurer review",s:"manual verification",d:"For payments made another way, the treasurer checks and verifies. A treasurer cannot verify their own contribution."},
+    {id:"ledger",c:2,l:"Hash-chained ledger",s:"SHA-256, append-only",d:"Every verified contribution becomes an event locked to the one before it. Editing an old record breaks the chain."},
+    {id:"check",c:2,l:"Checkpoints + trigger",s:"integrity guards",d:"Recorded head hashes and a database rule that rejects any update or delete on the ledger."},
+    {id:"index",c:3,l:"Reliability Index",s:"6 factors, 0 to 100",d:"A transparent, rule-based score of contribution behaviour, with a plain explanation. It sees no personal attributes."},
+    {id:"fair",c:3,l:"Fairness report",s:"age band and gender",d:"Compares index distributions across groups and flags small samples and gaps. It never adjusts an individual score."},
+    {id:"passport",c:4,l:"Credit Passport",s:"screen, PDF and QR",d:"The member’s record at a point in time, with a QR code a lender can use to check it is authentic."},
+    {id:"consent",c:4,l:"Consent link",s:"scoped, timed, revocable",d:"The member chooses which fields to share, for how long, and can withdraw access at any time."},
+    {id:"lender",c:4,l:"Lender portal",s:"verify, access logged",d:"A lender opens the shared Passport and verifies it. Every access is logged and visible to the member."}],
+    edges: [["member","payshap"],["member","treasurer"],["group","treasurer"],["payshap","ledger"],["treasurer","ledger"],["ledger","check"],["ledger","index"],["index","fair"],["index","passport"],["passport","consent"],["consent","lender"]] },
   ls: { cols: ["SOURCE","PREPARE","MERGE","ANALYSE","OUTPUT"], nodes: [
     {id:"eskom",c:0,l:"Eskom Data Portal",s:"hourly MW load reduction",d:"Manual Load Reduction: the megawatts the National Control Centre ordered off the grid, hour by hour."},
     {id:"stats",c:0,l:"Stats SA P6242.1",s:"monthly retail sales",d:"Official retail trade sales at constant 2019 prices."},
@@ -1554,6 +1708,42 @@ function bandColor(band) { return band === "healthy" ? css("--signal") : band ==
     at(idx);
   }
   seg(host, s => { range = s; render(); });
+  render(); onResize(chartHost, render);
+})();
+
+/* Stokvel Credit Passport: reliability index by saving pattern (values from the project's scoring engine) */
+(function stokvelDemo() {
+  const host = $('[data-demo="stokvel"]'); if (!host) return;
+  const chartHost = $(".chart-host", host), out = $(".readout-row", host);
+  const ACC = css("--c-stokvel"), WARN = css("--warn"), ALERT = css("--alert"), INK = css("--ink"), MUTED = css("--muted"), LINE = css("--line-2");
+  let key = "nomvula";
+  function render() {
+    const d = CRI[key], W = widthOf(chartHost), narrow = W < 520;
+    const top = narrow ? 142 : 96, rowH = 44, H = top + CRI_FACTORS.length * rowH + 6;
+    chartHost.innerHTML = "";
+    const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, class: "chart", role: "img", "aria-label": `Reliability index ${d.s} out of 100${d.prov ? ", provisional" : ""}, with its six factors` }, chartHost);
+    const sc = svgEl("text", { x: 0, y: 58, style: `font:400 64px var(--f-display);fill:${ACC}` }, svg); sc.textContent = d.s;
+    const of = svgEl("text", { x: d.s === 100 ? 104 : 74, y: 40, style: `fill:${MUTED};font-size:12px` }, svg); of.textContent = "out of 100";
+    if (d.prov) { const pv = svgEl("text", { x: d.s === 100 ? 104 : 74, y: 58, style: `fill:${WARN};font-size:12px` }, svg); pv.textContent = "provisional"; }
+    // one dot per contribution period
+    const n = d.p.length, x0 = narrow ? 6 : 190, y0 = narrow ? 92 : 44, gap = Math.min(22, (W - x0 - 8) / Math.max(n - 1, 1));
+    [...d.p].forEach((ch, i) => {
+      const cx = x0 + i * gap;
+      if (ch === "M") svgEl("circle", { cx, cy: y0, r: 5, style: `fill:none;stroke:${ALERT};stroke-width:1.6` }, svg);
+      else svgEl("circle", { cx, cy: y0, r: 5, style: `fill:${ch === "T" ? ACC : WARN}` }, svg);
+    });
+    const cap = svgEl("text", { x: x0 - 6, y: y0 + 24, style: `fill:${css("--dim")}` }, svg); cap.textContent = `${n} contribution period${n === 1 ? "" : "s"}, oldest first`;
+    CRI_FACTORS.forEach(([id, label, weight], i) => {
+      const [value, points] = d.f[id], y = top + i * rowH;
+      const t = svgEl("text", { x: 0, y: y + 12, style: `fill:${INK};font-size:12px` }, svg); t.textContent = narrow ? label.replace("contribution ", "").replace("Length of verified participation", "Length of participation").replace("Recovery after missed contributions", "Recovery after misses") : label;
+      const r = svgEl("text", { x: W, y: y + 12, "text-anchor": "end", style: `fill:${MUTED};font-size:12px` }, svg); r.textContent = `${points.toFixed(1)} of ${weight} pts`;
+      svgEl("rect", { x: 0, y: y + 20, width: W, height: 6, style: `fill:${LINE}` }, svg);
+      svgEl("rect", { x: 0, y: y + 20, width: Math.max(0, W * value / 100), height: 6, style: `fill:${ACC}` }, svg);
+    });
+    const dot = (c, hollow) => `<i style="display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:.45em;${hollow ? `border:1.5px solid ${c}` : `background:${c}`}"></i>`;
+    out.innerHTML = `<span>${dot(ACC)}on time <b>${d.c.on_time}</b></span><span>${dot(WARN)}late <b>${d.c.late}</b></span><span>${dot(ALERT, true)}missed <b>${d.c.missed}</b></span><span style="flex-basis:100%;color:var(--ink)">${d.n}</span><span style="flex-basis:100%">Example patterns run through the project’s own scoring engine. An experimental measure, not a credit bureau score.</span>`;
+  }
+  seg(host, s => { key = s; render(); });
   render(); onResize(chartHost, render);
 })();
 
