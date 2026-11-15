@@ -461,7 +461,7 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
           </div>
           <dl class="readouts">
             <div><dt>Systems shipped</dt><dd>5<small>4 with live demos</small></dd></div>
-            <div><dt>Tests passing</dt><dd class="g">78/78<small>Valorian, Python 3.10–3.12</small></dd></div>
+            <div><dt>Tests passing</dt><dd class="g">182/182<small>Valorian, Python 3.10–3.12</small></dd></div>
             <div><dt>Forecast ROC-AUC</dt><dd>0.88<small>unseen 2021 election</small></dd></div>
             <div><dt>Languages parsed</dt><dd>5<small>Ubufakazi statements</small></dd></div>
             <div><dt>Distinctions</dt><dd>14<small>incl. 97% Linear Algebra</small></dd></div>
@@ -487,12 +487,12 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
               <p class="entry-plain">Warns you when a machine-learning model that is already in use has quietly stopped working.</p>
               <dl class="entry-hr">
                 <div><dt>Hypothesis</dt><dd>A model can lose accuracy while every input still looks normal.</dd></div>
-                <div><dt>Result</dt><dd>Caught an 11.3% performance drop that input-only monitoring missed. 78 tests passing.</dd></div>
+                <div><dt>Result</dt><dd>Caught an 11.3% performance drop that input-only monitoring missed. 182 tests passing.</dd></div>
               </dl>
               <div class="entry-foot"><span class="chip">Confirmed</span><span class="entry-open">Open dossier <span class="arrow" aria-hidden="true">→</span></span></div>
             </div>
             <figure class="entry-fig">
-              <div class="shot"><img src="assets/img/valorian-dashboard.webp" width="1440" height="900" alt="Valorian dashboard showing DriftScore 60, a degraded status and drift over six monthly batches" loading="lazy"><span class="tag">Fig. 2 · live Streamlit dashboard</span></div>
+              <div class="shot"><img src="assets/img/valorian-dashboard.webp" width="1440" height="900" alt="Valorian dashboard headline: The model got worse, and the inputs don’t show it, above a strip of three health checks for six monthly batches" loading="lazy"><span class="tag">Fig. 2 · live Streamlit dashboard</span></div>
             </figure>
           </a>
 
@@ -577,7 +577,7 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
           <div class="method"><h3>Languages</h3><p class="tools">Python, R, SQL, JavaScript, TypeScript</p><p class="proof">Proof: all five systems</p></div>
           <div class="method"><h3>Data engineering</h3><p class="tools">pandas, NumPy, SQLite, Postgres, reproducible pipelines from raw institutional data, Microsoft Fabric</p><p class="proof">Proof: <a href="#hung-council-watch">Hung Council Watch</a>, <a href="#stokvel-credit-passport">Stokvel Credit Passport</a> · Fabric Data Engineer certification</p></div>
           <div class="method"><h3>Visualisation</h3><p class="tools">D3.js, Streamlit, Power BI, Tableau, Matplotlib, Excel</p><p class="proof">Proof: <a href="#hung-council-watch">D3 dashboard</a>, <a href="#valorian">Streamlit</a>, <a href="#load-shedding">Power BI</a></p></div>
-          <div class="method"><h3>Software engineering</h3><p class="tools">Git and GitHub, GitHub Actions CI, pytest, Playwright, FastAPI, Next.js and React, database migrations, Netlify and Render deployment, object-oriented design</p><p class="proof">Proof: <a href="#stokvel-credit-passport">263-test suite</a>, <a href="#valorian">78-test suite</a>, <a href="#ubufakazi">Ubufakazi</a></p></div>
+          <div class="method"><h3>Software engineering</h3><p class="tools">Git and GitHub, GitHub Actions CI, pytest, Playwright, FastAPI, Next.js and React, database migrations, Netlify and Render deployment, object-oriented design</p><p class="proof">Proof: <a href="#stokvel-credit-passport">263-test suite</a>, <a href="#valorian">182-test suite</a>, <a href="#ubufakazi">Ubufakazi</a></p></div>
           <div class="method"><h3>Security &amp; forensics</h3><p class="tools">SHA-256 evidence hashing, HMAC-keyed identifiers, Content Security Policy, session monitoring, network security</p><p class="proof">Proof: <a href="#ubufakazi">Ubufakazi</a> (2nd, HackSecure 2026), <a href="#stokvel-credit-passport">20-point security checklist</a> · 3rd, ITWeb hackathon</p></div>
           <div class="method"><h3>Cloud</h3><p class="tools">Azure Machine Learning, Microsoft Fabric, Kubernetes and cloud-native fundamentals</p><p class="proof">Proof: 3 Microsoft certifications</p></div>
         </div>
@@ -675,7 +675,7 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
   <header class="d-head">
     <a class="back" href="#systems" data-back><span class="arrow" aria-hidden="true">←</span> All systems</a>
     <div class="nb">
-      <p class="margin"><b>EXP-01</b>ML monitoring<br>2026<br><br>Status:<br>confirmed</p>
+      <p class="margin"><b>EXP-01</b>ML monitoring<br>2026 · v0.6.0<br><br>Status:<br>confirmed,<br>one finding corrected</p>
       <div class="main">
         <h1 class="d-title" id="v-title">Valorian Intelligence</h1>
         <p class="d-sub">A smoke alarm for machine-learning models. It tells you when a model that is already in use has quietly stopped working.</p>
@@ -685,15 +685,15 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
         </div>
         <dl class="d-facts">
           <div><dt>My role</dt><dd>Sole author: design, code, tests, dashboard</dd></div>
-          <div><dt>Type</dt><dd>Open-source Python library + Streamlit dashboard</dd></div>
+          <div><dt>Type</dt><dd>Open-source Python library (v0.6.0, alpha) + Streamlit dashboard</dd></div>
           <div><dt>Real data</dt><dd>Stats SA Quarterly Labour Force Survey, 31k–41k people per quarter</dd></div>
-          <div><dt>Quality</dt><dd>78 automated tests, CI on Python 3.10–3.12</dd></div>
+          <div><dt>Quality</dt><dd>182 automated tests, CI on Python 3.10–3.12, a reproducible benchmark</dd></div>
         </dl>
         <div class="d-results" style="--n:4">
           <div><b>−11.3%</b><span>performance drop caught while every input looked normal</span></div>
           <div><b>0</b><span>false alarms across five real survey quarters</span></div>
-          <div><b>p = 0.048</b><span>hidden shift found that single-feature tests missed</span></div>
-          <div><b>78/78</b><span>tests passing for detection accuracy and false alarms</span></div>
+          <div><b>p = 0.002</b><span>hidden shift confirmed with 500 household-level permutations</span></div>
+          <div><b>182/182</b><span>tests passing, up from 78 in the first release</span></div>
         </div>
       </div>
     </div>
@@ -710,11 +710,18 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
 
   <section class="d-sec nb" aria-labelledby="v-plain"><p class="margin"><b>02</b>In plain English</p><div class="main">
     <h2 id="v-plain">What it does, in plain English</h2>
-    <ul class="bullets">
-      <li><b>It asks two questions about every new batch of data.</b> Has the information going into the model changed? And has the model itself stopped getting the right answers?</li>
-      <li><b>It gives one health score, the DriftScore.</b> 100 means the model behaves as it did when it was trained; 0 means it has fallen apart. Managers get one number; engineers can drill into the detail behind it.</li>
-      <li><b>It avoids false alarms.</b> A monitor that fires every week gets ignored. Valorian measures how big a change is, not only whether it exists, so small harmless shifts stay quiet.</li>
-      <li><b>It keeps a history</b>, so drift becomes a trend you can see on a chart rather than a one-off number.</li>
+    <div class="prose"><p>For every new batch of data, Valorian answers three questions and keeps the answers separate:</p></div>
+    <ol class="steps" style="margin-top:1.5rem">
+      <li><p><b>Did the batch arrive intact?</b> Missing or changed columns, and sudden jumps in empty values.</p></li>
+      <li><p><b>Have the inputs changed?</b> Does the information going into the model still look like what it was trained on? A change here is a reason to look, not proof that anything broke.</p></li>
+      <li><p><b>Is the model still right?</b> Its accuracy on real outcomes against where it started. This is the only one of the three that is evidence about the model.</p></li>
+    </ol>
+    <ul class="bullets" style="margin-top:2rem">
+      <li><b>It avoids false alarms.</b> Changed inputs alone never raise the top alert, however large the change. A monitor that fires every week gets ignored.</li>
+      <li><b>It never calls an unmeasured model healthy.</b> If there are no outcomes yet, or too few to judge, it says so.</li>
+      <li><b>It handles answers that arrive late.</b> For a loan, you only learn months later whether it was repaid. Valorian logs each prediction and re-judges the batch as outcomes come in.</li>
+      <li><b>It checks groups, not only the average.</b> An overall score can hold steady while one province or customer group gets much worse.</li>
+      <li><b>It gives one health score if you need one,</b> the DriftScore: 100 means the model behaves as it did when trained; 0 means it has fallen apart.</li>
     </ul>
   </div></section>
 
@@ -727,11 +734,12 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
     </div>
     <p class="label" style="margin:2.5rem 0 1rem">Use the live dashboard</p>
     <ol class="steps">
-      <li><p>Open the <a class="link" href="https://valorian-intelligence.streamlit.app" target="_blank" rel="noopener">live dashboard</a>. It loads a credit-default model monitored across six monthly batches.</p></li>
-      <li><p>Read the <b>top row</b>: the latest batch, its DriftScore, how many inputs drifted and the largest drift measured. The badge on the right says Healthy, Watch or Degraded.</p></li>
-      <li><p>Look at <b>Drift over time</b>. The shaded bands are the warning thresholds. A spike means the inputs changed; it does not by itself mean the model broke.</p></li>
-      <li><p>Scroll to <b>Run detail</b> and pick a batch to see every input’s drift, its severity and whether performance dropped.</p></li>
-      <li><p>Use <b>Feature trace</b> to follow a single input, such as income or age, across every batch.</p></li>
+      <li><p>Open the <a class="link" href="https://valorian-intelligence.streamlit.app" target="_blank" rel="noopener">live dashboard</a>. If it has gone to sleep, press the wake-up button and give it a minute. It loads a credit-default model monitored across six monthly batches.</p></li>
+      <li><p>Read the <b>headline</b>. It says in one sentence what the selected batch shows, for example “The model got worse, and the inputs don’t show it.”</p></li>
+      <li><p>Look at the <b>coloured strip</b> under it: one row each for data quality, input shift and performance, one column per batch. Green is as expected, orange means the inputs shifted, red means a broken batch or a model that got worse.</p></li>
+      <li><p>Use the <b>Batch</b> menu on the left to pick another month. Try 2026-07: the inputs shifted a lot, but the model was still right, so it is a warning and not an emergency.</p></li>
+      <li><p>Scroll down through the three sections, one per question. <b>Is the model still right?</b> charts accuracy with its margin of error for every batch.</p></li>
+      <li><p>The last section, <b>One number, if you need one</b>, shows the DriftScore over time.</p></li>
     </ol>
   </div></section>
 
@@ -744,13 +752,17 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
   <section class="d-sec nb" aria-labelledby="v-how"><p class="margin"><b>05</b>Technical<br>implementation</p><div class="main">
     <h2 id="v-how">How it works</h2>
     <ul class="bullets">
-      <li><b>Effect size before p-values.</b> At 3,000 to 40,000 rows a KS test rejects almost anything, so Valorian leads with the Population Stability Index (stable &lt; 0.10, investigate 0.10–0.25, significant &gt; 0.25) and reports KS and chi-square p-values as supporting evidence.</li>
-      <li><b>Bin edges frozen from the training sample</b>, so drift cannot partly cancel itself out by re-binning both samples together. Outer bins open to ±∞ so out-of-range production values are counted, not dropped.</li>
-      <li><b>Concept drift</b> is tracked as rolling ROC-AUC against a frozen baseline. When performance drops with no input drift, the alert says so explicitly: suspect concept drift or a labelling fault.</li>
-      <li><b>Multivariate drift</b> via a domain classifier: label reference rows 0 and current rows 1, train a depth-limited random forest, score by cross-validated ROC-AUC. Near 0.50 means no difference; its feature importances say which columns moved.</li>
+      <li><b>Three findings, one rule.</b> Every report carries data quality, input shift and measured performance separately. The overall status is critical only when performance has degraded or the batch failed its quality checks; input drift alone tops out at a warning.</li>
+      <li><b>Effect size before p-values.</b> At 3,000 to 40,000 rows a KS test rejects almost anything, so Valorian leads with the Population Stability Index (stable &lt; 0.10, investigate 0.10–0.25, significant &gt; 0.25) and reports KS and chi-square p-values as supporting evidence. Bin edges are frozen from the training sample.</li>
+      <li><b>PSI has to clear its own noise.</b> Benchmarking showed two samples of the same distribution average a PSI of 0.09 at 200 rows, so the usual 0.10 rule fired on a third of unchanged batches. A PSI now counts only if it also exceeds sampling noise at that sample size.</li>
+      <li><b>Out-of-range values are measured directly,</b> because 5% of rows far beyond the training range barely moved PSI. Data quality is its own check for the same reason: a column that is suddenly 60% empty can still score a PSI near zero.</li>
+      <li><b>Performance comes with evidence rules.</b> ROC-AUC against a frozen baseline, with a 95% bootstrap interval. Below 100 labelled rows, or 10 of the rarest class, the verdict is “insufficient evidence”, never “within tolerance”.</li>
+      <li><b>Delayed outcomes.</b> Predictions are logged with an ID, outcomes attached whenever they arrive, and the stored run is re-judged. Until 80% of a batch has an outcome the metric is shown as “so far”, because early outcomes are a biased sample.</li>
+      <li><b>Cohorts.</b> Each group is judged against its own baseline, with intervals widened for the number of groups tested so that twenty unchanged groups don’t produce a false alarm by chance.</li>
+      <li><b>Multivariate drift</b> via a domain classifier: label reference rows 0 and current rows 1, train a depth-limited random forest, score by cross-validated ROC-AUC. Attribution uses permutation importance on held-out rows, and the significance test shuffles whole households, since survey rows from one home are not independent.</li>
       <li><b>DriftScore</b> weights performance 0.70, worst-feature PSI 0.20 and share of drifted features 0.10, with a documented reason for each weight. Without labels it falls back to an inputs-only mode and says so.</li>
-      <li><b>Every run is stored in SQLite</b> and drawn by the Streamlit dashboard. GitHub Actions runs the 78-test suite on Python 3.10, 3.11 and 3.12.</li>
-      <li><b>A data-quality catch:</b> the 2022 Q1 QLFS release stores employment status as text, with 1.797e+308 as a missing-value marker, which silently made that quarter show 0% employment. The loader fixes it.</li>
+      <li><b>Benchmarked, not just asserted.</b> A reproducible benchmark measures false-alarm and detection rates across seeds and sample sizes, with the open-source tool Evidently run on the same samples for comparison.</li>
+      <li><b>Every run is stored in SQLite</b> and drawn by the Streamlit dashboard. GitHub Actions runs the 182-test suite and both demos on Python 3.10, 3.11 and 3.12.</li>
     </ul>
   </div></section>
 
@@ -759,29 +771,43 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
     <div class="prose"><p>First I planted faults in six months of simulated credit data, so there was a known answer to check against. Then I removed the training wheels and monitored a real employment model across five quarters of Stats SA survey data, with nothing planted.</p></div>
     <div class="tbl-wrap" style="margin-top:2rem"><table>
       <caption class="vh">Planted-fault test results</caption>
-      <thead><tr><th>Batch</th><th>What was planted</th><th>Max PSI</th><th>ROC-AUC vs baseline</th><th>DriftScore</th></tr></thead>
+      <thead><tr><th>Batch</th><th>What was planted</th><th>Max PSI</th><th>ROC-AUC vs baseline</th><th>Status</th><th>DriftScore</th></tr></thead>
       <tbody>
-        <tr><td>2026-03</td><td>nothing</td><td>0.008</td><td>+2.6%</td><td class="band healthy">100 healthy</td></tr>
-        <tr><td>2026-04</td><td>nothing</td><td>0.009</td><td>−1.4%</td><td class="band healthy">95 healthy</td></tr>
-        <tr><td>2026-05</td><td>nothing</td><td>0.006</td><td>−0.2%</td><td class="band healthy">99 healthy</td></tr>
-        <tr><td>2026-06</td><td>income shifts down</td><td>0.270</td><td>−7.5%</td><td class="band degraded">61 degraded</td></tr>
-        <tr><td>2026-07</td><td>deeper income + province shift</td><td>0.899</td><td>+0.1%</td><td class="band watch">76 watch</td></tr>
-        <tr class="hl"><td>2026-08</td><td>income→default link weakens</td><td>0.011</td><td>−11.3%</td><td class="band degraded">60 degraded</td></tr>
+        <tr><td>2026-03</td><td>nothing</td><td>0.008</td><td>+2.6%</td><td>ok</td><td class="band healthy">100 healthy</td></tr>
+        <tr><td>2026-04</td><td>nothing</td><td>0.009</td><td>−1.4%</td><td>ok</td><td class="band healthy">95 healthy</td></tr>
+        <tr><td>2026-05</td><td>nothing</td><td>0.006</td><td>−0.2%</td><td>ok</td><td class="band healthy">99 healthy</td></tr>
+        <tr><td>2026-06</td><td>income shifts down</td><td>0.270</td><td>−7.5%</td><td class="band degraded">critical</td><td class="band degraded">61 degraded</td></tr>
+        <tr><td>2026-07</td><td>deeper income + province shift</td><td>0.899</td><td>+0.1%</td><td class="band watch">warning</td><td class="band watch">76 watch</td></tr>
+        <tr class="hl"><td>2026-08</td><td>income→default link weakens</td><td>0.011</td><td>−11.3%</td><td class="band degraded">critical</td><td class="band degraded">60 degraded</td></tr>
       </tbody></table></div>
     <div class="figs" style="margin-top:2.5rem">
-      <figure class="fig"><button class="img" type="button" data-lightbox="assets/img/valorian-dashboard.webp" data-cap="Fig. V1 · Valorian dashboard: latest batch 2026-08, DriftScore 60, degraded."><img src="assets/img/valorian-dashboard.webp" width="1440" height="900" alt="Valorian dashboard overview with DriftScore 60 and drift over time chart" loading="lazy"></button><figcaption><b>Fig. V1</b> The dashboard over the planted-fault run. August shows no input drift (max PSI 0.011) yet scores 60.</figcaption></figure>
-      <figure class="fig"><button class="img" type="button" data-lightbox="assets/img/valorian-alert.webp" data-cap="Fig. V2 · The concept-drift alert: performance dropped while every input looked stable."><img src="assets/img/valorian-alert.webp" width="1140" height="900" alt="Valorian alert: ROC-AUC 0.6697 to 0.5938, performance dropped while every input feature looks stable" loading="lazy"></button><figcaption><b>Fig. V2</b> The alert input-only monitoring cannot raise: ROC-AUC 0.6697 → 0.5938 with stable inputs.</figcaption></figure>
+      <figure class="fig"><button class="img" type="button" data-lightbox="assets/img/valorian-dashboard.webp" data-cap="Fig. V1 · The redesigned dashboard on batch 2026-08: the model got worse, and the inputs don’t show it."><img src="assets/img/valorian-dashboard.webp" width="1440" height="900" alt="Valorian dashboard headline: The model got worse, and the inputs don’t show it, above a strip of data quality, input shift and performance for six batches" loading="lazy"></button><figcaption><b>Fig. V1</b> The redesigned dashboard. One sentence on what the batch shows, then the three questions for every batch. August: inputs green, performance red.</figcaption></figure>
+      <figure class="fig"><button class="img" type="button" data-lightbox="assets/img/valorian-performance.webp" data-cap="Fig. V2 · ROC-AUC per batch with 95% bootstrap intervals, and the DriftScore over time."><img src="assets/img/valorian-performance.webp" width="1140" height="900" alt="Chart of ROC-AUC per batch with interval whiskers falling below the baseline in August, and a DriftScore chart below it" loading="lazy"></button><figcaption><b>Fig. V2</b> Accuracy per batch with its 95% interval. August (0.594, interval 0.569 to 0.618) is clearly below the 0.670 baseline.</figcaption></figure>
     </div>
     <ul class="bullets" style="margin-top:2.5rem">
-      <li><b>Real data, five quarters, zero false alarms.</b> Employment rose from 33.5% to 37.8% in the post-COVID recovery, but the model held within about 1% of its baseline ROC-AUC of 0.758. The population changed; the relationship did not.</li>
-      <li><b>A hypothesis I tested and rejected:</b> Stats SA moved from phone to face-to-face interviews in 2022 Q1. I expected drift there. There was none; that quarter had the lowest PSI in the series.</li>
-      <li><b>A shift too small for single-feature tests:</b> province never crossed PSI 0.10, but the domain classifier separated the quarters (AUC up to 0.579), mostly through province. None of 20 shuffled-label refits reached that score (p = 0.048). That is thin evidence and the repo says so; a stronger claim needs hundreds of permutations.</li>
+      <li><b>Real data, five quarters, zero false alarms.</b> Employment rose from 33.5% to 37.8% in the post-COVID recovery, but the model held within about 1–2% of its baseline ROC-AUC of 0.758. The population changed; the relationship did not.</li>
+      <li><b>A conclusion I got wrong, then corrected.</b> Stats SA moved from phone to face-to-face interviews in 2022 Q1. The per-feature tests found nothing, and my first write-up concluded the change had not moved the inputs. The multivariate test disagreed: it separated later quarters from the reference (AUC up to 0.579), mostly through province.</li>
+      <li><b>Tested properly the second time.</b> My first check used 20 row-level shuffles and reported p = 0.048, which is simply the smallest value 20 shuffles can give. Re-run with 500 shuffles of whole households, none reached the observed score: p = 0.002. The shift is small, and it is not noise.</li>
+      <li><b>What moved was the sample, not the country.</b> The table below compares Gauteng’s share of survey respondents with its share of the population.</li>
+    </ul>
+    <div class="tbl-wrap" style="margin-top:1.5rem"><table>
+      <caption class="vh">Gauteng's share of respondents and of the population by quarter</caption>
+      <thead><tr><th>Gauteng</th><th>2021 Q4</th><th>2022 Q1</th><th>2022 Q2</th><th>2022 Q3</th><th>2022 Q4</th><th>2023 Q1</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>Share of respondents</td><td>15.0%</td><td>15.7%</td><td>22.8%</td><td>23.9%</td><td>24.2%</td><td>24.3%</td></tr>
+        <tr><td>Share of population (weighted)</td><td>27.2%</td><td>27.2%</td><td>27.2%</td><td>27.2%</td><td>27.2%</td><td>27.2%</td></tr>
+      </tbody></table></div>
+    <ul class="bullets" style="margin-top:2rem">
+      <li><b>Reading it:</b> under phone interviews the country’s largest province supplied 15% of respondents against 27% of the population. After face-to-face interviewing resumed it supplied 24%. The model’s training quarter was the unrepresentative one. The timing fits the change of interview method but does not prove it.</li>
+      <li><b>Late answers, right answer.</b> In the delayed-outcomes demo a batch reads “ok” when scored. Once all 3,000 loan outcomes are in, it turns critical (ROC-AUC 0.670 → 0.621), with three of five provinces degraded.</li>
+      <li><b>What the benchmark showed, both ways.</b> On unchanged data at 200 rows the plain PSI rule raised a false alarm 33% of the time; Valorian 6%. The price: a small shift (a quarter of a standard deviation) on 5,000 rows is caught by a KS test every time and by Valorian never. That is a deliberate effect-size choice, and the p-values are still reported.</li>
+      <li><b>Limits:</b> alpha software on local SQLite, not production-ready. The headline demo uses synthetic data, the real-data run is one dataset in which nothing broke, and the delayed-outcome path has only been tested on constructed cases.</li>
     </ul>
   </div></section>
 
   <section class="d-sec nb" aria-labelledby="v-stack"><p class="margin"><b>07</b>Built with</p><div class="main">
     <h2 id="v-stack">Built with</h2>
-    <ul class="tags"><li>Python</li><li>pandas</li><li>NumPy</li><li>SciPy</li><li>scikit-learn</li><li>SQLite</li><li>Streamlit</li><li>Plotly</li><li>pytest</li><li>GitHub Actions</li></ul>
+    <ul class="tags"><li>Python</li><li>pandas</li><li>NumPy</li><li>SciPy</li><li>scikit-learn</li><li>SQLite</li><li>Streamlit</li><li>Plotly</li><li>pytest</li><li>GitHub Actions</li><li>Evidently (benchmark comparison)</li></ul>
   </div></section>
 
   <a class="next" href="#ubufakazi" style="--n:var(--c-ubufakazi)"><span class="label">Next system · EXP-02</span><strong>Ubufakazi</strong><span class="arrow" aria-hidden="true" style="font-size:2rem">→</span></a>
@@ -1240,7 +1266,7 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
 </article>
 
 </main>
-<footer class="foot"><div class="wrap"><span>© 2026 Thabang Manyama · Johannesburg</span><span>Hand-built in HTML, CSS and JavaScript. Every figure comes from a project repository, the CV or a certificate.</span><span>Last updated 10 November 2026</span></div></footer>
+<footer class="foot"><div class="wrap"><span>© 2026 Thabang Manyama · Johannesburg</span><span>Hand-built in HTML, CSS and JavaScript. Every figure comes from a project repository, the CV or a certificate.</span><span>Last updated 15 November 2026</span></div></footer>
 <script>
 (() => {
 "use strict";
@@ -1268,12 +1294,12 @@ const VALORIAN = {
     {b:"2026-03", s:100, band:"healthy", psi:0.008, auc:"+2.6%", note:"Nothing planted. The monitor stays quiet, as it should."},
     {b:"2026-04", s:95,  band:"healthy", psi:0.009, auc:"−1.4%", note:"Nothing planted. Normal month-to-month noise."},
     {b:"2026-05", s:99,  band:"healthy", psi:0.006, auc:"−0.2%", note:"Nothing planted. Three clean months, zero alarms."},
-    {b:"2026-06", s:61,  band:"degraded",psi:0.270, auc:"−7.5%", note:"Planted: incomes shift down. Inputs drift and accuracy drops."},
-    {b:"2026-07", s:76,  band:"watch",   psi:0.899, auc:"+0.1%", note:"Planted: bigger income and province shift, yet accuracy holds. Drift alone isn’t a crisis."},
-    {b:"2026-08", s:60,  band:"degraded",psi:0.011, auc:"−11.3%",note:"Planted: the link between income and default weakens. Inputs look normal; the model lost 11.3%. Only Valorian catches this."}
+    {b:"2026-06", s:61,  band:"degraded",psi:0.270, auc:"−7.5%", note:"Planted: incomes shift down. Inputs drift and accuracy drops. Status: critical."},
+    {b:"2026-07", s:76,  band:"watch",   psi:0.899, auc:"+0.1%", note:"Planted: bigger income and province shift, yet accuracy holds. Status: warning only. Drift alone isn’t a crisis."},
+    {b:"2026-08", s:60,  band:"degraded",psi:0.011, auc:"−11.3%",note:"Planted: the link between income and default weakens. Inputs look normal; the model lost 11.3%. Status: critical. Input-only monitoring misses this."}
   ],
   qlfs: [
-    {b:"2022 Q1", s:94.0, band:"healthy", psi:0.0058, auc:"−1.6%", note:"31,184 people. Interview method changed this quarter; no drift found."},
+    {b:"2022 Q1", s:94.0, band:"healthy", psi:0.0058, auc:"−1.6%", note:"31,184 people. Interview method changed this quarter. No single input drifted; the joint test later found a small sample shift."},
     {b:"2022 Q2", s:89.4, band:"healthy", psi:0.0568, auc:"−2.4%", note:"35,897 people. Small province shift, below the 0.10 threshold."},
     {b:"2022 Q3", s:95.8, band:"healthy", psi:0.0709, auc:"−0.4%", note:"39,753 people. Employment rising with the post-COVID recovery."},
     {b:"2022 Q4", s:95.0, band:"healthy", psi:0.0738, auc:"−0.6%", note:"41,171 people. Model performance holds."},
@@ -1290,17 +1316,19 @@ const CRI = {"nomvula":{"p":"TTTTMTTTTTTT","s":78,"prov":false,"c":{"due":12,"on
 const CRI_FACTORS = [["on_time_rate","On-time contribution rate",35],["consistency","Contribution consistency",20],["participation","Length of verified participation",15],["missed_behaviour","Missed contribution behaviour",15],["recovery","Recovery after missed contributions",10],["completeness","Record completeness",5]];
 
 const ARCH = {
-  valorian: { cols: ["INPUT","CHECKS","SCORE","OUTPUT"], nodes: [
+  valorian: { cols: ["INPUT","CHECKS","VERDICT","OUTPUT"], nodes: [
     {id:"ref",c:0,l:"Training data",s:"frozen reference sample",d:"The data the model learned from. Valorian freezes its distribution and the model’s baseline score, so every later batch is compared against the same yardstick."},
-    {id:"batch",c:0,l:"Production batch",s:"new data, labels if any",d:"Each new month or quarter of real-world data the model is scoring. Outcome labels are optional; without them Valorian runs in inputs-only mode."},
-    {id:"uni",c:1,l:"Per-feature drift",s:"PSI · KS · chi-square",d:"Measures how much each input has shifted. PSI gives the size of the change; KS and chi-square p-values are supporting evidence."},
-    {id:"multi",c:1,l:"Domain classifier",s:"joint-distribution shift",d:"A random forest tries to tell old rows from new ones. If it can, the data has changed in a way single-feature tests can miss, and its feature importances say where."},
-    {id:"perf",c:1,l:"Performance check",s:"ROC-AUC vs baseline",d:"When outcomes arrive, compares current accuracy with the frozen baseline. This is the check that catches concept drift."},
-    {id:"score",c:2,l:"DriftScore 0–100",s:"0.70 perf · 0.20 PSI · 0.10",d:"Collapses the evidence into one health score. Performance carries most weight because input drift predicts trouble but does not prove it."},
-    {id:"alerts",c:2,l:"Alerts",s:"data drift vs concept drift",d:"Plain-language alerts that say what kind of problem it is, such as 'performance dropped without input drift: suspect concept drift'."},
-    {id:"store",c:3,l:"SQLite history",s:"every run, every feature",d:"Every check is saved, so drift becomes a trend over time instead of a single number."},
-    {id:"dash",c:3,l:"Streamlit dashboard",s:"trends · run detail",d:"The live dashboard reads the history and shows health, drift over time, per-batch detail and per-feature traces."}],
-    edges: [["ref","uni"],["ref","multi"],["ref","perf"],["batch","uni"],["batch","multi"],["batch","perf"],["uni","score"],["perf","score"],["uni","alerts"],["multi","alerts"],["perf","alerts"],["score","store"],["alerts","store"],["store","dash"]] },
+    {id:"batch",c:0,l:"Production batch",s:"new data to be scored",d:"Each new month or quarter of real-world data the model is scoring. Every prediction is logged with an ID so its outcome can be matched later."},
+    {id:"out",c:0,l:"Outcomes",s:"can arrive months later",d:"What really happened, such as whether a loan was repaid. Outcomes can arrive long after the prediction; Valorian attaches them and re-judges the batch."},
+    {id:"dq",c:1,l:"Data quality",s:"schema · missing values",d:"Did the batch arrive intact? Flags missing or changed columns and jumps in empty values: 5 points more than training warns, 20 points fails."},
+    {id:"uni",c:1,l:"Input shift",s:"PSI above its noise floor",d:"Measures how much each input has moved. A change only counts if it is larger than random sampling noise at that sample size, and values outside the training range are counted directly."},
+    {id:"multi",c:1,l:"Domain classifier",s:"joint-distribution shift",d:"A random forest tries to tell old rows from new ones. If it can, the data has changed in a way single-feature tests miss. Held-out importances say where."},
+    {id:"perf",c:1,l:"Performance",s:"ROC-AUC · 95% interval",d:"Compares accuracy on real outcomes with the frozen baseline, overall and per group. With too few outcomes it reports ‘insufficient evidence’ instead of guessing."},
+    {id:"health",c:2,l:"Three findings",s:"quality · inputs · performance",d:"The three answers are kept separate. The status is critical only if the model got worse or the batch is broken. Changed inputs alone never go above a warning."},
+    {id:"score",c:2,l:"DriftScore 0–100",s:"0.70 perf · 0.20 PSI · 0.10",d:"One summary number for trend charts. Performance carries most weight because input drift predicts trouble but does not prove it."},
+    {id:"store",c:3,l:"SQLite history",s:"every run, re-judged",d:"Every check is saved, and updated when late outcomes arrive, so health becomes a trend over time instead of a single number."},
+    {id:"dash",c:3,l:"Streamlit dashboard",s:"one sentence, three questions",d:"The live dashboard states what a batch shows in one sentence, then answers the three questions for every batch."}],
+    edges: [["ref","dq"],["ref","uni"],["ref","multi"],["ref","perf"],["batch","dq"],["batch","uni"],["batch","multi"],["batch","perf"],["out","perf"],["dq","health"],["uni","health"],["multi","health"],["perf","health"],["uni","score"],["perf","score"],["health","store"],["score","store"],["store","dash"]] },
   ubufakazi: { cols: ["REPORT","LOCK","READ","LINK","OUTPUT"], nodes: [
     {id:"chat",c:0,l:"WhatsApp export",s:"Android + iPhone formats",d:"The victim exports the chat with the scammer. Both phone formats are parsed."},
     {id:"slips",c:0,l:"Payment slips",s:"PDF or image proof",d:"Proof-of-payment files and screenshots, stored unchanged as original evidence."},
