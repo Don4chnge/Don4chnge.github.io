@@ -226,6 +226,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 @media (hover:hover) and (pointer:fine){.plate:hover{border-color:var(--muted)}}
 .plate img{aspect-ratio:1.9/1;object-fit:cover;object-position:center;background:var(--paper)}
 .plate.award img{aspect-ratio:4/5;object-fit:cover;object-position:top}
+.plates.awards{grid-template-columns:repeat(3,minmax(0,1fr))}
+.plates.awards .plate span{padding:.55rem .6rem}
 .plates.certs{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:var(--s4)}
 .plates.certs .plate span{padding:.55rem .6rem}
 .figs.deck{grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -595,6 +597,7 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
         </div>
         <div class="record-grid">
           <ol class="timeline">
+            <li><time datetime="2026-11-16">16 Nov 2026</time><div><h3>Top Achiever Award, Block 2 2026, EDUVOS <span class="k">Final year</span></h3><p>Certificate of Achievement for outstanding academic achievement as a Top Achiever, BSc IT: Data Science.</p></div></li>
             <li><time datetime="2026-10">Oct 2026</time><div><h3>2nd place, HackSecure 2026 (CyberM8) <span class="k">Team lead</span></h3><p>Track 4, Digital Forensics Lite. Led Team CyberThreat to build and ship <a class="link" href="#ubufakazi">Ubufakazi</a>, a live digital forensics platform for scam victims.</p></div></li>
             <li><time datetime="2026-08-04">4 Aug 2026</time><div><h3>Microsoft Certified: Fabric Data Engineer Associate</h3><p>Credential BA0B5380FE62A52B · <a class="v" href="https://learn.microsoft.com/en-us/users/thabangmanyama-6359/credentials/certification/fabric-data-engineer-associate?tab=credentials-tab" target="_blank" rel="noopener">verify ↗</a></p></div></li>
             <li><time datetime="2026">2026</time><div><h3>Academic Top Achiever, EDUVOS <span class="k">2nd year</span></h3><p>Top-performing student, BSc IT: Data Science, for the second consecutive year.</p></div></li>
@@ -608,14 +611,15 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
             <li><time datetime="2026">Credential</time><div><h3>Kubernetes and Cloud Native Essentials</h3><p>Container orchestration and cloud-native fundamentals.</p></div></li>
           </ol>
           <div>
-            <div class="plates">
-              <button class="plate award" type="button" data-lightbox="assets/img/hacksecure-2nd-place.webp" data-cap="Fig. 7 · 2nd place at HackSecure 2026, Team CyberThreat: Thabang Manyama (lead), Amani Tondi, Shaun Matlou"><img src="assets/img/hacksecure-2nd-place.webp" width="1000" height="1250" alt="Slide announcing 2nd place at HackSecure 2026 for Team CyberThreat" loading="lazy"><span><b>Fig. 7 · 2nd place, HackSecure 2026</b>Team CyberThreat · Oct 2026</span></button>
+            <div class="plates awards">
+              <button class="plate award" type="button" data-lightbox="assets/img/hacksecure-2nd-place.webp" data-cap="Fig. 7 · 2nd place at HackSecure 2026, Team CyberThreat: Thabang Manyama (lead), Amani Tondi, Shaun Matlou"><img src="assets/img/hacksecure-2nd-place.webp" width="1000" height="1250" alt="Slide announcing 2nd place at HackSecure 2026 for Team CyberThreat" loading="lazy"><span><b>Fig. 7 · 2nd place, HackSecure</b>Oct 2026</span></button>
               <button class="plate award" type="button" data-lightbox="assets/img/cert-top-achiever-2025.webp" data-paper data-cap="Fig. 8 · EDUVOS Academic Top Achiever 2025 certificate, dated 26 June 2026"><img src="assets/img/cert-top-achiever-2025.webp" width="900" height="1334" alt="EDUVOS 2025 Academic Top Achiever certificate awarded to Thabang Manyama" loading="lazy"><span><b>Fig. 8 · Top Achiever 2025</b>EDUVOS · 26 Jun 2026</span></button>
+              <button class="plate award" type="button" data-lightbox="assets/img/cert-top-achiever-block2-2026.webp" data-paper data-cap="Fig. 9 · EDUVOS Top Achiever Award, Block 2 2026, Certificate of Achievement dated 16 November 2026"><img src="assets/img/cert-top-achiever-block2-2026.webp" width="900" height="1273" alt="EDUVOS Certificate of Achievement, Top Achiever Award Block 2 2026, awarded to Thabang Washington Manyama" loading="lazy"><span><b>Fig. 9 · Top Achiever, Block 2</b>EDUVOS · 16 Nov 2026</span></button>
             </div>
             <div class="plates certs">
-              <button class="plate" type="button" data-lightbox="assets/img/cert-fabric.webp" data-cap="Fig. 9 · Microsoft Certified: Fabric Data Engineer Associate, earned 4 August 2026"><img src="assets/img/cert-fabric.webp" width="1000" height="528" alt="Microsoft certificate: Fabric Data Engineer Associate" loading="lazy"><span><b>Fig. 9 · Fabric</b>Microsoft · 4 Aug 2026</span></button>
-              <button class="plate" type="button" data-lightbox="assets/img/cert-powerbi.webp" data-cap="Fig. 10 · Microsoft Certified: Power BI Data Analyst Associate, earned 24 April 2026"><img src="assets/img/cert-powerbi.webp" width="1000" height="528" alt="Microsoft certificate: Power BI Data Analyst Associate" loading="lazy"><span><b>Fig. 10 · Power BI</b>Microsoft · 24 Apr 2026</span></button>
-              <button class="plate" type="button" data-lightbox="assets/img/cert-azure-ds.webp" data-cap="Fig. 11 · Microsoft Certified: Azure Data Scientist Associate, earned 14 April 2026"><img src="assets/img/cert-azure-ds.webp" width="1000" height="528" alt="Microsoft certificate: Azure Data Scientist Associate" loading="lazy"><span><b>Fig. 11 · Azure DS</b>Microsoft · 14 Apr 2026</span></button>
+              <button class="plate" type="button" data-lightbox="assets/img/cert-fabric.webp" data-cap="Fig. 10 · Microsoft Certified: Fabric Data Engineer Associate, earned 4 August 2026"><img src="assets/img/cert-fabric.webp" width="1000" height="528" alt="Microsoft certificate: Fabric Data Engineer Associate" loading="lazy"><span><b>Fig. 10 · Fabric</b>Microsoft · 4 Aug 2026</span></button>
+              <button class="plate" type="button" data-lightbox="assets/img/cert-powerbi.webp" data-cap="Fig. 11 · Microsoft Certified: Power BI Data Analyst Associate, earned 24 April 2026"><img src="assets/img/cert-powerbi.webp" width="1000" height="528" alt="Microsoft certificate: Power BI Data Analyst Associate" loading="lazy"><span><b>Fig. 11 · Power BI</b>Microsoft · 24 Apr 2026</span></button>
+              <button class="plate" type="button" data-lightbox="assets/img/cert-azure-ds.webp" data-cap="Fig. 12 · Microsoft Certified: Azure Data Scientist Associate, earned 14 April 2026"><img src="assets/img/cert-azure-ds.webp" width="1000" height="528" alt="Microsoft certificate: Azure Data Scientist Associate" loading="lazy"><span><b>Fig. 12 · Azure DS</b>Microsoft · 14 Apr 2026</span></button>
             </div>
             <div class="distinctions">
               <p class="label">14 module distinctions · by year</p>
@@ -1266,7 +1270,7 @@ dialog.lightbox .lb-img.paper{background:var(--paper)}
 </article>
 
 </main>
-<footer class="foot"><div class="wrap"><span>© 2026 Thabang Manyama · Johannesburg</span><span>Hand-built in HTML, CSS and JavaScript. Every figure comes from a project repository, the CV or a certificate.</span><span>Last updated 15 November 2026</span></div></footer>
+<footer class="foot"><div class="wrap"><span>© 2026 Thabang Manyama · Johannesburg</span><span>Hand-built in HTML, CSS and JavaScript. Every figure comes from a project repository, the CV or a certificate.</span><span>Last updated 18 November 2026</span></div></footer>
 <script>
 (() => {
 "use strict";
